@@ -1,0 +1,4 @@
+#EXTM3U
+
+#EXTINF:-1, WRLT Lightning 100
+http://playerservices.streamtheworld.com/api/livestream-redirect/WRLTFM.mp3
