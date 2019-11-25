@@ -1,0 +1,10 @@
+#EXTM3U
+
+#EXTINF:-1, YouTube Audio Clear
+http://localhost/yt-play/?src=0
+
+#EXTINF:-1, Suzanne Vega - Tom's Diner (Acapella) 
+http://localhost/yt-play/?src=L9x-DENKIts
+
+#EXTINF:-1, Suzanne Vega - Tom's Diner
+http://localhost/yt-play/?src=bJNxmMk8zvA
