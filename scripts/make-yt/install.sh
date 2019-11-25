@@ -17,21 +17,47 @@
 # #EXTINF:-1, YouTube Audio
 # http://localhost/yt-play/?src=6LEmDEZVa5g
 
+# DOWNLOAD (video id)
+# #EXTINF:-1, YouTube Audio
+# http://localhost/yt-play/?dl=true&src=6LEmDEZVa5g
+
 
 # The following commands set everything up
 
 
-sudo apt-get install python-pip
-sudo pip install --upgrade youtube_dl
+#sudo apt-get install python-pip
+#sudo pip install --upgrade youtube_dl
 #sudo apt-get install mps-youtube
 
-sudo mkdir -p /var/lib/mpd/music/SDCARD/YT
+
+
+# Copy helper scripts to localhost
 sudo mkdir -p /var/www/yt-play
 sudo cp -f ./index.php /var/www/yt-play
-sudo cp -f ./yt-init.m3u /var/lib/mpd/playlists/YouTube_Load.m3u
-sudo cp -f ./yt.m3u /var/lib/mpd/playlists/YouTube_Play.m3u
-sudo cp -f ./yt.m3u /var/www/yt-play/yt.m3u
 sudo cp -f ./source.txt /var/www/yt-play
 sudo cp -f ./playlist_clear.sh /var/www/yt-play
 sudo cp -f ./playlist_load.sh /var/www/yt-play
 sudo cp -f ./playlist_start.sh /var/www/yt-play
+
+# Copy Base Playlists
+sudo cp -f ./yt-init.m3u /var/lib/mpd/playlists/YouTube_Load.m3u
+sudo cp -f ./yt.m3u /var/lib/mpd/playlists/YouTube_Play.m3u
+sudo cp -f ./yt.m3u /var/www/yt-play/yt.m3u
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Downloads discouraged, but if wanted create folder, copy helper to localhost
+sudo mkdir -p /mnt/SDCARD/YT
+sudo cp -f ./yt-dl.sh /var/www/yt-play

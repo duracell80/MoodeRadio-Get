@@ -1,6 +1,6 @@
 #EXTM3U
 
-#EXTINF:-1, YouTube Audio Clear
+#EXTINF:-1, Contacting YouTube for Metadata ... Please Wait
 http://localhost/yt-play/?src=0
 
 #EXTINF:-1, Suzanne Vega - Tom's Diner (Acapella) 
@@ -8,3 +8,6 @@ http://localhost/yt-play/?src=L9x-DENKIts
 
 #EXTINF:-1, Suzanne Vega - Tom's Diner
 http://localhost/yt-play/?src=bJNxmMk8zvA
+
+#EXTINF:-1, Done, Go to Playlists > YouTube_Play
+http://localhost/yt-play/?src=done
