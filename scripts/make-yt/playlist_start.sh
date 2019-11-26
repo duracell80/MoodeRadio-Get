@@ -7,7 +7,6 @@
 # #EXTINF:-1, YouTube Audio Start
 # http://localhost/yt-play/?src=1
 
-#sudo mpc update
-#sudo mpc clear
-#sudo mpc load /var/lib/mpd/playlists/YouTube_Play.m3u
-#sudo mpc play
+mpc clear
+mpc load YouTube_Play
+mpc play
