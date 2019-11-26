@@ -44,16 +44,18 @@ http://moode.ip/yt-play/?type=regen
 # Send YouTube Audio to Moode (work in progress)
 
 ```
-Get info about Tom's Diner
-http://moode.ip/yt-play/?type=info&src=L9x-DENKIts
-
-Put Tom's Diner into "YouTube Play" playlist
+Cast Tom's Diner into "YouTube Play" playlist
 http://moode.ip/yt-play/?type=stream&src=L9x-DENKIts
 
-then ...
-Start the "YouTube Play" playlist
+Start the "YouTube Play" playlist via api or Clear/Play from Moode UI
 http://moode.ip/yt-play/?type=stream&src=1
+
 ```
+
+# Get info about a video
+For example Tom's Diner ...
+
+```http://moode.ip/yt-play/?type=info&src=L9x-DENKIts```
 
 
 # YT Play MPC Commands
