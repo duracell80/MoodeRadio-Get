@@ -1,6 +1,7 @@
 # MoodeRadio-Get
 Package Manager for Moode Audio Radio Stations
 
+Documentation TBD while functionality being finalzed
 
 
 # YT Play API
@@ -13,7 +14,7 @@ sudo ./install.sh
 
 Add youtube videos to a playlist in the Radio folder in this way ... Compose a file with the first stream as a message that appears in Moode's player. This will give a sense that things are still happening while the API contacts YouTube to get the json file of the video. Add the actual stream you want to play on the next two lines. The API is a proxy running on localhost that uses youtube-dl to do this magic.
 
-End the M3U file with a refrence to http://localhost/yt-play/?type=stream&src=1 which will trigger an mpc update and play the "YouTube Play" playlist.
+End the M3U file with a refrence to http://localhost/yt-play/?type=stream&src=1 which will trigger an mpc update and play the "YouTube Play" playlist. You should use localhost or 127.0.0.1 here in the M3u file.
 
 ```
 #EXTM3U
