@@ -40,7 +40,8 @@ Regenerate Suzanne Vega into "YouTube Load" playlist
 http://moode.ip/yt-play/?type=regen
 ```
 
-Send audio from YouTube to Moode without writing a playlist ...
+Send YouTUbe audio to Moode (work in progress)
+
 ```
 Get info about Tom's Diner
 http://moode.ip/yt-play/?type=info&src=L9x-DENKIts
