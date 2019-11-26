@@ -8,8 +8,8 @@ Documentation TBD while functionality being finalzed
 
 Install the api to the localhost from the make-yt directory by
 ```
-sudo chmod 755 ./install.sh
-sudo ./install.sh
+$ sudo chmod 755 ./install.sh
+$ sudo ./install.sh
 ```
 
 Add youtube videos to a playlist in the Radio folder in this way ... Compose a file with the first stream as a message that appears in Moode's player. This will give a sense that things are still happening while the API contacts YouTube to get the json file of the video. Add the actual stream you want to play on the next two lines. The API is a proxy running on localhost that uses youtube-dl to do this magic.
@@ -59,6 +59,15 @@ http://moode.ip/yt-play/?type=stream&src=1
 There are some nice MPC commands in the API these are ...
 
 ```
+SEEK FORWARD
+fwd15s,30s,60s and 5m
+http://moode.ip/yt-play/?cmd=fwd30
+
+SEEK BACK
+bck15s,30s,60s and 5m
+http://moode.ip/yt-play/?cmd=bck5m
+
+
 mpc status         : http://moode.ip/yt-play/?cmd=status
 mpc update         : http://moode.ip/yt-play/?cmd=update
 mpc lsplaylists    : http://moode.ip/yt-play/?cmd=list
@@ -67,12 +76,4 @@ mpc play           : http://moode.ip/yt-play/?cmd=play
 mpc pause          : http://moode.ip/yt-play/?cmd=pause
 mpc prev           : http://moode.ip/yt-play/?cmd=prev
 mpc next           : http://moode.ip/yt-play/?cmd=next
-
-SEEK FORWARD
-fwd15s,30s,60s and 5m
-http://moode.ip/yt-play/?cmd=fwd30
-
-SEEK BACK
-bck15s,30s,60s and 5m
-http://moode.ip/yt-play/?cmd=bck5m
 ```
