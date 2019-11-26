@@ -5,8 +5,8 @@
 # Add to the playlist as ...
 #
 # #EXTINF:-1, YouTube Audio Start
-# http://localhost/yt-play/?type=stream&src=1
+# http://localhost/yt-play/?src=1
 
 mpc clear
-mpc load YouTube_Play
+mpc load YouTube_Load
 mpc play

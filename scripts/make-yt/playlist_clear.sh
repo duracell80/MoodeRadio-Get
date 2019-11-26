@@ -3,8 +3,7 @@
 # Do this with ...
 #
 # #EXTINF:-1, YouTube Audio
-# http://localhost/yt-play/?src=0
-
+# http://localhost/yt-play/?type=stream&src=0
 
 
 sudo echo "#EXTM3U" > /var/www/yt-play/yt.m3u

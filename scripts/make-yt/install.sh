@@ -33,6 +33,7 @@
 
 # Copy helper scripts to localhost
 sudo mkdir -p /var/www/yt-play
+sudo mkdir -p /var/lib/mpd/music/RADIO/_Networks/yt
 sudo cp -f ./index.php /var/www/yt-play
 sudo cp -f ./source.json /var/www/yt-play
 sudo cp -f ./source_title.py /var/www/yt-play
@@ -40,6 +41,8 @@ sudo cp -f ./source_url.py /var/www/yt-play
 sudo cp -f ./playlist_clear.sh /var/www/yt-play
 sudo cp -f ./playlist_load.sh /var/www/yt-play
 sudo cp -f ./playlist_start.sh /var/www/yt-play
+sudo cp -f ./playlist_regen.sh /var/www/yt-play
+sudo cp -f ./yt-info.sh /var/www/yt-play
 
 # Downloads discouraged, but if wanted create folder, copy helper to localhost
 sudo mkdir -p /mnt/SDCARD/YT
@@ -49,11 +52,18 @@ sudo cp -f ./yt-dl.sh /var/www/yt-play
 # Copy Base Playlists
 sudo cp -f ./yt-init.m3u /var/lib/mpd/playlists/YouTube_Load.m3u
 sudo cp -f ./yt.m3u /var/lib/mpd/playlists/YouTube_Play.m3u
+sudo cp -f ./yt-init.m3u /var/www/yt-play/yt-init.m3u
 sudo cp -f ./yt.m3u /var/www/yt-play/yt.m3u
+sudo cp -rf ./_Networks/yt/* /var/lib/mpd/music/RADIO/_Networks/yt
+sudo cp -f ./yt-init.m3u /var/lib/mpd/music/RADIO/_Networks/yt/toms-diner.m3u
 
+mpc update
 
 
 # Permissions
+sudo chmod 755 ./uninstall.sh
+#sudo cp -f ./uninstall.sh /var/www/yt-play/uninstall.sh
+
 sudo chmod 755 /var/www/yt-play/*.sh
 sudo chmod 777 /var/www/yt-play/*.m3u
 sudo chmod 777 /var/www/yt-play/*.json

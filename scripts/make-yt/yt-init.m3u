@@ -1,13 +1,13 @@
 #EXTM3U
 
-#EXTINF:-1, Contacting YouTube for Metadata ... Please Wait
-http://localhost/yt-play/?src=0
+#EXTINF:-1, Contacting YouTube ... Please Wait
+http://localhost/yt-play/?type=stream&src=-1
 
 #EXTINF:-1, Suzanne Vega - Tom's Diner (Acapella) 
-http://localhost/yt-play/?src=L9x-DENKIts
+http://localhost/yt-play/?type=stream&src=L9x-DENKIts
 
 #EXTINF:-1, Suzanne Vega - Tom's Diner
-http://localhost/yt-play/?src=bJNxmMk8zvA
+http://localhost/yt-play/?type=stream&src=bJNxmMk8zvA
 
-#EXTINF:-1, Done, Go to Playlists > YouTube_Play
-http://localhost/yt-play/?src=1
+#EXTINF:-1, Playlist starting or go to Playlists > YouTube_Play
+http://localhost/yt-play/?type=stream&src=1

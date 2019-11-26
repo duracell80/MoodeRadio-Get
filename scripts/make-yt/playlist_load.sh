@@ -14,3 +14,5 @@ title=$(sudo python source_title.py)
 sudo echo "#EXTINF:-1, YouTube: "${title} >> /var/www/yt-play/yt.m3u
 sudo echo ${url} >> /var/www/yt-play/yt.m3u
 sudo cp -f /var/www/yt-play/yt.m3u /var/lib/mpd/playlists/YouTube_Play.m3u
+
+echo "I finish up my coffee and it's time to catch the train -- Suzanne Vega" > /var/www/yt-play/source.json
