@@ -28,10 +28,11 @@ http://localhost/yt-play/?type=stream&src=Hc0MJjcZm40
 http://localhost/yt-play/?type=stream&src=1
 ```
 
+# Regenerating Expired Streams
 The "YouTube Play" playlist will expire so lists will need to be "regenerated" to activate the .m4a streams!
 
 ```
-Regenerate and play a playlist from the Radio folder ...
+Regenerate and play a crafted playlist from the RADIO folder ...
 http://moode.ip/yt-play/?type=regen&src=_Networks/yt/asmr/example.m3u
 ```
 
@@ -40,7 +41,7 @@ Regenerate Suzanne Vega into "YouTube Load" playlist
 http://moode.ip/yt-play/?type=regen
 ```
 
-Send YouTUbe audio to Moode (work in progress)
+# Send YouTube Audio to Moode (work in progress)
 
 ```
 Get info about Tom's Diner
