@@ -22,7 +22,7 @@ End the M3U file with a refrence to http://localhost/yt-play/?type=stream&src=1 
 http://localhost/yt-play/?type=stream&src=-1
 
 #EXTINF:-1, Gentle Whispering ASMR - Cleansing Crystals with Sage 
-http://localhost/yt-play/?type=stream&src=Hc0MJjcZm40
+http://localhost/yt-play/?type=stream&src=https://www.youtube.com/watch?v=Hc0MJjcZm40
 
 #EXTINF:-1, Gentle Whispering ASMR ... Done, Go to Playlists > YouTube_Play
 http://localhost/yt-play/?type=stream&src=1
@@ -45,7 +45,7 @@ http://moode.ip/yt-play/?type=regen
 
 ```
 Cast Tom's Diner into "YouTube Play" playlist
-http://moode.ip/yt-play/?type=stream&src=L9x-DENKIts
+http://moode.ip/yt-play/?type=stream&src=https://www.youtube.com/watch?v=L9x-DENKIts
 
 Start the "YouTube Play" playlist via api or Clear/Play from Moode UI
 http://moode.ip/yt-play/?type=stream&src=1
@@ -55,7 +55,7 @@ http://moode.ip/yt-play/?type=stream&src=1
 # Get info about a video
 For example Tom's Diner ...
 
-```http://moode.ip/yt-play/?type=info&src=L9x-DENKIts```
+```http://moode.ip/yt-play/?type=info&src=https://www.youtube.com/watch?v=L9x-DENKIts```
 
 
 # YT Play MPC Commands
