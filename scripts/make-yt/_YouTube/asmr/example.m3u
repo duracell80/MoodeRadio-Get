@@ -5,16 +5,16 @@
 http://localhost/yt-play/?type=stream&src=-1
 
 #EXTINF:-1, Gentle Whispering ASMR - Cleansing Crystals with Sage 
-http://localhost/yt-play/?type=stream&src=Hc0MJjcZm40
+http://localhost/yt-play/?type=stream&src=https://www.youtube.com/watch?v=Hc0MJjcZm40
 
 #EXTINF:-1, Gentle Whispering ASMR - Dental Cleaning Whitening ASMR
-http://localhost/yt-play/?type=stream&src=Z4QjoRPclmo
+http://localhost/yt-play/?type=stream&src=https://www.youtube.com/watch?v=Z4QjoRPclmo
 
 #EXTINF:-1, Gentle Whispering ASMR - Dreamy Steam
-http://localhost/yt-play/?type=stream&src=UOVnaIYOf3M
+http://localhost/yt-play/?type=stream&src=https://www.youtube.com/watch?v=UOVnaIYOf3M
 
 #EXTINF:-1, Gentle Whispering ASMR - The K3YS Wisdom (Silent: First 30s)
-http://localhost/yt-play/?type=stream&src=erTe2wkxc-g
+http://localhost/yt-play/?type=stream&src=https://www.youtube.com/watch?v=erTe2wkxc-g
 
 #EXTINF:-1, Gentle Whispering ASMR ... Done, Go to Playlists > YouTube_Play
 http://localhost/yt-play/?type=stream&src=1

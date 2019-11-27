@@ -33,7 +33,7 @@
 
 # Copy helper scripts to localhost
 sudo mkdir -p /var/www/yt-play
-sudo mkdir -p /var/lib/mpd/music/RADIO/_Networks/yt
+sudo mkdir -p /var/lib/mpd/music/RADIO/_YouTube
 sudo cp -f ./index.php /var/www/yt-play
 sudo cp -f ./source.json /var/www/yt-play
 sudo cp -f ./source_title.py /var/www/yt-play
@@ -54,8 +54,9 @@ sudo cp -f ./yt-init.m3u /var/lib/mpd/playlists/YouTube_Load.m3u
 sudo cp -f ./yt.m3u /var/lib/mpd/playlists/YouTube_Play.m3u
 sudo cp -f ./yt-init.m3u /var/www/yt-play/yt-init.m3u
 sudo cp -f ./yt.m3u /var/www/yt-play/yt.m3u
-sudo cp -rf ./_Networks/yt/* /var/lib/mpd/music/RADIO/_Networks/yt
-sudo cp -f ./yt-init.m3u /var/lib/mpd/music/RADIO/_Networks/yt/toms-diner.m3u
+sudo cp -rf ./_YouTube/* /var/lib/mpd/music/RADIO/_YouTube
+sudo cp -f ./yt-init.m3u /var/lib/mpd/music/RADIO/_YouTube/example-streaming.m3u
+sudo cp -f ./yt-dl.m3u /var/lib/mpd/music/RADIO/_YouTube/example-downloading.m3u
 
 mpc update
 

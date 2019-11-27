@@ -4,10 +4,10 @@
 http://localhost/yt-play/?type=stream&src=-1
 
 #EXTINF:-1, Suzanne Vega - Tom's Diner (Acapella) 
-http://localhost/yt-play/?type=stream&src=L9x-DENKIts
+http://localhost/yt-play/?type=stream&src=https://www.youtube.com/watch?v=L9x-DENKIts
 
 #EXTINF:-1, Suzanne Vega - Tom's Diner
-http://localhost/yt-play/?type=stream&src=bJNxmMk8zvA
+http://localhost/yt-play/?type=stream&src=https://www.youtube.com/watch?v=bJNxmMk8zvA
 
 #EXTINF:-1, Playlist starting or go to Playlists > YouTube_Play
 http://localhost/yt-play/?type=stream&src=1
