@@ -62,7 +62,7 @@ http://moode.ip/yt-play/?type=download&src=https://www.youtube.com/watch?v=mhyD2
 
 # Download with --no-call-home flag
 ```
-Donate to NPR
+Download a Tiny Desk to the uSD Donate to NPR (Lobby ytdl-org for a stream only version)
 http://moode.ip/yt-play/?type=download&src=https://www.youtube.com/watch?v=mhyD2qchkEw
 ```
 
