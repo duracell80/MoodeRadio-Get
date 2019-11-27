@@ -12,9 +12,9 @@ $ sudo chmod 755 ./install.sh
 $ sudo ./install.sh
 ```
 
-Add youtube videos to a playlist in the Radio folder in this way ... Compose a file with the first stream as a message that appears in Moode's player. This will give a sense that things are still happening while the API contacts YouTube to get the json file of the video. Add the actual stream you want to play on the next two lines. The API is a proxy running on localhost that uses youtube-dl to do this magic.
+Add youtube videos to a playlist in the Radio folder in this way ... Compose a file with the first stream as a message that appears in Moode's player. This will give a sense that things are still happening while the API contacts YouTube to get the json file of the video. Add the actual stream you want to play on the next two lines. The API is a patchwork quilt of a proxy to youtube-dl.
 
-End the M3U file with a refrence to http://localhost/yt-play/?type=stream&src=1 which will trigger an mpc update and play the "YouTube Play" playlist. You should use localhost or 127.0.0.1 here in the M3u file.
+End the M3U file with a call to http://localhost/yt-play/?type=stream&src=1 which will trigger an mpc update and play the "YouTube Play" playlist. You should use localhost or 127.0.0.1 here in the M3U file.
 
 ```
 #EXTM3U
@@ -28,6 +28,10 @@ http://localhost/yt-play/?type=stream&src=https://www.youtube.com/watch?v=Hc0MJj
 http://localhost/yt-play/?type=stream&src=1
 ```
 
+Save your M3U playlists in the RADIO folder
+
+
+
 # Regenerating Expired Streams
 The "YouTube Play" playlist will expire so streams will need to be "regenerated" to activate the audio! (replace moode.ip with your moode's lan addr)
 
@@ -40,6 +44,12 @@ http://moode.ip/yt-play/?type=regen&src=_YouTube/asmr/example.m3u
 Regenerate Suzanne Vega into "YouTube Load" playlist
 http://moode.ip/yt-play/?type=regen
 ```
+
+# Get info about a video
+For example see Tom's Diner JSON ... (replace moode.ip)
+
+```http://moode.ip/yt-play/?type=info&src=https://www.youtube.com/watch?v=L9x-DENKIts```
+
 
 # Send YouTube Audio to Moode
 Essentially trigger a middle man between a URL and Moode in order to generate the .m4a file.
@@ -56,10 +66,7 @@ Donate to NPR
 http://moode.ip/yt-play/?type=download&src=https://www.youtube.com/watch?v=mhyD2qchkEw
 ```
 
-# Get info about a video
-For example see Tom's Diner JSON ... (replace moode.ip)
 
-```http://moode.ip/yt-play/?type=info&src=https://www.youtube.com/watch?v=L9x-DENKIts```
 
 
 # YT Play MPC Commands
