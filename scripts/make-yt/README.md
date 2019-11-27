@@ -12,6 +12,8 @@ $ sudo chmod 755 ./install.sh
 $ sudo ./install.sh
 ```
 
+Use the API inside playlists to activate audio streams. Use the API in your mobile device browser or desktop browser to interact with Moode. Essentially though you should be able to add YouTube to moode using only playlists.
+
 Add youtube videos to a playlist in the Radio folder in this way ... Compose a file with the first stream as a message that appears in Moode's player. This will give a sense that things are still happening while the API contacts YouTube to get the json file of the video. Add the actual stream you want to play on the next two lines. The API is a patchwork quilt of a proxy to youtube-dl.
 
 End the M3U file with a call to http://localhost/yt-play/?type=stream&src=1 which will trigger an mpc update and play the "YouTube Play" playlist. You should use localhost or 127.0.0.1 here in the M3U file.
