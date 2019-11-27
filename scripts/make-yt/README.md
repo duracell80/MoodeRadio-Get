@@ -40,9 +40,7 @@ The "YouTube Play" playlist will expire so streams will need to be "regenerated"
 ```
 Regenerate and play a crafted playlist from the RADIO folder ...
 http://moode.ip/yt-play/?type=regen&src=_YouTube/asmr/example.m3u
-```
 
-```
 Regenerate Suzanne Vega into "YouTube Load" playlist
 http://moode.ip/yt-play/?type=regen
 ```
@@ -53,21 +51,14 @@ For example see Tom's Diner JSON ... (replace moode.ip)
 ```http://moode.ip/yt-play/?type=info&src=https://www.youtube.com/watch?v=L9x-DENKIts```
 
 
-# Send YouTube Audio to Moode
-Essentially trigger a middle man between a URL and Moode in order to generate the .m4a file.
+# Cast YouTube Audio to Moode
+Essentially trigger a generating the .m4a directly without the YouTube_Load playlist.
 
 ```
 Cast a Tiny Desk stream by Sylvan Esso into "YouTube Play" playlist
 http://moode.ip/yt-play/?type=cast&src=https://www.youtube.com/watch?v=mhyD2qchkEw
 
 ```
-
-# Download with --no-call-home flag
-```
-Download the Tiny Desk and Donate to NPR
-http://moode.ip/yt-play/?type=download&src=https://www.youtube.com/watch?v=mhyD2qchkEw
-```
-
 
 
 
