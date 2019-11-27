@@ -29,7 +29,7 @@ http://localhost/yt-play/?type=stream&src=1
 ```
 
 # Regenerating Expired Streams
-The "YouTube Play" playlist will expire so streams will need to be "regenerated" to activate the audio!
+The "YouTube Play" playlist will expire so streams will need to be "regenerated" to activate the audio! (replace moode.ip with your moode's lan addr)
 
 ```
 Regenerate and play a crafted playlist from the RADIO folder ...
@@ -45,13 +45,19 @@ http://moode.ip/yt-play/?type=regen
 Essentially trigger a middle man between a URL and Moode in order to generate the .m4a file.
 
 ```
-Cast Signal by Sylvan Esso into "YouTube Play" playlist
-http://moode.ip/yt-play/?type=cast&src=https://www.youtube.com/watch?v=6Jxg1hkwrt4
+Cast a Tiny Desk stream by Sylvan Esso into "YouTube Play" playlist
+http://moode.ip/yt-play/?type=download&src=https://www.youtube.com/watch?v=mhyD2qchkEw
 
 ```
 
+# Download with --no-call-home flag
+```
+Donate to NPR
+http://moode.ip/yt-play/?type=download&src=https://www.youtube.com/watch?v=mhyD2qchkEw
+```
+
 # Get info about a video
-For example Tom's Diner ...
+For example see Tom's Diner JSON ... (replace moode.ip)
 
 ```http://moode.ip/yt-play/?type=info&src=https://www.youtube.com/watch?v=L9x-DENKIts```
 
@@ -59,6 +65,7 @@ For example Tom's Diner ...
 # YT Play MPC Commands
 
 There are some nice MPC commands in the API these are ...
+(replace moode.ip with your moode's lan addr)
 
 ```
 SEEK FORWARD
