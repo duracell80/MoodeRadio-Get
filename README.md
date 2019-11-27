@@ -33,7 +33,7 @@ The "YouTube Play" playlist will expire so lists will need to be "regenerated" t
 
 ```
 Regenerate and play a crafted playlist from the RADIO folder ...
-http://moode.ip/yt-play/?type=regen&src=_Networks/yt/asmr/example.m3u
+http://moode.ip/yt-play/?type=regen&src=_YouTube/asmr/example.m3u
 ```
 
 ```
