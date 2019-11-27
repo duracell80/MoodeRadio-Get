@@ -29,7 +29,7 @@ http://localhost/yt-play/?type=stream&src=1
 ```
 
 # Regenerating Expired Streams
-The "YouTube Play" playlist will expire so lists will need to be "regenerated" to activate the .m4a streams!
+The "YouTube Play" playlist will expire so streams will need to be "regenerated" to activate the audio!
 
 ```
 Regenerate and play a crafted playlist from the RADIO folder ...
@@ -41,14 +41,12 @@ Regenerate Suzanne Vega into "YouTube Load" playlist
 http://moode.ip/yt-play/?type=regen
 ```
 
-# Send YouTube Audio to Moode (work in progress)
+# Send YouTube Audio to Moode
+Essentially trigger a middle man between a URL and Moode in order to generate the .m4a file.
 
 ```
-Cast Tom's Diner into "YouTube Play" playlist
-http://moode.ip/yt-play/?type=stream&src=https://www.youtube.com/watch?v=L9x-DENKIts
-
-Start the "YouTube Play" playlist via api or Clear/Play from Moode UI
-http://moode.ip/yt-play/?type=stream&src=1
+Cast Signal by Sylvan Esso into "YouTube Play" playlist
+http://moode.ip/yt-play/?type=cast&src=https://www.youtube.com/watch?v=6Jxg1hkwrt4
 
 ```
 
