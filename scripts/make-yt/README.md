@@ -56,13 +56,13 @@ Essentially trigger a middle man between a URL and Moode in order to generate th
 
 ```
 Cast a Tiny Desk stream by Sylvan Esso into "YouTube Play" playlist
-http://moode.ip/yt-play/?type=download&src=https://www.youtube.com/watch?v=mhyD2qchkEw
+http://moode.ip/yt-play/?type=cast&src=https://www.youtube.com/watch?v=mhyD2qchkEw
 
 ```
 
 # Download with --no-call-home flag
 ```
-Download a Tiny Desk to the uSD Donate to NPR (Lobby ytdl-org for a stream only version)
+Download the Tiny Desk and Donate to NPR
 http://moode.ip/yt-play/?type=download&src=https://www.youtube.com/watch?v=mhyD2qchkEw
 ```
 
