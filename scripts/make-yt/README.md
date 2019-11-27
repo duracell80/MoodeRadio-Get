@@ -14,9 +14,9 @@ $ sudo ./install.sh
 
 Use the API inside playlists to activate audio streams. Use the API in your mobile device browser or desktop browser to interact with Moode. Essentially though you should be able to add YouTube to moode using only playlists.
 
-Add youtube videos to a playlist in the Radio folder in this way ... Compose a file with the first stream as a message that appears in Moode's player. This will give a sense that things are still happening while the API contacts YouTube to get the json file of the video. Add the actual stream you want to play on the next two lines. The API is a patchwork quilt of a proxy to youtube-dl.
+Add youtube videos to a playlist in the Radio folder in this way ... Compose a file with the first stream as a message that appears in Moode's player. This will give a sense that things are still happening while the API contacts YouTube to get the json file of the video. Add the actual stream you want to play on the next two lines. End the M3U file with a call to http://localhost/yt-play/?type=stream&src=1 which will trigger an mpc update, offer the chance to output a done message and play the "YouTube Play" playlist. You should use localhost or 127.0.0.1 here in the M3U file.
 
-End the M3U file with a call to http://localhost/yt-play/?type=stream&src=1 which will trigger an mpc update and play the "YouTube Play" playlist. You should use localhost or 127.0.0.1 here in the M3U file.
+It's normal for the API to trigger errors within Moode UI.
 
 ```
 #EXTM3U
@@ -34,8 +34,10 @@ Save your M3U playlists in the RADIO folder
 
 
 
-# Regenerating Expired Streams
-The "YouTube Play" playlist will expire so streams will need to be "regenerated" to activate the audio! (replace moode.ip with your moode's lan addr)
+# Regenerating Streams
+The "YouTube_Play" playlist will expire so streams will need to be "regenerated" via a helper playlist called "YouTube_Load" to activate the audio streams to hear them! This is why there is a slight delay in which you may think the functionality isn't working. The API calls the library to recontact YouTube to activate the m4a stream.
+
+You can use the API from a different device, for example your laptop or tablet to send YouTube URL's to Moode via this proxy service.
 
 ```
 Regenerate and play a crafted playlist from the RADIO folder ...
@@ -52,7 +54,7 @@ For example see Tom's Diner JSON ... (replace moode.ip)
 
 
 # Cast YouTube Audio to Moode
-Essentially trigger a generating the .m4a directly without the YouTube_Load playlist.
+Essentially trigger generating the .m4a directly without the YouTube_Load playlist.
 
 ```
 Cast a Tiny Desk stream by Sylvan Esso into "YouTube Play" playlist
