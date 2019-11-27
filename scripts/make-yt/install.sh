@@ -25,8 +25,8 @@
 # The following commands set everything up
 
 #sudo apt-get install vlc-bin
-#sudo apt-get install python-pip
-#sudo pip install --upgrade youtube_dl
+sudo apt-get install python-pip
+sudo pip install --upgrade youtube_dl
 #sudo apt-get install mps-youtube
 
 

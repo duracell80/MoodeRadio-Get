@@ -20,8 +20,8 @@ sudo rm -rf /var/www/yt-play
 # Remove Base Playlists
 sudo rm -rf /var/lib/mpd/playlists/YouTube_Load.m3u
 sudo rm -rf /var/lib/mpd/playlists/YouTube_Play.m3u
-sudo rm -rf /var/lib/mpd/music/RADIO/_YouTube/yt/asmr/example.m3u
-sudo rm -rf /var/lib/mpd/music/RADIO/_YouTube/yt/mahogany/example.m3u
+sudo rm -rf /var/lib/mpd/music/RADIO/_YouTube/asmr/example.m3u
+sudo rm -rf /var/lib/mpd/music/RADIO/_YouTube/mahogany/example.m3u
 sudo rm -rf /var/lib/mpd/music/RADIO/_YouTube/example-downloading.m3u
 sudo rm -rf /var/lib/mpd/music/RADIO/_YouTube/example-streaming.m3u
 
