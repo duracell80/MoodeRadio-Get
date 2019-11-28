@@ -54,10 +54,10 @@ def main():
     packDB          = "u-" + packD3
     packFILE        = packBASE + "-" + packD1 + "-" + packD2 + "-" + packD3 + ".m3u"
     
-
+    
     os.system("sudo mkdir -p ./singles/m3u") 
     os.system("sudo mkdir -p ./singles/pls") 
-    
+
     create_playlists(packFILE)
         
  

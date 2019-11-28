@@ -52,7 +52,7 @@ def main():
 
     database        = r"/var/local/www/db/moode-sqlite3.db"
     
-    packDB          = "u-" + packD3
+    packDB          = "u-" + packD3 + "-" + packBASE
     packFILE        = packBASE + "-" + packD1 + "-" + packD2 + "-" + packD3
     pathBUILD       = "/mnt/SDCARD/_Stations/"+packD1+"/"+packD2+"/"+packD3
     
@@ -94,7 +94,7 @@ def main():
     # DO FILE SYSTEM STUFF
     os.system("sudo mkdir -p /var/lib/mpd/music/RADIO/_Stations/"+packD1+"/"+packD2+"/"+packD3+"/singles/")
     os.system("sudo cp ./"+packFILE+".m3u /var/lib/mpd/playlists/")
-    os.system("sudo cp ./"+packFILE+".m3u /var/lib/mpd/music/RADIO/_Stations/"+packD1+"/"+packD2+"/"+packD3+"")
+    os.system("sudo cp ./*.m3u /var/lib/mpd/music/RADIO/_Stations/"+packD1+"/"+packD2+"/"+packD3)
     os.system("sudo cp ./singles/pls/*.pls /var/lib/mpd/music/RADIO/_Stations/"+packD1+"/"+packD2+"/"+packD3+"/singles")
     
     os.system("sudo cp ./logos/"+packFILE+".jpg /var/www/images/radio-logos/thumbs")
