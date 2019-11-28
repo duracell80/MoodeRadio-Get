@@ -23,26 +23,26 @@ def create_playlists(filename):
             
             ssplit          = line.split(",")
             stationName     = ssplit[1]
-            stationFileM3U  = zeropre+str(count)+ "-" + ssplit[1].strip().replace(" ", "-").lower() + ".m3u"
-            stationFilePLS  = zeropre+str(count)+ "-" + ssplit[1].strip().replace(" ", "-").lower() + ".pls"
+            stationFileM3U  = ssplit[1].strip().replace(" ", "-").lower() + ".m3u"
+            stationFilePLS  = ssplit[1].strip().replace(" ", "-").lower() + ".pls"
             stationEcho     = "[ " + zeropre+str(count)+ " ] : " + stationName.strip()
             stationURL      = lines[lineJump]
 
             print(stationEcho)
             
             # CREATE THE M3U LISTS
-            f = open("./playlists/m3u/" + stationFileM3U, "w")
+            f = open("./singles/m3u/" + stationFileM3U, "w")
             f.write("#EXTM3U\n\n"+line+stationURL)
             f.close()
             
-            time.sleep(0.10)
+            time.sleep(0.05)
             
             # CREATE THE PLS LISTS
-            f = open("./playlists/pls/" + stationFilePLS, "w")
+            f = open("./singles/pls/" + stationFilePLS, "w")
             f.write("[playlist]\nFile1="+stationURL+"\n"+"Title1="+stationName+"\nNumberOfEntries=1\nLength1=-1\nVersion=1")
             f.close()
             
-            time.sleep(0.10)
+            time.sleep(0.05)
             
             
     
@@ -51,21 +51,12 @@ def create_playlists(filename):
  
 def main():
     
-    with open('config.json') as json_file:
-        data = json.load(json_file)
-        for p in data['radiopack']:
-            packBASE        = p['type'].lower()
-            packCOUNTRY     = p['country'].lower()
-            packSTATE       = p['state'].lower()
-            packID          = p['cityid'].lower()
-
-    
-    packDB          = "u-" + packID
-    packFILE        = packBASE + "-" + packCOUNTRY + "-" + packSTATE + "-" + packID + ".m3u"
+    packDB          = "u-" + packD3
+    packFILE        = packBASE + "-" + packD1 + "-" + packD2 + "-" + packD3 + ".m3u"
     
 
-    os.system("sudo mkdir -p ./playlists/m3u") 
-    os.system("sudo mkdir -p ./playlists/pls") 
+    os.system("sudo mkdir -p ./singles/m3u") 
+    os.system("sudo mkdir -p ./singles/pls") 
     
     create_playlists(packFILE)
         
