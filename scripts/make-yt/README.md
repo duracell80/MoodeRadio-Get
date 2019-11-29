@@ -7,7 +7,7 @@ $ sudo chmod 755 ./install.sh
 $ sudo ./install.sh
 ```
 
-The install script will get get dependencies. Use the API inside playlists to activate audio streams. Use the API in your mobile device browser or desktop browser to interact with Moode. Essentially though you should be able to add YouTube to Moode using only playlists.
+The install script will fetch dependencies. Use the API inside playlists to activate audio streams. Use the API in your mobile device browser or desktop browser to interact with Moode. Essentially though you should be able to add YouTube to Moode using only playlists.
 
 Add youtube videos to a playlist in the Radio folder in this way ... Compose a file with the first stream as a message that appears in Moode's player. This will give a sense that things are still happening while the API contacts YouTube to get the json file of the video. Add the actual stream you want to play on the next two lines. End the M3U file with a call to http://localhost/yt-play/?type=stream&src=1 which will trigger an mpc update, offer the chance to output a done message and play the "YouTube Play" playlist. 
 
