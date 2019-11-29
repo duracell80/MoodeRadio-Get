@@ -54,7 +54,7 @@ $ sudo chmod 755 *
 
 ```
 
-![Screenshot](https://github.com/duracell80/MoodeRadio-Get/blob/master/packs/images/004.jpg?raw=true)
+![Screenshot](https://github.com/duracell80/MoodeRadio-Get/blob/master/packs/images/003a.jpg?raw=true)
 
 # Add your station URLs and station logos
 Edit the m3u files to add your URLs in the file. Perhaps using a desktop PC accessing the fileshare on the SDCARD. Add your station logos following the filenaming convention stations-us-ca-sfo.jpg for example so the names match up. When done make sure you are on the SDCARD for example ... /mnt/SDCARD/_Stations/us/ca/sfo
@@ -72,7 +72,7 @@ Navigate in Moode UI to Radio (the mic icon) then _Stations.
 
 Navigate in Moode UI to Playlists (the icon next to the radio icon)
 
-![Screenshot](https://github.com/duracell80/MoodeRadio-Get/blob/master/packs/images/003a.jpg?raw=true)
+![Screenshot](https://github.com/duracell80/MoodeRadio-Get/blob/master/packs/images/002.jpg?raw=true)
 
 
 
