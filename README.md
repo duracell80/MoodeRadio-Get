@@ -72,7 +72,7 @@ Navigate in Moode UI to Radio (the mic icon) then _Stations.
 
 Navigate in Moode UI to Playlists (the icon next to the radio icon)
 
-![Screenshot](https://github.com/duracell80/MoodeRadio-Get/blob/master/packs/images/002.jpg?raw=true)
+![Screenshot](https://github.com/duracell80/MoodeRadio-Get/blob/master/packs/images/003a.jpg?raw=true)
 
 
 
