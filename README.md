@@ -1,6 +1,8 @@
 # MoodeRadio-Get
 Package Manager for Moode Audio Radio Stations
 
+![Screenshot](https://github.com/duracell80/MoodeRadio-Get/blob/master/packs/images/000.jpg?raw=true)
+
 ## Get from GIT
 
 ```
