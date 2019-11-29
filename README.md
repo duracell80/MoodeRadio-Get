@@ -21,21 +21,25 @@ $ cd /home/pi/MoodeRadio-Get/scripts/make-stations/
 
 For cities ...
 
+```
 type	= stations
 pack-d1 = country
 pack-d2 = state
 pack-d3 = airport code
 
 To store in _Stations/us/tn/bna
+```
 
 For genres ...
 
+```
 type	= stations
 pack-d1 = genres
 pack-d2 = electronic
 pack-d3 = chill
 
 To store in _Stations/genres/electronic/chill
+```
 
 Do this before running the build script as doing so beforehand will make sure you have all the right  filenames in your build. In this example we're going to compile a package for /us/tn/bna. Don't worry about adding the URLs in the m3u file at this point, the script is going to place all these  files in an accessible location in the SDCARD directory. When done with the config do:
 
