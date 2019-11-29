@@ -13,6 +13,7 @@ Add youtube videos to a playlist in the Radio folder in this way ... Compose a f
 
 You should use localhost or 127.0.0.1 here in the M3U file.
 
+## The magic url format /yt-play/?type=stream&src=
 
 ```
 #EXTM3U
@@ -30,7 +31,7 @@ Save your M3U playlists in the RADIO folder
 
 
 
-# Regenerating Streams
+## Regenerating Streams
 The "YouTube_Play" playlist will expire so streams will need to be "regenerated" via a helper playlist called "YouTube_Load" to activate the audio streams to hear them! This is why there is a slight delay in which you may think the functionality isn't working. The API calls the library to recontact YouTube to activate the m4a stream.
 
 You can use the API from a different device, for example your laptop or tablet to send YouTube URL's to Moode via this proxy service.
@@ -43,13 +44,13 @@ Regenerate Suzanne Vega into "YouTube Load" playlist
 http://moode.ip/yt-play/?type=regen
 ```
 
-# Get info about a video
+## Get info about a video
 For example see Tom's Diner JSON ... (replace moode.ip)
 
 ```http://moode.ip/yt-play/?type=info&src=https://www.youtube.com/watch?v=L9x-DENKIts```
 
 
-# Cast YouTube Audio to Moode
+## Cast YouTube Audio to Moode
 Essentially trigger generating the .m4a directly without the YouTube_Load playlist.
 
 ```
@@ -60,7 +61,7 @@ http://moode.ip/yt-play/?type=cast&src=https://www.youtube.com/watch?v=mhyD2qchk
 
 
 
-# YT Play MPC Commands
+## YT Play MPC Commands
 
 There are some nice MPC commands in the API these are ...
 (replace moode.ip with your moode's lan addr)
