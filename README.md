@@ -52,7 +52,7 @@ $ sudo python build.py
 $ cd /mnt/SDCARD/_Stations (or open the fileshare)
 ```
 
-![Screenshot](https://github.com/duracell80/MoodeRadio-Get/blob/master/packs/images/003.jpg?raw=true)
+![Screenshot](https://github.com/duracell80/MoodeRadio-Get/blob/master/packs/images/004.jpg?raw=true)
 
 # Add your station URLs and station logos
 Edit the m3u files to add your URLs in the file. Add your station logos following the filenaming convention stations-us-tn-bna.jpg for example so the names match up. When done make sure you are on the SDCARD for example ...
