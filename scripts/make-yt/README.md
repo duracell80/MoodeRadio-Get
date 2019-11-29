@@ -1,9 +1,3 @@
-# MoodeRadio-Get
-Package Manager for Moode Audio Radio Stations
-
-Documentation TBD while functionality being finalzed
-
-
 # YT Play API
 
 Install the api to the localhost from the make-yt directory by
