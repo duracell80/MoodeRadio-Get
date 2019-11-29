@@ -105,7 +105,7 @@ The 'installed' configuration option is where you have the MoodeRadio-Get direct
 
 ![Screenshot](https://github.com/duracell80/MoodeRadio-Get/blob/master/packs/images/000.jpg?raw=true)
 
-In this repo currently there is also a custom built api for streaming youtube videos in audio format directly from Moode playlists. See the readme in the make-yt directory. Install the api to localhost from that subdir by
+In this repo currently there is also a custom built api for streaming YouTube videos in audio format directly from Moode playlists. See the readme in the make-yt directory. Install the api to localhost from that subdir by
 ```
 $ sudo chmod 755 ./install.sh
 $ sudo ./install.sh
