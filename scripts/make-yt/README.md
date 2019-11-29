@@ -27,7 +27,7 @@ http://localhost/yt-play/?type=stream&src=https://www.youtube.com/watch?v=Hc0MJj
 http://localhost/yt-play/?type=stream&src=1
 ```
 
-Save your M3U playlists in the RADIO folder
+Save your YouTube M3U playlists in the RADIO folder under _YouTube
 
 
 ## Get info about a video (?type=info)
