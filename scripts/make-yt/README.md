@@ -51,7 +51,7 @@ For example see Tom's Diner JSON ... (replace moode.ip)
 
 
 ## Cast YouTube Audio to Moode
-Trigger generating the .m4a directly, clearing the current playlist and playing the file as soon as it's ready! An API call to essentially cast audio to Moode from YouTube.
+Trigger generating the .m4a directly from a desktop or tablet/phone browser, clearing the current playlist and playing the file as soon as it's ready! An API call to essentially cast audio to Moode from YouTube.
 
 ```
 Cast a Tiny Desk stream by Sylvan Esso into "YouTube Play" playlist
