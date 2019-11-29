@@ -1,0 +1,145 @@
+#EXTM3U
+
+#EXTINF:-1, BBC Radio 1
+http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio1_mf_p
+
+#EXTINF:-1, BBC Radio 1Xtra
+http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio1xtra_mf_p
+
+#EXTINF:-1, BBC Radio 2
+http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio2_mf_p
+
+#EXTINF:-1, BBC Radio 3
+http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio3_mf_p
+
+#EXTINF:-1, BBC Radio 4
+http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio4fm_mf_p
+
+#EXTINF:-1, BBC Radio 4Extra
+http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio4extra_mf_p
+
+#EXTINF:-1, BBC Radio 5Live
+http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio5live_mf_p
+
+#EXTINF:-1, BBC Radio 5Extra
+http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_high/ak/bbc_radio_five_live_sports_extra.m3u8
+
+#EXTINF:-1, Talk Sport
+http://radio.talksport.com/stream
+
+#EXTINF:-1, Talk Sport2
+https://radio.talksport.com/stream2
+
+#EXTINF:-1, BBC Radio 6Music
+http://bbcmedia.ic.llnwd.net/stream/bbcmedia_6music_mf_p
+
+#EXTINF:-1, BBC Coventry
+http://bbcmedia.ic.llnwd.net/stream/bbcmedia_lrwmcandw_mf_p
+
+#EXTINF:-1, BBC WM
+http://bbcmedia.ic.llnwd.net/stream/bbcmedia_lrwm_mf_p
+
+#EXTINF:-1, BBC Shropshire
+http://bbcmedia.ic.llnwd.net/stream/bbcmedia_lrshrops_mf_p
+
+#EXTINF:-1, BBC Worcester
+http://bbcmedia.ic.llnwd.net/stream/bbcmedia_lrhandw_mf_p
+
+#EXTINF:-1, BBC World UK
+http://bbcwssc.ic.llnwd.net/stream/bbcwssc_mp1_ws-eieuk
+
+#EXTINF:-1, BBC Asian Network
+http://bbcmedia.ic.llnwd.net/stream/bbcmedia_asianet_mf_p
+
+#EXTINF:-1, Big City Radio
+http://198.27.66.225:8282/;stream.mp3
+
+#EXTINF:-1, Free Radio
+http://live-bauer-al.sharp-stream.com/freebirmingham.mp3
+
+#EXTINF:-1, Heart Radio
+http://media-ice.musicradio.com:80/HeartWestMidsMP3
+
+#EXTINF:-1, Heart 80's
+http://media-the.musicradio.com:80/Heart80sMP3
+
+#EXTINF:-1, Gold
+http://media-ice.musicradio.com:80/GoldMP3
+
+#EXTINF:-1, Capital
+http://media-ice.musicradio.com:80/CapitalBirminghamMP3
+
+#EXTINF:-1, Capital Extra
+http://media-ice.musicradio.com:80/CapitalXTRANationalMP3
+
+#EXTINF:-1, Smooth Radio
+http://ice-the.musicradio.com:80/SmoothWestMidsMP3
+
+#EXTINF:-1, Smooth Extra
+http://ice-the.musicradio.com:80/SmoothExtraMP3
+
+#EXTINF:-1, Smooth Chill
+https://media-ssl.musicradio.com/SmoothChill
+
+#EXTINF:-1, Classic FM
+http://media-ice.musicradio.com:80/ClassicFMMP3
+
+#EXTINF:-1, Jazz FM
+http://edge-baueral-12-gos1.sharp-stream.com/jazz.aac
+
+#EXTINF:-1, Magic Chill
+http://live-bauer-mz.sharp-stream.com/magicchilled.mp3
+
+#EXTINF:-1, Magic Mellow
+http://live-bauer-mz.sharp-stream.com/magicmellow.mp3
+
+#EXTINF:-1, Magic Radio
+http://live-bauer-mz.sharp-stream.com/magicnational.mp3
+
+#EXTINF:-1, LBC Radio
+http://media-ice.musicradio.com/LBC1152MP3Low
+
+#EXTINF:-1, UBC1
+http://tx.sharp-stream.com/http_live.php?i=ucbuk.mp3
+
+#EXTINF:-1, UBC2
+http://tx.sharp-stream.com/http_live.php?i=ucbinspirational.mp3
+
+#EXTINF:-1, Jack Radio
+http://playerservices.streamtheworld.com/api/livestream-redirect/JACK_RADIO.mp3
+
+#EXTINF:-1, Hits Radio
+http://live-bauer-al.sharp-stream.com/hits.mp3
+
+#EXTINF:-1, Kiss
+http://live-kiss.sharp-stream.com/kissnational.mp3
+
+#EXTINF:-1, Kisstory
+http://live-bauer-al.sharp-stream.com/kisstory.mp3
+
+#EXTINF:-1, Kiss Fresh
+http://live-bauer-al.sharp-stream.com/kissfresh.mp3
+
+#EXTINF:-1, Radio X
+http://media-ice.musicradio.com/RadioXLondonMP3
+
+#EXTINF:-1, Absolute
+http://live-absolute.sharp-stream.com/absoluteradio.mp3
+
+#EXTINF:-1, Absolute 80's
+http://live-absolute.sharp-stream.com/absolute80s.mp3
+
+#EXTINF:-1, Absolute 90's
+http://live-absolute.sharp-stream.com/absolute90s.mp3
+
+#EXTINF:-1, Absolute Rock
+http://live-absolute.sharp-stream.com/absoluteclassicrock.mp3
+
+#EXTINF:-1, Virgin Chilled
+http://radio.virginradio.co.uk/stream-chilled
+
+#EXTINF:-1, Virgin Radio
+http://radio.virginradio.co.uk/stream
+
+#EXTINF:-1, Virgin Anthems
+http://radio.virginradio.co.uk/stream-anthems

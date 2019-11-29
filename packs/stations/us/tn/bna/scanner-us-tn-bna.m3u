@@ -1,0 +1,31 @@
+#EXTM3U
+
+#EXTINF:-1, KBNA App/Dep
+http://d.liveatc.net/kbna_app
+
+#EXTINF:-1, KBNA East
+http://d.liveatc.net/kbna_app_east
+
+#EXTINF:-1, KBNA West
+http://d.liveatc.net/kbna_app_west
+
+#EXTINF:-1, KBNA Ground
+http://d.liveatc.net/kbna_gnd
+
+#EXTINF:-1, KBNA Tower
+http://d.liveatc.net/kbna_twr
+
+#EXTINF:-1, KBNA Ground Tower
+http://d.liveatc.net/kbna3_2
+
+#EXTINF:-1, Nashville Fire
+https://relay.broadcastify.com/q2kpz5hxvb8ys1w.mp3
+
+#EXTINF:-1, Nashville Police
+https://relay.broadcastify.com/s4hpt3jmw1ycr8k.mp3
+
+#EXTINF:-1, Nashville Police (South)
+https://relay.broadcastify.com/ykwf8xzb3dthv04.mp3
+
+#EXTINF:-1, Nashville Police (West)
+https://relay.broadcastify.com/wy60fzhx79t3mnc.mp3

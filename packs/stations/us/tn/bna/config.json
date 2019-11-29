@@ -1,0 +1,19 @@
+{
+    "radiopack": [ {
+        "author"                : "@duracell80", 
+        "version"               : "1.0.0",
+        "installed"             : "/home/pi",
+        "type"                  : "stations",
+        "pack-d1"               : "us",
+        "pack-d2"               : "tn",
+        "pack-d3"               : "bna", 
+        "city"                  : "Nashville",
+        "timezone"              : "-06:00",
+        "auxlist"               : "true",
+        "split"                 : "true",
+        
+        
+        "pack-description"      : "Nashville is the capital and most populous city of the U.S. state of Tennessee. The city is the county seat of Davidson County and is located on the Cumberland River. As the home of country music, Nashville has become a major music recording and production center. The Big Three record labels, as well as numerous independent labels, have offices in Nashville, mostly in the Music Row area."
+    }
+    ]
+}

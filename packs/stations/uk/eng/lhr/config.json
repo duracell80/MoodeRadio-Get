@@ -1,0 +1,19 @@
+{
+    "radiopack": [ {
+        "author"                : "@duracell80", 
+        "version"               : "1.0.0",
+        "installed"             : "/home/pi",
+        "type"                  : "stations",
+        "pack-d1"               : "uk",
+        "pack-d2"               : "eng",
+        "pack-d3"               : "lhr", 
+        "city"                  : "London",
+        "timezone"              : "00:00",
+        "auxlist"               : "false",
+        "split"                 : "true",
+        
+        
+        "pack-description"      : "London is the capital and largest city of England and the United Kingdom. London has a diverse range of people and cultures, and more than 300 languages are spoken in the region. London contains four World Heritage Sites: the Tower of London; Kew Gardens; the site comprising the Palace of Westminster, Westminster Abbey, and St Margaret's Church; and the historic settlement in Greenwich where the Royal Observatory, Greenwich defines the Prime Meridian, 0° longitude, and Greenwich Mean Time."
+    }
+    ]
+}

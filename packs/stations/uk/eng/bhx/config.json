@@ -1,0 +1,19 @@
+{
+    "radiopack": [ {
+        "author"                : "@duracell80", 
+        "version"               : "1.0.0",
+        "installed"             : "/home/pi",
+        "type"                  : "stations",
+        "pack-d1"               : "uk",
+        "pack-d2"               : "eng",
+        "pack-d3"               : "bhx", 
+        "city"                  : "Birmingham",
+        "timezone"              : "00:00",
+        "auxlist"               : "false",
+        "split"                 : "true",
+        
+        
+        "pack-description"      : "Birmingham is a major city in England’s West Midlands region, with multiple Industrial Revolution-era landmarks that speak to its 18th-century history as a manufacturing powerhouse. It’s also home to a network of canals, many of which radiate from Sherborne Wharf and are now lined with trendy cafes and bars. In the city centre, the Birmingham Museum and Art Gallery is known for pre-Raphaelite masterpieces."
+    }
+    ]
+}
