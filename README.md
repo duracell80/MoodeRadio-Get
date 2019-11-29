@@ -75,9 +75,7 @@ The export script in a pack will compress the pack for easier sharing with other
 ```$ sudo python export.py```
 
 ### Extra config options
-The 'installed' configuration option is where you have the MoodeRadio-Get directory from git. Typically this is in /home/pi.
-
-'split' in the config file will split the master playlist file into seperate station files. The auxlist will allow for a secondary playlist which in the case of city based packs is useful for scanner audio sources such as the airport and authority radio scanners.
+The 'installed' configuration option is where you have the MoodeRadio-Get directory from git. Typically this is in /home/pi. 'split' in the config file will split the master playlist file into seperate station files. The auxlist will allow for a secondary playlist which in the case of city based packs is useful for scanner audio sources such as the airport and authority radio scanners.
 
 # YT Play API
 
