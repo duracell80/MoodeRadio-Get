@@ -34,46 +34,35 @@ def delete_stations(conn, packDB):
  
 def main():
     database        = r"/var/local/www/db/moode-sqlite3.db"
-    
-    with open('config.json') as json_file:
-        data = json.load(json_file)
-        for p in data['radiopack']:
-            packBASE        = p['type'].lower()
-            packCOUNTRY     = p['country'].lower()
-            packSTATE       = p['state'].lower()
-            packID          = p['cityid'].lower()
-
-    
-    packDB          = "u-" + packID
-    packFILE        = packBASE + "-" + packCOUNTRY + "-" + packSTATE + "-" + packID + ".m3u"
+     
+    packDB          = "u-" + packD3 + "-" + packBASE
+    packFILE        = packBASE + "-" + packD1 + "-" + packD2 + "-" + packD3
     
     
-    print("\n\n" + packID.upper() + " will shortly be removed from the _Network radio folder ..." )
+    print("\n\n" + packFILE.upper() + " will shortly be removed from the _Network radio folder ..." )
     time.sleep(2)
     
     
-    print("\n[Uninstall - "+packID.upper()+" : Playlists]")
-    os.system("sudo rm /var/lib/mpd/playlists/scanner-"+packCOUNTRY+"-"+packSTATE+"-"+packID+".m3u")
-    os.system("sudo rm /var/lib/mpd/playlists/stations-"+packCOUNTRY+"-"+packSTATE+"-"+packID+".m3u")
-    os.system("sudo rm /var/lib/mpd/music/RADIO/_Stations/"+packCOUNTRY+"/"+packSTATE+"/"+packID+"/stations-"+packCOUNTRY+"-"+packSTATE+"-"+packID+".m3u")
-    os.system("sudo rm /var/lib/mpd/music/RADIO/_Stations/"+packCOUNTRY+"/"+packSTATE+"/"+packID+"/playlists/*.pls")
-    os.system("sudo rm -rf /var/lib/mpd/music/RADIO/_Stations/"+packCOUNTRY+"/"+packSTATE+"/"+packID+"/playlists/")
-    os.system("sudo rm -rf /var/lib/mpd/music/RADIO/_Stations/"+packCOUNTRY+"/"+packSTATE+"/"+packID)
+    print("\n[Uninstall - "+packFILE.upper()+" : Playlists]")
+    os.system("sudo rm -rf /var/lib/mpd/playlists/"+packFILE+".m3u")
+    os.system("sudo rm -rf /var/lib/mpd/music/RADIO/_Stations/"+packD1+"/"+packD2+"/"+packD3)
     
-    print("[Uninstall - "+packID.upper()+" : Logos]")
-    os.system("sudo rm /var/www/images/radio-logos/thumbs/stations-"+packCOUNTRY+"-"+packSTATE+"-"+packID+".jpg")
-    os.system("sudo rm /var/www/images/radio-logos/thumbs/scanner-"+packCOUNTRY+"-"+packSTATE+"-"+packID+".jpg")
+    print("[Uninstall - "+packFILE.upper()+" : Logos]")
+    os.system("sudo rm -f /var/www/images/radio-logos/thumbs/"+packFILE+".jpg")
+    
+    if packSCANNER == "true":
+        os.system("sudo cp ./logos/ /var/www/images/radio-logos/thumbs/scanner-"+packD1+"-"+packD2+"-"+packD3+".jpg")
     
     
     
     # CLEAR ANY EXISTING STATIONS IN THIS PACK FROM THE DATABASE
-    print("[Uninstall - "+packID.upper()+" : Database Entries]")
+    print("[Uninstall - "+packDB.upper()+" : Database Entries]")
     defconn = create_connection(database)
     with defconn:
         station_id = delete_stations(defconn, packDB)
     
     time.sleep(1)
-    print("\n\n[Uninstall - "+packID.upper()+" : DONE]\n\n\n")
+    print("\n\n[Uninstall - "+packFILE.upper()+" : DONE]\n\n\n")
     
     os.system("mpc update")
  
