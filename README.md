@@ -1,7 +1,7 @@
 # MoodeRadio-Get
 Package Manager for Moode Audio Radio Stations
 
-![Screenshot](https://github.com/duracell80/MoodeRadio-Get/blob/master/packs/images/000.jpg?raw=true)
+![Screenshot](https://github.com/duracell80/MoodeRadio-Get/blob/master/packs/images/001.jpg?raw=true)
 
 ## Get from GIT
 
@@ -55,20 +55,23 @@ $ cd /mnt/SDCARD/_Stations (or open the fileshare)
 ![Screenshot](https://github.com/duracell80/MoodeRadio-Get/blob/master/packs/images/003.jpg?raw=true)
 
 # Add your station URLs and station logos
-Edit the m3u files to add your URLs in the file. Add your station logos following the filenaming 
-
-convention stations-us-tn-bna.jpg for example so the names match up. When done make sure you are on 
-
-the SDCARD for example ...
+Edit the m3u files to add your URLs in the file. Add your station logos following the filenaming convention stations-us-tn-bna.jpg for example so the names match up. When done make sure you are on the SDCARD for example ...
 
 cd /mnt/SDCARD/_Stations/us/tn/bna
-
 
 ### To install all stations to Moode from a radio pack
 
 ```$ sudo python import.py```
 
 This will run through the pack you just made inserting all the needed entries into the database, copying the station logos to the right place, adding your playlist to the mpd/playlists directory and adding the given structure in the RADIO section in Moode UI. If you selected the split option in the config.json the script will also spit out seperate playlist files so you can add only one station if needed. If the auxlist option was set to true you'll get a special "scanner playlist" meant for non radio sources like ATC scanners.
+
+Navigate in Moode UI to Radio (the mic icon) then _Stations.
+
+Navigate in Moode UI to Playlists (the icon next to the radio icon)
+
+![Screenshot](https://github.com/duracell80/MoodeRadio-Get/blob/master/packs/images/002.jpg?raw=true)
+
+
 
 ### To delete all stations in a pack
 From the same location this script will pull your stations out of Moode and Moode Database but keep them on the SDCARD
