@@ -32,6 +32,7 @@ os.system("sudo cp -f ./config.json "+pathBUILD+"/config.json")
 os.system("sudo cp "+pathASSETS+"generic-stations-playlist.m3u "+pathBUILD+"/"+packBASE+"-"+pathFILE+".m3u")
 os.system("sudo cp "+pathASSETS+"generic-logo.jpg "+pathBUILD+"/logos/"+packBASE+"-"+pathFILE+".jpg")
 os.system("sudo cp "+pathASSETS+"import.py "+pathBUILD)
+os.system("sudo cp "+pathASSETS+"export.py "+pathBUILD)
 
 
 # scanner
