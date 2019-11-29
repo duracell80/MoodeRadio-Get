@@ -61,7 +61,10 @@ Edit the m3u files to add your URLs in the file. Perhaps using a desktop PC acce
 
 ### To install all stations to Moode from a radio pack
 
-```$ sudo python import.py```
+```
+$ cd /mnt/SDCARD/_Stations/us/tn/bna (for example)
+$ sudo python import.py
+```
 
 This will run through the pack you just made inserting all the needed entries into the database, copying the station logos to the right place, adding your playlist to the mpd/playlists directory and adding the given structure in the RADIO section in Moode UI. If you selected the split option in the config.json the script will also spit out seperate playlist files so you can add only one station if needed. If the auxlist option was set to true you'll get a special "scanner playlist" meant for non radio sources like ATC scanners.
 
@@ -76,12 +79,18 @@ Navigate in Moode UI to Playlists (the icon next to the radio icon)
 ### To delete all stations in a pack
 From the same location this script will pull your stations out of Moode and Moode Database but keep them on the SDCARD
 
-```$ sudo python delete.py ```
+```
+$ cd /mnt/SDCARD/_Stations/us/tn/bna (for example)
+$ sudo python delete.py 
+```
 
 # To share a pack
 The export script in a pack will compress the pack for easier sharing with other users / backing up.
 
-```$ sudo python export.py```
+```
+$ cd /mnt/SDCARD/_Stations/us/tn/bna (for example)
+$ sudo python export.py
+```
 
 ### Extra config options
 The 'installed' configuration option is where you have the MoodeRadio-Get directory from git. Typically this is in /home/pi. 'split' in the config file will split the master playlist file into seperate station files. The auxlist will allow for a secondary playlist which in the case of city based packs is useful for scanner audio sources such as the airport and authority radio scanners.
