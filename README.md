@@ -28,6 +28,7 @@ type	= stations
 pack-d1 = country
 pack-d2 = state
 pack-d3 = airport code
+auxlist = true
 
 To store in _Stations/us/tn/bna
 ```
@@ -39,6 +40,7 @@ type	= stations
 pack-d1 = genres
 pack-d2 = electronic
 pack-d3 = chill
+auxlist = false
 
 To store in _Stations/genres/electronic/chill
 ```
@@ -49,6 +51,8 @@ Do this before running the build script as doing so beforehand will make sure yo
 $ sudo python build.py
 $ cd /mnt/SDCARD/_Stations (or open the fileshare)
 ```
+
+![Screenshot](https://github.com/duracell80/MoodeRadio-Get/blob/master/packs/images/003.jpg?raw=true)
 
 # Add your station URLs and station logos
 Edit the m3u files to add your URLs in the file. Add your station logos following the filenaming 
@@ -79,9 +83,14 @@ The export script in a pack will compress the pack for easier sharing with other
 ### Extra config options
 The 'installed' configuration option is where you have the MoodeRadio-Get directory from git. Typically this is in /home/pi. 'split' in the config file will split the master playlist file into seperate station files. The auxlist will allow for a secondary playlist which in the case of city based packs is useful for scanner audio sources such as the airport and authority radio scanners.
 
+
+
+
+
+
 # YT Play API
 
-See the readme in the make-yt directory. Install the api to the localhost from that subdir by
+In this repo currently there is also a custom built api for streaming youtube videos in audio format directly from Moode playlists. See the readme in the make-yt directory. Install the api to localhost from that subdir by
 ```
 $ sudo chmod 755 ./install.sh
 $ sudo ./install.sh
