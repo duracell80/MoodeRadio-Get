@@ -47,9 +47,6 @@ def create_station(conn, station):
  
 def main():
     
-    print("hello") 
- 
-
     database        = r"/var/local/www/db/moode-sqlite3.db"
     
     packDB          = "u-" + packD3 + "-" + packBASE
