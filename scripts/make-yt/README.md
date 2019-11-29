@@ -46,9 +46,7 @@ http://moode.ip/yt-play/?type=cast&src=https://www.youtube.com/watch?v=mhyD2qchk
 ```
 
 ## Regenerating Streams (?type=regen)
-The "YouTube_Play" playlist will expire so streams will need to be "regenerated" via a helper playlist called "YouTube_Load" to activate the audio streams to hear them! This is why there is a slight delay in which you may think the functionality isn't working. The API calls the library to recontact YouTube to activate the m4a stream.
-
-You can use the API from a different device, for example your laptop or tablet to send YouTube URL's to Moode via this proxy service.
+The "YouTube_Play" playlist will expire so streams in it will need to be "regenerated". This is why there is a slight delay in which you may think the functionality isn't working. The API calls the library to recontact YouTube to activate the m4a stream to output a fresh set of URL's in the "YouTube_Play" playlist. The src you give it here is the location of the playlist in the RADIO folder that you want to play.
 
 ```
 Regenerate and play a crafted playlist from the RADIO folder ...
