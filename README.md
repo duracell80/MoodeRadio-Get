@@ -49,15 +49,15 @@ Do this before running the build script as doing so beforehand will make sure yo
 
 ```
 $ sudo python build.py
-$ cd /mnt/SDCARD/_Stations (or open the fileshare)
+$ cd /mnt/SDCARD/_Stations/us/ca/sfo (for example)
+$ sudo chmod 755 *
+
 ```
 
 ![Screenshot](https://github.com/duracell80/MoodeRadio-Get/blob/master/packs/images/004.jpg?raw=true)
 
 # Add your station URLs and station logos
-Edit the m3u files to add your URLs in the file. Add your station logos following the filenaming convention stations-us-tn-bna.jpg for example so the names match up. When done make sure you are on the SDCARD for example ...
-
-cd /mnt/SDCARD/_Stations/us/tn/bna
+Edit the m3u files to add your URLs in the file. Add your station logos following the filenaming convention stations-us-ca-sfo.jpg for example so the names match up. When done make sure you are on the SDCARD for example ... /mnt/SDCARD/_Stations/us/ca/sfo
 
 ### To install all stations to Moode from a radio pack
 
