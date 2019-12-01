@@ -8,11 +8,16 @@
 # http://localhost/yt-play/?src=6LEmDEZVa5g ...
 
 sudo youtube-dl -f 249 -j $1 > /var/www/yt-play/source.json
+id=$(sudo python source_id.py)
 url=$(sudo python source_url.py)
 title=$(sudo python source_title.py)
+image=$(sudo python source_image.py)
+
 
 sudo echo "#EXTINF:-1, YouTube: "${title} >> /var/www/yt-play/yt.m3u
 sudo echo ${url} >> /var/www/yt-play/yt.m3u
 sudo cp -f /var/www/yt-play/yt.m3u /var/lib/mpd/playlists/YouTube_Play.m3u
+
+#echo $image
 
 # echo "I finish up my coffee and it's time to catch the train -- Suzanne Vega" > /var/www/yt-play/source.json
