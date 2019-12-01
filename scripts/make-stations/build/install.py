@@ -51,7 +51,7 @@ def main():
     
     packDB          = "u-" + packD3 + "-" + packBASE
     packFILE        = packBASE + "-" + packD1 + "-" + packD2 + "-" + packD3
-    pathBUILD       = "/mnt/SDCARD/_Stations/"+packD1+"/"+packD2+"/"+packD3
+    pathBUILD       = "/mnt/SDCARD/_Stations/stations/"+packD1+"/"+packD2+"/"+packD3
     
     # CLEAR ANY EXISTING STATIONS IN THIS PACK FROM THE DATABASE
     defconn = create_connection(database)
