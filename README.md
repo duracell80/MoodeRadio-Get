@@ -12,12 +12,14 @@ $ cd MoodeRadio-Get/
 ```
 
 ```
-$ chmod 775 ./scripts/make-stations/assets/*
-$ chmod 775 ./scripts/make-stations/build/*
-$ chmod 775 ./scripts/make-stations/*
+$ sudo chmod 775 install.sh
+$ ./install.sh
 
-$ cd /home/pi/MoodeRadio-Get/scripts/make-stations/
+$ cd ./scripts/make-stations/
 ```
+
+## Look at the installed packs.
+Go to the Radio section in the Moode Web UI, you should see a new folder called Stations. This is where radio packs are installed to, explore around in there before trying to make your own radio pack. When you're ready to make a pack, pull up SSH again in the make-stations directory.
 
 ## Find the config.json file and edit the details.
 
@@ -49,21 +51,21 @@ Do this before running the build script as doing so beforehand will make sure yo
 
 ```
 $ sudo python build.py
-$ cd /mnt/SDCARD/_Stations/us/tn/bna (for example)
+$ cd /mnt/SDCARD/_Stations/stations/us/tn/bna (for example)
 $ sudo chmod 755 *
 
 ```
 
 
 # Add your station URLs and station logos
-Edit the m3u files to add your URLs in the file. Perhaps using a desktop PC accessing the fileshare on the SDCARD. Add your station logos following the filenaming convention stations-us-ca-sfo.jpg for example so the names match up. When done make sure you are on the SDCARD for example ... /mnt/SDCARD/_Stations/us/ca/sfo
+Edit the m3u files to add your URLs in the file. Perhaps using a desktop PC accessing the fileshare on the SDCARD. Add your station logos following the filenaming convention stations-us-ca-sfo.jpg for example so the names match up. When done make sure you are on the SDCARD for example ... /mnt/SDCARD/_Stations/stations/us/ca/sfo
 
 ![Screenshot](https://github.com/duracell80/MoodeRadio-Get/blob/master/packs/images/003a.jpg?raw=true)
 
 ### To install all stations to Moode from a radio pack
 
 ```
-$ cd /mnt/SDCARD/_Stations/us/tn/bna (for example)
+$ cd /mnt/SDCARD/_Stations/stations/us/tn/bna (for example)
 $ sudo python import.py
 ```
 
@@ -81,7 +83,7 @@ Navigate in Moode UI to Playlists (the icon next to the radio icon)
 From the same location this script will pull your stations out of Moode and Moode Database but keep them on the SDCARD
 
 ```
-$ cd /mnt/SDCARD/_Stations/us/tn/bna (for example)
+$ cd /mnt/SDCARD/_Stations/stations/us/tn/bna (for example)
 $ sudo python delete.py 
 ```
 
@@ -89,7 +91,7 @@ $ sudo python delete.py
 The export script in a pack will compress the pack for easier sharing with other users / backing up.
 
 ```
-$ cd /mnt/SDCARD/_Stations/us/tn/bna (for example)
+$ cd /mnt/SDCARD/_Stations/stations/us/tn/bna (for example)
 $ sudo python export.py
 ```
 
