@@ -65,7 +65,7 @@ Edit the m3u files to add your URLs in the file. Perhaps using a desktop PC acce
 ### To install all stations to Moode from a radio pack
 
 ```
-$ cd /mnt/SDCARD/_Stations/stations/us/tn/bna (for example)
+$ cd /mnt/SDCARD/_Stations/stations/us/ca/sfo (for example)
 $ sudo python import.py
 ```
 
