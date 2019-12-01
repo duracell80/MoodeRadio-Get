@@ -12,12 +12,14 @@ $ cd MoodeRadio-Get/
 ```
 
 ```
-$ chmod 775 ./scripts/make-stations/assets/*
-$ chmod 775 ./scripts/make-stations/build/*
-$ chmod 775 ./scripts/make-stations/*
+$ sudo chmod 775 install.sh
+$ ./install.sh
 
-$ cd /home/pi/MoodeRadio-Get/scripts/make-stations/
+$ cd ./scripts/make-stations/
 ```
+
+## Look at the installed packs.
+Go to the Radio section in the Moode Web UI, you should see a new folder called Stations. This is where radio packs are installed to, explore around in there before trying to make your own radio pack. When you're ready to make a pack, pull up SSH again in the make-stations directory.
 
 ## Find the config.json file and edit the details.
 
