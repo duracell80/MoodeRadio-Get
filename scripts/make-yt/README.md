@@ -1,5 +1,7 @@
 # YT Play API
 
+Why is this useful? Why would you want only audio and not video? Well ... video uses a lot of data, there are some videos also that just have a static image and are essentially audio tracks. Things like 4 hours of Thunderstorms. I dunno it's whatever you want to listen to, you could use this for TedTalks, Poetry, 6 hours of Chillstep. Using this API you can keep playlists of YouTube content and you can listen directly from Moode as if they were radio stations.
+
 Install the api to the localhost from the make-yt directory by
 ```
 $ cd /home/pi/MoodeRadio-Get/scripts/make-yt/
@@ -9,11 +11,9 @@ $ sudo ./install.sh
 
 The install script will fetch dependencies. Use the API inside playlists to activate audio streams. Use the API in your mobile device browser or desktop browser to interact with Moode. Essentially though you should be able to add YouTube to Moode using only playlists.
 
-Add youtube videos to a playlist in the Radio folder in this way ... Compose a file with the first stream as a message that appears in Moode's player. This will give a sense that things are still happening while the API contacts YouTube to get the json file of the video. Add the actual stream you want to play on the next two lines. End the M3U file with a call to http://localhost/yt-play/?type=stream&src=1 which will trigger an mpc update, offer the chance to output a done message and play the "YouTube Play" playlist. 
+Add individual YouTube videos to a playlist in the Radio folder in this way ...
 
-You should use localhost or 127.0.0.1 here in the M3U file.
-
-## The magic url format /yt-play/?type=stream&src=
+## Example Moode Playlist ...
 
 ```
 #EXTM3U
@@ -27,17 +27,11 @@ http://localhost/yt-play/?type=stream&src=https://www.youtube.com/watch?v=Hc0MJj
 http://localhost/yt-play/?type=stream&src=1
 ```
 
-Save your YouTube M3U playlists in the RADIO folder under _YouTube
+Save your YouTube M3U playlists in the RADIO folder when you want to listen to them, load them as if they were radio stations with Clear/Play from the menu.
 
 
-## Get info about a video (?type=info)
-For example see Tom's Diner JSON ... (replace moode.ip)
-
-```http://moode.ip/yt-play/?type=info&src=https://www.youtube.com/watch?v=L9x-DENKIts```
-
-
-## Cast YouTube Audio (?type=cast)
-Trigger generating the .m4a directly from a desktop or tablet/phone browser, clearing the current playlist and playing the file as soon as it's ready! An API call to essentially cast audio to Moode from YouTube.
+## Cast Individual YouTube Videos (?type=cast)
+Trigger generating the audio directly from a desktop or tablet/phone browser, clearing the current playlist and playing the file as soon as it's ready! An API call to essentially cast audio to Moode from YouTube.
 
 ```
 Cast a Tiny Desk stream by Sylvan Esso into "YouTube Play" playlist
@@ -45,8 +39,39 @@ http://moode.ip/yt-play/?type=cast&src=https://www.youtube.com/watch?v=mhyD2qchk
 
 ```
 
+## Cast A Whole YouTube Playlist (?type=list)
+Send a whole YouTube Playlist from your PC/Laptop/Phone browser to Moode ... Find a playlist for example:
+
+```
+Beautiful Calm Acoustics
+https://www.youtube.com/watch?v=eWnaD0dvkVM&list=PLKK4T0Fm7nwGEZUZtQn7hbciVbN6hkVFl
+```
+Copy the ID in the list= section and do this ...
+```
+http://moode.ip/yt-play/?type=info&src=PLKK4T0Fm7nwGEZUZtQn7hbciVbN6hkVFl
+```
+
+If you want to build "Moode playlists" of these URL's (M3U files) you can, it's totally up to you. If you don't see any point in collecting these playlists keep using the above method to cast. If you don't see the point of any of this then this functionality isn't for you and that's ok. Otherwise there is an example playlist called yt-example-list.m3u in the folder: RADIO/YouTube/mahogany. Copy it and change it to your needs.
+
+It's as easy as this:
+```
+#EXTM3U
+
+#EXTINF:-1, Mahogany Sessions ... Contacting YouTube, Please Wait
+http://localhost/yt-play/?type=list&src=PLKK4T0Fm7nwGEZUZtQn7hbciVbN6hkVFl
+```
+To play it find it in the Radio tab in Moode UI and then do Clear/Play as if it were a Radio station.
+
+
+## Get info about a video (?type=info)
+For example see Tom's Diner JSON ...
+
+```http://moode.ip/yt-play/?type=info&src=https://www.youtube.com/watch?v=L9x-DENKIts```
+
+
+
 ## Regenerating Streams (?type=regen)
-The "YouTube_Play" playlist will expire so streams in it will need to be "regenerated". This is why there is a slight delay in which you may think the functionality isn't working. The API calls the library to recontact YouTube to activate the m4a stream to output a fresh set of URL's in the "YouTube_Play" playlist. The src you give it here is the location of the playlist in the RADIO folder that you want to play.
+The "YouTube_Play" playlist will expire so streams in it will need to be "regenerated". This is why there is a slight delay in which you may think the functionality isn't working. Just Clear/Play on the list in the RADIO section that you want to relisten to, or you can do this from a PC/Laptop/Phone browser ...
 
 ```
 Regenerate and play a crafted playlist from the RADIO folder ...
