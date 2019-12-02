@@ -6,8 +6,10 @@
   * Lee Jordan @duracell80
   * 11/26/2019
 
+    item_cast          : http://localhost/yt-play/?type=cast&src=videopage
     playlist_clear     : http://localhost/yt-play/?type=stream&src=0
     playlist_load      : http://localhost/yt-play/?type=stream&src=videopage
+    playlist_loadlist  : http://localhost/yt-play/?type=list&src=videoplaylist<PLKK4T0Fm7nwGEZUZtQn7hbciVbN6hkVFl>
     playlist_start     : http://localhost/yt-play/?type=stream&src=1
     playlist_regen     : http://localhost/yt-play/?type=regen&src=_YouTube/asmr/asmr-short-selection.m3u (lists in RADIO directory)
     playlist_vega      : http://localhost/yt-play/?type=regen (without src)
@@ -33,27 +35,31 @@ $rx = '~
     ~x';
 
 $has_match = preg_match($rx, $srcRAW, $matches);
-// Allow 2 character codes
-if (strlen($srcRAW) < 3) {
+
+if ($type == "list") {
     $src = $srcRAW;
 } else {
-    
-    // Double down on youtube check and allow regenerations
-    if($has_match == "0"){
-        if ($type == "regen") {
-            $src = $srcRAW;
-        } else {
-            echo("Error: Not YouTube URL");
-            exit;
-        }
-        
-        
+    // Allow 2 character codes
+    if (strlen($srcRAW) < 3) {
+        $src = $srcRAW;
     } else {
-        $srcSPLIT = explode("v=", $srcRAW);
-        $src = $srcSPLIT[1];
+
+        // Double down on youtube check and allow regenerations
+        if($has_match == "0"){
+            if ($type == "regen") {
+                $src = $srcRAW;
+            } else {
+                echo("Error: Not YouTube URL");
+                exit;
+            }
+
+
+        } else {
+            $srcSPLIT = explode("v=", $srcRAW);
+            $src = $srcSPLIT[1];
+        }
     }
 }
-
 
 // DEBUG SECURITY
 //echo($src);
@@ -82,29 +88,40 @@ if(isset($src) && !empty($src)){
             echo("YouTube Playlist Started");
             break;
 
-        // ELSE LOAD SRC TO LIST ?type=stream&src=videopage
         
         default:
-            $runcmd = "sudo " . $apiPath . "playlist_load.sh " . $src;
             
-            if($type == "stream" || $type == "cast"){
+            // YT PLAYLIST
+            if($type == "list"){
+                $runcmd = "sudo " . $apiPath . "playlist_loadlist.sh " . $src;
                 shell_exec($runcmd);
-                echo("YouTube Playlist Updated");
-            }
-            // CAST YouTube URL to Moode
-            if($type == "cast"){
-                // Clear the YouTube_Play and Moode's playing playlist (YouTube_Load is left alone)
-                shell_exec("sudo " . $apiPath . "playlist_clear.sh");
-                shell_exec("mpc clear");
+                echo("YouTube Playlist Transferred");
                 
-                // Regenerate Moode with the Casted Audio
-                shell_exec($runcmd);
-                shell_exec("mpc load YouTube_Play");
-                shell_exec("mpc play");
+                break;
                 
-                echo(" ... and Stream Playing");
+            // STREAM or CAST    
+            } else {
+                $runcmd = "sudo " . $apiPath . "playlist_load.sh " . $src;
+
+                if($type == "stream" || $type == "cast"){
+                    shell_exec($runcmd);
+                    echo("YouTube Playlist Updated");
+                }
+                // CAST YouTube URL to Moode
+                if($type == "cast"){
+                    // Clear the YouTube_Play and Moode's playing playlist (YouTube_Load is left alone)
+                    shell_exec("sudo " . $apiPath . "playlist_clear.sh");
+                    shell_exec("mpc clear");
+
+                    // Regenerate Moode with the Casted Audio
+                    shell_exec($runcmd);
+                    shell_exec("mpc load YouTube_Play");
+                    shell_exec("mpc play");
+
+                    echo(" ... and Stream Playing");
+                }
+                break;
             }
-            break;
     }
 }
 
@@ -165,6 +182,14 @@ if(isset($type) && !empty($type)){
             
         
         case "stream":
+
+            break;
+            
+        case "list":
+
+            break;
+            
+        case "cast":
 
             break;
 

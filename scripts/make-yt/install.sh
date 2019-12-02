@@ -36,10 +36,13 @@ sudo mkdir -p /var/www/yt-play
 sudo mkdir -p /var/lib/mpd/music/RADIO/_YouTube
 sudo cp -f ./index.php /var/www/yt-play
 sudo cp -f ./source.json /var/www/yt-play
+sudo cp -f ./source.list /var/www/yt-play
 sudo cp -f ./source_title.py /var/www/yt-play
 sudo cp -f ./source_url.py /var/www/yt-play
+sudo cp -f ./source_duration.py /var/www/yt-play
 sudo cp -f ./playlist_clear.sh /var/www/yt-play
 sudo cp -f ./playlist_load.sh /var/www/yt-play
+sudo cp -f ./playlist_loadlist.sh /var/www/yt-play
 sudo cp -f ./playlist_start.sh /var/www/yt-play
 sudo cp -f ./playlist_regen.sh /var/www/yt-play
 sudo cp -f ./yt-info.sh /var/www/yt-play
@@ -54,9 +57,12 @@ sudo cp -f ./yt-init.m3u /var/lib/mpd/playlists/YouTube_Load.m3u
 sudo cp -f ./yt.m3u /var/lib/mpd/playlists/YouTube_Play.m3u
 sudo cp -f ./yt-init.m3u /var/www/yt-play/yt-init.m3u
 sudo cp -f ./yt.m3u /var/www/yt-play/yt.m3u
+sudo cp -f ./yt.m3u /var/www/yt-play/yt-list.m3u
 sudo cp -rf ./_YouTube/* /var/lib/mpd/music/RADIO/_YouTube
 sudo cp -f ./yt-init.m3u /var/lib/mpd/music/RADIO/_YouTube/example-streaming.m3u
 sudo cp -f ./YouTube_Play.jpg /var/www/images/radio-logos/thumbs/yt-example.jpg
+sudo cp -f ./YouTube_Play.jpg /var/www/images/radio-logos/thumbs/yt-list.jpg
+sudo cp -f ./YouTube_Play.jpg /var/www/images/radio-logos/thumbs/streaming-example.jpg
 #sudo cp -f ./yt-dl.m3u /var/lib/mpd/music/RADIO/_YouTube/example-downloading.m3u
 
 mpc update

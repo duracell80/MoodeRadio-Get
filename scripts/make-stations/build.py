@@ -56,4 +56,4 @@ os.system("mkdir -p /mnt/SDCARD/_Stations/stations/"+packCOUNTRY+"/"+packSTATE+"
 os.system("sudo cp -rf "+pathBUILD+"/* /mnt/SDCARD/_Stations/stations/"+packCOUNTRY+"/"+packSTATE+"/"+packID)
 
 
-print("\n\nRadio pack created! \n\nThe pack has been copied to the /mnt/SDCARD/_Stations/"+packCOUNTRY+"/"+packSTATE+"/"+packID+" directory for easier editing. Contained in the pack is a stations playlist to edit, add the needed station urls there. There is also a generic logo for the stations playlist. When done run the install script within the pack to bring the playlists into Moode or choose to zip your pack for sharing with other users. \n")
+print("\n\nRadio pack created! \n\nThe pack has been copied to the /mnt/SDCARD/_Stations/stations/"+packCOUNTRY+"/"+packSTATE+"/"+packID+" directory for easier editing. Contained in the pack is a stations playlist to edit, add the needed station urls there. There is also a generic logo for the stations playlist. When done run the install script within the pack to bring the playlists into Moode or choose to zip your pack for sharing with other users. \n")
