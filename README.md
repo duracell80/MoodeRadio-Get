@@ -51,7 +51,7 @@ Do this before running the build script as doing so beforehand will make sure yo
 
 ```
 $ sudo python build.py
-$ cd /mnt/SDCARD/_Stations/stations/us/tn/bna (for example)
+$ cd /mnt/SDCARD/_Stations/stations/us/ca/sfo (for example)
 $ sudo chmod 755 *
 
 ```
@@ -65,7 +65,7 @@ Edit the m3u files to add your URLs in the file. Perhaps using a desktop PC acce
 ### To install all stations to Moode from a radio pack
 
 ```
-$ cd /mnt/SDCARD/_Stations/stations/us/tn/bna (for example)
+$ cd /mnt/SDCARD/_Stations/stations/us/ca/sfo (for example)
 $ sudo python import.py
 ```
 
@@ -83,7 +83,7 @@ Navigate in Moode UI to Playlists (the icon next to the radio icon)
 From the same location this script will pull your stations out of Moode and Moode Database but keep them on the SDCARD
 
 ```
-$ cd /mnt/SDCARD/_Stations/stations/us/tn/bna (for example)
+$ cd /mnt/SDCARD/_Stations/stations/uk/eng/lhr (for example)
 $ sudo python delete.py 
 ```
 
