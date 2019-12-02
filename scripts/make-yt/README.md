@@ -43,7 +43,7 @@ http://moode.ip/yt-play/?type=cast&src=https://www.youtube.com/watch?v=mhyD2qchk
 Send a whole YouTube Playlist from your PC/Laptop/Phone browser to Moode ... Find a playlist for example:
 
 ```
-Beatiful Calm Acoustics
+Beautiful Calm Acoustics
 https://www.youtube.com/watch?v=eWnaD0dvkVM&list=PLKK4T0Fm7nwGEZUZtQn7hbciVbN6hkVFl
 ```
 Copy the ID in the list= section and do this ...
