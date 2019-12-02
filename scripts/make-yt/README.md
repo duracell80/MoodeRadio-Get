@@ -1,5 +1,7 @@
 # YT Play API
 
+Why is this useful? Why would you want only audio and not video? Well ... video uses a lot of data, there are some videos also that just have a static image and are essentially audio tracks. Things like 4 hours of Thunderstorms. I dunno it's whatever you want to listen to, you could use this for TedTalks, Poetry, 6 hours of Chillstep. Using this API you can keep playlists of YouTube content and you can listen directly from Moode as if they were radio stations.
+
 Install the api to the localhost from the make-yt directory by
 ```
 $ cd /home/pi/MoodeRadio-Get/scripts/make-yt/
@@ -51,7 +53,7 @@ http://moode.ip/yt-play/?type=info&src=PLKK4T0Fm7nwGEZUZtQn7hbciVbN6hkVFl
 
 ```
 
-If you want to build "Moode playlists" (M3U files) of these web page playists you can, it's totally up to you. If you don't see any point in collecting URL's keep using the above method, if you don't see the point of any of this then this functionality isn't for you. Otherwise there is an example playlist called yt-example-list.m3u in the folder: RADIO/YouTube/mahogany. Copy it and change it to your needs.
+If you want to build "Moode playlists" (M3U files) of these web page playists you can, it's totally up to you. If you don't see any point in collecting URL's keep using the above method, if you don't see the point of any of this then this functionality isn't for you and that's ok. Otherwise there is an example playlist called yt-example-list.m3u in the folder: RADIO/YouTube/mahogany. Copy it and change it to your needs.
 
 It's as easy as this:
 ```
@@ -71,7 +73,7 @@ For example see Tom's Diner JSON ... (replace moode.ip)
 
 
 ## Regenerating Streams (?type=regen)
-The "YouTube_Play" playlist will expire so streams in it will need to be "regenerated". This is why there is a slight delay in which you may think the functionality isn't working. Just Clear/Play on the list in teh RADIO section that you want to relisten to, or you can do this from a PC/Laptop/Phone browser ...
+The "YouTube_Play" playlist will expire so streams in it will need to be "regenerated". This is why there is a slight delay in which you may think the functionality isn't working. Just Clear/Play on the list in the RADIO section that you want to relisten to, or you can do this from a PC/Laptop/Phone browser ...
 
 ```
 Regenerate and play a crafted playlist from the RADIO folder ...
