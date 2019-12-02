@@ -39,21 +39,19 @@ http://moode.ip/yt-play/?type=cast&src=https://www.youtube.com/watch?v=mhyD2qchk
 
 ```
 
-## Cast A Whole YouTube playlist (?type=list)
-Send a whole YouTube Playlist from your PC/Laptop/Phone browser to Moode: Go to youtube and find a playlist for example:
+## Cast A Whole YouTube Playlist (?type=list)
+Send a whole YouTube Playlist from your PC/Laptop/Phone browser to Moode ... Find a playlist for example:
 
 ```
-Beatiful calm Acoustics
+Beatiful Calm Acoustics
 https://www.youtube.com/watch?v=eWnaD0dvkVM&list=PLKK4T0Fm7nwGEZUZtQn7hbciVbN6hkVFl
 ```
 Copy the ID in the list= section and do this ...
 ```
-Cast a "YouTube Play" playlist containing 4 tracks
 http://moode.ip/yt-play/?type=info&src=PLKK4T0Fm7nwGEZUZtQn7hbciVbN6hkVFl
-
 ```
 
-If you want to build "Moode playlists" (M3U files) of these web page playists you can, it's totally up to you. If you don't see any point in collecting URL's keep using the above method, if you don't see the point of any of this then this functionality isn't for you and that's ok. Otherwise there is an example playlist called yt-example-list.m3u in the folder: RADIO/YouTube/mahogany. Copy it and change it to your needs.
+If you want to build "Moode playlists" of these URL's (M3U files) you can, it's totally up to you. If you don't see any point in collecting these playlists keep using the above method to cast. If you don't see the point of any of this then this functionality isn't for you and that's ok. Otherwise there is an example playlist called yt-example-list.m3u in the folder: RADIO/YouTube/mahogany. Copy it and change it to your needs.
 
 It's as easy as this:
 ```
@@ -62,11 +60,11 @@ It's as easy as this:
 #EXTINF:-1, Mahogany Sessions ... Contacting YouTube, Please Wait
 http://localhost/yt-play/?type=list&src=PLKK4T0Fm7nwGEZUZtQn7hbciVbN6hkVFl
 ```
-To play it find it and then do Clear/Play as if it were a radio station.
+To play it find it in the Radio tab in Moode UI and then do Clear/Play as if it were a Radio station.
 
 
 ## Get info about a video (?type=info)
-For example see Tom's Diner JSON ... (replace moode.ip)
+For example see Tom's Diner JSON ...
 
 ```http://moode.ip/yt-play/?type=info&src=https://www.youtube.com/watch?v=L9x-DENKIts```
 
