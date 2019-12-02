@@ -15,7 +15,7 @@ for f in range(0, f_tracks, 1):
     f_title = "#EXTINF:"+str(f_json[f]['duration'])+", YouTube: " + f_json[f]['fulltitle']
     
     # URL of Audio Stream 250
-    f_url   = f_json[0]['formats'][1]['url'] + "\n"
+    f_url   = f_json[f]['formats'][1]['url'] + "\n"
     
     
     os.system("sudo echo '"+f_title.encode('utf-8')+"' >> /var/www/yt-play/yt-list.m3u")
