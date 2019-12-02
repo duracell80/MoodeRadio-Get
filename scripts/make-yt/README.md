@@ -9,11 +9,9 @@ $ sudo ./install.sh
 
 The install script will fetch dependencies. Use the API inside playlists to activate audio streams. Use the API in your mobile device browser or desktop browser to interact with Moode. Essentially though you should be able to add YouTube to Moode using only playlists.
 
-Add youtube videos to a playlist in the Radio folder in this way ... Compose a file with the first stream as a message that appears in Moode's player. This will give a sense that things are still happening while the API contacts YouTube to get the json file of the video. Add the actual stream you want to play on the next two lines. End the M3U file with a call to http://localhost/yt-play/?type=stream&src=1 which will trigger an mpc update, offer the chance to output a done message and play the "YouTube Play" playlist. 
+Add individual YouTube videos to a playlist in the Radio folder in this way ...
 
-You should use localhost or 127.0.0.1 here in the M3U file.
-
-## The magic url format /yt-play/?type=stream&src=
+## Example Moode Playlist ...
 
 ```
 #EXTM3U
@@ -27,17 +25,11 @@ http://localhost/yt-play/?type=stream&src=https://www.youtube.com/watch?v=Hc0MJj
 http://localhost/yt-play/?type=stream&src=1
 ```
 
-Save your YouTube M3U playlists in the RADIO folder under _YouTube
+Save your YouTube M3U playlists in the RADIO folder when you want to listen to them, load them as if they were radio stations with Clear/Play from the menu.
 
 
-## Get info about a video (?type=info)
-For example see Tom's Diner JSON ... (replace moode.ip)
-
-```http://moode.ip/yt-play/?type=info&src=https://www.youtube.com/watch?v=L9x-DENKIts```
-
-
-## Cast YouTube Audio (?type=cast)
-Trigger generating the .m4a directly from a desktop or tablet/phone browser, clearing the current playlist and playing the file as soon as it's ready! An API call to essentially cast audio to Moode from YouTube.
+## Cast Individual YouTube Videos (?type=cast)
+Trigger generating the audio directly from a desktop or tablet/phone browser, clearing the current playlist and playing the file as soon as it's ready! An API call to essentially cast audio to Moode from YouTube.
 
 ```
 Cast a Tiny Desk stream by Sylvan Esso into "YouTube Play" playlist
@@ -69,6 +61,13 @@ It's as easy as this:
 http://localhost/yt-play/?type=list&src=PLKK4T0Fm7nwGEZUZtQn7hbciVbN6hkVFl
 ```
 To play it find it and then do Clear/Play as if it were a radio station.
+
+
+## Get info about a video (?type=info)
+For example see Tom's Diner JSON ... (replace moode.ip)
+
+```http://moode.ip/yt-play/?type=info&src=https://www.youtube.com/watch?v=L9x-DENKIts```
+
 
 
 ## Regenerating Streams (?type=regen)
