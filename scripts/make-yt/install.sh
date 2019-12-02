@@ -64,7 +64,7 @@ sudo cp -rf ./_YouTube/* /var/lib/mpd/music/RADIO/_YouTube
 sudo cp -f ./yt-init.m3u /var/lib/mpd/music/RADIO/_YouTube/example-streaming.m3u
 sudo cp -f ./YouTube_Play.jpg /var/www/images/radio-logos/thumbs/yt-example.jpg
 sudo cp -f ./YouTube_Play.jpg /var/www/images/radio-logos/thumbs/yt-example-list.jpg
-sudo cp -f ./YouTube_Play.jpg /var/www/images/radio-logos/thumbs/streaming-example.jpg
+sudo cp -f ./YouTube_Play.jpg /var/www/images/radio-logos/thumbs/example-streaming.jpg
 #sudo cp -f ./yt-dl.m3u /var/lib/mpd/music/RADIO/_YouTube/example-downloading.m3u
 
 mpc update
