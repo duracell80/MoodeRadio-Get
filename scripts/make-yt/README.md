@@ -45,8 +45,34 @@ http://moode.ip/yt-play/?type=cast&src=https://www.youtube.com/watch?v=mhyD2qchk
 
 ```
 
+## Cast A Whole YouTube playlist (?type=list)
+Send a whole YouTube Playlist from your PC/Laptop/Phone browser to Moode: Go to youtube and find a playlist for example:
+
+```
+Beatiful calm Acoustics
+https://www.youtube.com/watch?v=eWnaD0dvkVM&list=PLKK4T0Fm7nwGEZUZtQn7hbciVbN6hkVFl
+```
+Copy the ID in the list= section and do this ...
+```
+Cast a Tiny Desk stream by Sylvan Esso into "YouTube Play" playlist
+http://moode.ip/yt-play/?type=info&src=PLKK4T0Fm7nwGEZUZtQn7hbciVbN6hkVFl
+
+```
+
+If you want to build playlists of these playists you can, it's totally up to you. If you don't see any point in collecting URL's keep using the above method. Otherwise there is an example playlist called yt-example-list.m3u in the folder: RADIO/YouTube/mahognany. Copy it and change it to your needs.
+
+It's as easy as this:
+```
+#EXTM3U
+
+#EXTINF:-1, Mahogany Sessions ... Contacting YouTube, Please Wait
+http://localhost/yt-play/?type=list&src=PLKK4T0Fm7nwGEZUZtQn7hbciVbN6hkVFl
+```
+
+
+
 ## Regenerating Streams (?type=regen)
-The "YouTube_Play" playlist will expire so streams in it will need to be "regenerated". This is why there is a slight delay in which you may think the functionality isn't working. The API calls the library to recontact YouTube to activate the m4a stream to output a fresh set of URL's in the "YouTube_Play" playlist. The src you give it here is the location of the playlist in the RADIO folder that you want to play.
+The "YouTube_Play" playlist will expire so streams in it will need to be "regenerated". This is why there is a slight delay in which you may think the functionality isn't working. Just Clear/Play on the list in teh RADIO section that you want to relisten to, or you can do this from a PC/Laptop/Phone browser ...
 
 ```
 Regenerate and play a crafted playlist from the RADIO folder ...
