@@ -36,7 +36,7 @@ sudo mkdir -p /var/www/yt-play
 sudo mkdir -p /var/lib/mpd/music/RADIO/_YouTube
 sudo cp -f ./index.php /var/www/yt-play
 sudo cp -f ./source.json /var/www/yt-play
-sudo cp -f ./source.list /var/www/yt-play
+sudo cp -f ./sourcelist.json /var/www/yt-play
 sudo cp -f ./source_title.py /var/www/yt-play
 sudo cp -f ./source_url.py /var/www/yt-play
 sudo cp -f ./source_duration.py /var/www/yt-play
