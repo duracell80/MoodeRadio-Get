@@ -9,7 +9,7 @@
 
 sudo echo "#EXTM3U" > /var/www/yt-play/yt-list.m3u
 sudo echo "" >> /var/www/yt-play/yt-list.m3u
-sudo youtube-dl --no-warnings --skip-download -i --proxy socks5://192.241.187.83:31650 --force-ipv4 -j $1 > sourcelist.json
+sudo youtube-dl -U --no-warnings --skip-download -i --playlist-end 5 --playlist-random --sleep-interval 30 --proxy socks5://192.241.187.83:31650 --force-ipv4 -j $1 > sourcelist.json
 sudo python sourcelist.py
 
 mpc clear
