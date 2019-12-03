@@ -6,8 +6,10 @@
 #
 # #EXTINF:-1, YouTube Audio
 # http://localhost/yt-play/?src=6LEmDEZVa5g ...
+# Proxy 192.241.187.83:31650
 
-sudo youtube-dl -f 249 -j $1 > /var/www/yt-play/source.json
+
+sudo youtube-dl -f 249 --proxy socks5://192.241.187.83:31650 --force-ipv4 -j $1 > /var/www/yt-play/source.json
 id=$(sudo python source_id.py)
 url=$(sudo python source_url.py)
 duration=$(sudo python source_duration.py)
