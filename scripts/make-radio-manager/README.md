@@ -26,14 +26,6 @@ Navigate to the RADIO section of the UI into the new "Underscore Stations" folde
 ![Screenshot](https://raw.githubusercontent.com/duracell80/MoodeRadio-Get/master/scripts/make-radio-manager/002.png)
 
 ## Optionally
-Add these lines to /var/www/lib-config.php
-
-```
-// update radio playlists
-if (isset($_POST['updaterdo'])) {
-	submitJob('updmprdo', '', 'Radio update started...', '');
-}
-```
 
 Add these lines to /var/www/templates/lib-config.html
 ```
