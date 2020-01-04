@@ -1,6 +1,9 @@
 #!/bin/bash
 
 
+# Create the organization in RADIO
+sudo mkdir -p /var/lib/mpd/music/RADIO/_Stations/tags
+sudo mkdir -p /var/lib/mpd/music/RADIO/_Stations/networks
 
 # Copy scripts to localhost
 sudo mkdir -p /var/www/radio/sources/rb

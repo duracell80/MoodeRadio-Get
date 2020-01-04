@@ -28,9 +28,9 @@ playerSession('open', '' ,'');
 
 
 
-$_select['radio_tags'] = empty($_SESSION['radio_tags']) ? '80s,90s,ambient,jazz,nature' : $_SESSION['radio_tags'];
+$_select['radio_tags'] = empty($_SESSION['radio_tags']) ? '80s,90s,ambient,jazz' : $_SESSION['radio_tags'];
 $_select['radio_stations'] = empty($_SESSION['radio_stations']) ? 'somafm,bbc,calm' : $_SESSION['radio_stations'];
-$_select['radio_range'] = empty($_SESSION['radio_range']) ? '25-600' : $_SESSION['radio_range'];
+$_select['radio_range'] = empty($_SESSION['radio_range']) ? '15-900' : $_SESSION['radio_range'];
 
 
 $_taglist   = $_select['radio_tags'];
