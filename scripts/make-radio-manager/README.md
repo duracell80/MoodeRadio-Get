@@ -5,7 +5,7 @@ Scripts pull from the Community Radio Browser API to allow users to bulk import 
 ```
 $ cd /home/pi
 $ git clone https://github.com/duracell80/MoodeRadio-Get.git
-$ cd cd MoodeRadio-Get/scripts/make-radio-manager/
+$ cd MoodeRadio-Get/scripts/make-radio-manager/
 
 $ sudo chmod 755 install.sh
 $ ./install.sh
