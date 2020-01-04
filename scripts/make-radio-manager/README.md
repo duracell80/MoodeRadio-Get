@@ -19,11 +19,11 @@ Use the rdo-config.php link noted above in a browser to access the UI. Browse th
 
 The tag file is cached so from time to time refresh that json file from the UI leave the page and come back.
 
-![Screenshot](http://moodeaudio.org/forum/attachment.php?aid=942)
+![Screenshot](https://raw.githubusercontent.com/duracell80/MoodeRadio-Get/master/scripts/make-radio-manager/001.png)
 
 Navigate to the RADIO section of the UI into the new "Underscore Stations" folder where you'll see tags and networks.
 
-![Screenshot](http://moodeaudio.org/forum/attachment.php?aid=943)
+![Screenshot](https://raw.githubusercontent.com/duracell80/MoodeRadio-Get/master/scripts/make-radio-manager/002.png)
 
 ## Optionally
 Add these lines to /var/www/lib-config.php
