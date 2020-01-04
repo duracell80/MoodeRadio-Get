@@ -14,6 +14,8 @@ $ ./install.sh
 ## Accessing the UI without changing core moode UI
 Go to http://192.168.2.7/rdo-config.php to access the UI replacing the IP with your Moode IP.
 
+## Navigating the UI
+
 ## Optionally
 Add these lines to /var/www/lib-config.php
 
