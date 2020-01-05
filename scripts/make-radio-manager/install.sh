@@ -20,3 +20,5 @@ sudo chmod 777 /var/www/radio/index.php
 sudo chmod 777 /var/www/radio/sources/config.json
 sudo chmod 777 /var/www/radio/sources/rb/tags.json
 sudo chmod 755 /var/www/radio/sources/rb/*.py
+sudo chmod 755 /var/www/rdo-config.php
+sudo chmod 755 /var/www/templates/rdo-config.html
