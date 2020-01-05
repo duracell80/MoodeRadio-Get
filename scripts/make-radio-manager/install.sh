@@ -11,6 +11,8 @@ sudo cp -f ./radio/index.php /var/www/radio
 sudo cp -f ./radio/sources/config.json /var/www/radio/sources
 sudo cp -rf ./radio/sources/rb /var/www/radio/sources
 sudo cp -f ./radio/sources/rb/*.m3u /var/lib/mpd/playlists
+sudo cp -f ./www/rdo-config.php /var/www
+sudo cp -f ./www/templates/rdo-config.html /var/www/templates
 
 # Permissions
 sudo chmod 777 /var/lib/mpd/playlists/Radio_Play.m3u
