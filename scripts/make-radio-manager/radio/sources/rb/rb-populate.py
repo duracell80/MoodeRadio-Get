@@ -131,7 +131,7 @@ for f, f_item in enumerate(f_json):
             os.system("sudo sed -i 's/EXTINF:1/EXTINF:-1/g' " + p_path)
             
             
-            if(p_singles == "yes"):
+            if(p_singles == "1"):
                 # SPLIT EACH URL INTO SEPERATE FILE
                 q_file  = open(p_path, 'r')
                 q_lines = q_file.readlines()
@@ -154,6 +154,11 @@ for f, f_item in enumerate(f_json):
                     os.system("sudo touch " + station_path)
                     os.system("sudo chmod 777 " + station_path)
                     open(station_path, 'wb').write(station_content)
+                    
+                    
+            if(p_singles == "0"):
+                # DELETE ALL SPLIT STATION PLAYLISTS
+                os.system("sudo find " + pi_path + "/tags -name 'singles' -exec rm -rf {} \;")
         
         
         

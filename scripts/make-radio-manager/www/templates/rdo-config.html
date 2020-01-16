@@ -123,17 +123,27 @@
 				</div>
 			</div>
             
+            
             <div class="control-group">
-				<label class="control-label" for="radio_tags">Station Singles</label>
-				<div class="controls">
-					<input class="input-large" type="text" pattern="^\S*$" id="radio_singles" name="config[radio_singles]" value="$_singles">
-					<a aria-label="Help" class="info-toggle" data-cmd="info_radio_singles" href="#notarget"><i class="fas fa-info-circle"></i></a>
-					<span id="info_radio_singles" class="help-block-configs help-block-margin hide">
-						Choose to parse each station in a tag into its own playlist.<br>
-                        TIP: Speed up process by selecting no
+                <label class="control-label">Station Singles</label>
+                <div class="controls">
+                    <div class="toggle">
+                        <label class="toggle-radio" for="toggle_station_split1">YES</label>
+                        $_select[toggle_station_split1]
+                        <label class="toggle-radio" for="toggle_station_split0">NO</label>
+                        $_select[toggle_station_split0]
+                    </div>
+                    <div style="display: inline-block; vertical-align: top; margin-top: 5px;">
+                        <button class="btn btn-primary btn-small btn-submit" type="submit" name="update_station_split" value="novalue">Set</button>
+                    </div>
+                    <span id="info-stationsplit" class="help-block-configs" style="margin-top:-.35em;">
+                        Choose to parse each station in a tag into its own playlist.<br>
+                        TIP: Set this toggle before hitting save, selecting yes may cause a long save delay.<br>
                     </span>
-				</div>
-			</div>
+                </div>
+            </div>
+            
+            
             
             
             <div class="control-group">

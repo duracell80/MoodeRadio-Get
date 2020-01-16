@@ -31,13 +31,20 @@ playerSession('open', '' ,'');
 $_select['radio_tags'] = empty($_SESSION['radio_tags']) ? '80s,90s,ambient,jazz,nature' : $_SESSION['radio_tags'];
 $_select['radio_stations'] = empty($_SESSION['radio_stations']) ? 'somafm,bbc,calm' : $_SESSION['radio_stations'];
 $_select['radio_range'] = empty($_SESSION['radio_range']) ? '25-600' : $_SESSION['radio_range'];
-$_select['radio_singles'] = empty($_SESSION['radio_singles']) ? 'no' : $_SESSION['radio_singles'];
+
+
+
+
+
+
+
+
 
 
 $_taglist   = $_select['radio_tags'];
 $_stations  = $_select['radio_stations'];
 $_range     = $_select['radio_range'];
-$_singles   = $_select['radio_singles'];
+
 
 // Load and update JSON configuration file
 $jsonString = file_get_contents('/var/www/radio/sources/config.json');
@@ -75,9 +82,38 @@ foreach ($t_data as $key => $value) {
 
 
 
+// Apply toggle changes
+if (isset($_POST['update_station_split'])) {
+	if (isset($_POST['station_split'])) {
+		$_SESSION['notify']['title'] = $_POST['station_split'] == '1' ? 'Station spillter on' : 'Station splitter off';
+		$_SESSION['notify']['duration'] = 3;
+        $_station_split   = $_POST['station_split'];
+        $_SESSION['station_split'] = $_station_split;
+        
+        $data['radiobrowser'][0]['tags']        = $_SESSION['radio_tags'];
+        $data['radiobrowser'][0]['stations']    = $_SESSION['radio_stations'];
+        $data['radiobrowser'][0]['range']       = $_SESSION['radio_range'];
+        $data['radiobrowser'][0]['singles']     = $_POST['station_split'];
+        $newJsonString = json_encode($data);
+        file_put_contents('/var/www/radio/sources/config.json', $newJsonString);
+        
+        $_select['toggle_station_split1'] = "<input type=\"radio\" name=\"station_split\" id=\"toggle_station_split0\" value=\"1\" " . (($_POST['station_split'] == '1') ? "checked=\"checked\"" : "") . ">\n";
+	               
+        $_select['toggle_station_split0'] = "<input type=\"radio\" name=\"station_split\" id=\"toggle_station_split1\" value=\"0\" " . (($_POST['station_split'] == '0') ? "checked=\"checked\"" : "") . ">\n";
+        
+        #shell_exec("sudo python /var/www/radio/sources/rb/rb-populate.py");
+        #shell_exec("mpc update");
+	}
+} else {
+    $_select['toggle_station_split1'] = "<input type=\"radio\" name=\"station_split\" id=\"toggle_station_split0\" value=\"1\" " . (($_SESSION['station_split'] == '1') ? "checked=\"checked\"" : "") . ">\n";
+	               
+    $_select['toggle_station_split0'] = "<input type=\"radio\" name=\"station_split\" id=\"toggle_station_split1\" value=\"0\" " . (($_SESSION['station_split'] == '0') ? "checked=\"checked\"" : "") . ">\n";
+}
 
 
-// Apply setting changes
+
+
+
 if (isset($_POST['save']) && $_POST['save'] == '1') {
     
     $_usrmsg = "";
@@ -92,11 +128,11 @@ if (isset($_POST['save']) && $_POST['save'] == '1') {
     $data['radiobrowser'][0]['tags']        = $_SESSION['radio_tags'];
     $data['radiobrowser'][0]['stations']    = $_SESSION['radio_stations'];
     $data['radiobrowser'][0]['range']       = $_SESSION['radio_range'];
-    $data['radiobrowser'][0]['singles']     = $_SESSION['radio_singles'];
+    $data['radiobrowser'][0]['singles']     = $_SESSION['station_split'];
     $_taglist   = $_SESSION['radio_tags'];
     $_stations  = $_SESSION['radio_stations'];
     $_range     = $_SESSION['radio_range'];
-    $_singles   = $_SESSION['radio_singles'];
+    
     
     $newJsonString = json_encode($data);
     file_put_contents('/var/www/radio/sources/config.json', $newJsonString);
