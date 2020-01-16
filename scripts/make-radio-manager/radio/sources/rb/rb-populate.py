@@ -149,7 +149,7 @@ for f, f_item in enumerate(f_json):
 
                     station_content     = "#EXTM3U\n" + q_lines[i] + station_url
 
-                    print("Tag [ "+f_tag+" ] Station: " + station_name)
+                    print("["+f_tag+"] " + station_name)
 
                     os.system("sudo touch " + station_path)
                     os.system("sudo chmod 777 " + station_path)

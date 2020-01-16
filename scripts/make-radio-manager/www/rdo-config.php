@@ -132,12 +132,17 @@ if (isset($_POST['save']) && $_POST['save'] == '1') {
     $_taglist   = $_SESSION['radio_tags'];
     $_stations  = $_SESSION['radio_stations'];
     $_range     = $_SESSION['radio_range'];
+    $_singles   = $_SESSION['station_split'];
     
     
     $newJsonString = json_encode($data);
     file_put_contents('/var/www/radio/sources/config.json', $newJsonString);
     
-    shell_exec("sudo python /var/www/radio/sources/rb/rb-populate.py");
+    
+    $cmd            = "sudo python /var/www/radio/sources/rb/rb-populate.py";
+    $_output        = $_usrmsg . "<br><br><br>" . shell_exec($cmd);
+    $_consolevis    = "block";
+    
     shell_exec("mpc update");
     
     
@@ -145,8 +150,10 @@ if (isset($_POST['save']) && $_POST['save'] == '1') {
     $_SESSION['notify']['title'] = 'Tags Refreshed!';
     $_usrmsg = "<strong>Information: Tags Refreshed</strong><br>";
     shell_exec("sudo python /var/www/radio/sources/rb/rb-tags.py");
+    $_consolevis    = "none";
 } else {
     //$_usrmsg = "<strong>Information: Select Tags</strong><br>Tap a tag name to preview the stations in Moode ...";
+    $_consolevis    = "none";
 }
 session_write_close();
 

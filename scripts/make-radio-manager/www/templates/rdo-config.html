@@ -34,11 +34,34 @@
         margin-left     : 0px; 
         padding-left    : 15px;
         border-left     : 3px solid var(--accentxts);
+
     }
     
     .ui-rdo-controls { 
-        max-width   : 385px; 
+        max-width   : 500px; 
         margin      : 15px 15px 60px 65px;
+        
+    }
+    
+    .ui-rdo-console {
+        max-width   : 499px;
+        margin      : 15px 15px 60px 65px;
+           
+        
+        height      : 223px;
+        overflow-x  : hidden;
+        overflow-y  : scroll;
+        border      : 1px solid var(--accentxts);
+        background  : #000;
+        
+        position    : relative;
+        top         : -255px;
+        margin-bottom: -250px;
+        display     : $_consolevis;
+    }
+    
+    .ui-rdo-console pre {
+        color       : var(--accentxts);
     }
     
     @media only screen and (max-width: 500px) {
@@ -87,6 +110,10 @@
             <div class="ui-rdo-tags">
                 <p style="opacity:0.25; font-size:85%;">$_usrmsg</p>
                 <ul class="rdo-tags">$_tags</ul>
+            </div>
+            
+            <div class="ui-rdo-console">
+            <pre>$_output</pre>
             </div>
             
             <div class="ui-rdo-controls">
