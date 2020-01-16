@@ -28,14 +28,16 @@ playerSession('open', '' ,'');
 
 
 
-$_select['radio_tags'] = empty($_SESSION['radio_tags']) ? '80s,90s,ambient,jazz' : $_SESSION['radio_tags'];
+$_select['radio_tags'] = empty($_SESSION['radio_tags']) ? '80s,90s,ambient,jazz,nature' : $_SESSION['radio_tags'];
 $_select['radio_stations'] = empty($_SESSION['radio_stations']) ? 'somafm,bbc,calm' : $_SESSION['radio_stations'];
-$_select['radio_range'] = empty($_SESSION['radio_range']) ? '15-900' : $_SESSION['radio_range'];
+$_select['radio_range'] = empty($_SESSION['radio_range']) ? '25-600' : $_SESSION['radio_range'];
+$_select['radio_singles'] = empty($_SESSION['radio_singles']) ? 'no' : $_SESSION['radio_singles'];
 
 
 $_taglist   = $_select['radio_tags'];
 $_stations  = $_select['radio_stations'];
 $_range     = $_select['radio_range'];
+$_singles   = $_select['radio_singles'];
 
 // Load and update JSON configuration file
 $jsonString = file_get_contents('/var/www/radio/sources/config.json');
@@ -90,9 +92,11 @@ if (isset($_POST['save']) && $_POST['save'] == '1') {
     $data['radiobrowser'][0]['tags']        = $_SESSION['radio_tags'];
     $data['radiobrowser'][0]['stations']    = $_SESSION['radio_stations'];
     $data['radiobrowser'][0]['range']       = $_SESSION['radio_range'];
+    $data['radiobrowser'][0]['singles']     = $_SESSION['radio_singles'];
     $_taglist   = $_SESSION['radio_tags'];
     $_stations  = $_SESSION['radio_stations'];
     $_range     = $_SESSION['radio_range'];
+    $_singles   = $_SESSION['radio_singles'];
     
     $newJsonString = json_encode($data);
     file_put_contents('/var/www/radio/sources/config.json', $newJsonString);

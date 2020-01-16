@@ -1,5 +1,8 @@
 #!/usr/bin/env python2
-import urllib, random, requests, json, os
+import urllib, random, requests, json, os, string, unicodedata, sys
+
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 def is_ascii(text):
     if isinstance(text, unicode):
@@ -13,6 +16,26 @@ def is_ascii(text):
         except UnicodeDecodeError:
             return False
     return True
+
+
+
+valid_filename_chars = "-_.() %s%s" % (string.ascii_letters, string.digits)
+char_limit = 255
+
+def clean_filename(filename, whitelist=valid_filename_chars):
+    
+    filename = unicode(filename)
+    filename = filename.lower().replace("&", "and").replace(" ", "-").replace("'", "-").replace("\"", "").replace("(", "").replace(")", "").replace(".", "_")
+
+    cleaned_filename = unicodedata.normalize('NFKD', filename).encode('ASCII', 'ignore').decode()
+    cleaned_filename = ''.join(c for c in cleaned_filename if c in whitelist)
+    if len(cleaned_filename)>char_limit:
+        print("Warning, filename truncated because it was over {}. Filenames may no longer be unique".format(char_limit))
+    
+    
+    return cleaned_filename[:char_limit]
+
+
 
 cmd_path        = "/var/www/radio"
 
@@ -58,6 +81,7 @@ with open(cfg_file) as json_file:
         p_range     = p['range']
         p_tags      = p['tags'].lower().replace("&", "and").replace(" ", "-").replace("'", "-")
         p_stations  = p['stations'].lower()
+        p_singles   = p['singles'].lower()
 
 
 r_range     = p_range.split("-")        
@@ -91,6 +115,7 @@ for f, f_item in enumerate(f_json):
 
 
             os.system("sudo mkdir -p "  + f_path)
+            os.system("sudo mkdir -p "  + f_path + "/singles")
             os.system("sudo chmod 777 " + f_path)
             os.system("sudo rm -rf "    + p_path)
 
@@ -104,8 +129,31 @@ for f, f_item in enumerate(f_json):
             open(p_path, 'wb').write(p_file.content)
         
             os.system("sudo sed -i 's/EXTINF:1/EXTINF:-1/g' " + p_path)
+            
+            
+            if(p_singles == "yes"):
+                # SPLIT EACH URL INTO SEPERATE FILE
+                q_file  = open(p_path, 'r')
+                q_lines = q_file.readlines()
+                q_size  = len(q_lines)
+                q_file.close()
 
-        
+
+                for i in range(1,q_size,3):
+                    station_split       = q_lines[i].split("#EXTINF:-1,")
+                    station_name        = str(station_split[1])
+                    station_url         = str(q_lines[i+1])
+                    station_file        = clean_filename(station_name) + ".m3u"
+                    station_path        = f_path + "/singles/" + station_file
+
+
+                    station_content     = "#EXTM3U\n" + q_lines[i] + station_url
+
+                    print("Tag [ "+f_tag+" ] Station: " + station_name)
+
+                    os.system("sudo touch " + station_path)
+                    os.system("sudo chmod 777 " + station_path)
+                    open(station_path, 'wb').write(station_content)
         
         
         
