@@ -1,5 +1,5 @@
 #!/usr/bin/env python2
-import urllib, random, requests, json, os, string, unicodedata, sys
+import urllib, random, requests, json, os, re, string, unicodedata, sys
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -106,15 +106,13 @@ for f, f_item in enumerate(f_json):
     if f_tag in r_tags:
             
         if f_cnt in f_range and is_ascii(f_tag):
-            print("Tag: {0} ({1})".format(f_tag, str(f_cnt))) 
+            print("\nTag: {0} ({1}) ...\n".format(f_tag, str(f_cnt))) 
 
 
             f_folder    = f_tag.lower().replace("&", "and").replace(" ", "-").replace("'", "-")
             f_path      = pi_path   + "/tags/"+ f_folder
             p_path      = f_path    + "/source_community.m3u"
 
-
-            os.system("sudo mkdir -p "  + f_path)
             os.system("sudo mkdir -p "  + f_path + "/singles")
             os.system("sudo chmod 777 " + f_path)
             os.system("sudo rm -rf "    + p_path)
@@ -131,6 +129,18 @@ for f, f_item in enumerate(f_json):
             os.system("sudo sed -i 's/EXTINF:1/EXTINF:-1/g' " + p_path)
             
             
+            # SCOOP OUT STATION NAMES FOR CONSOLE PRINT
+            p_names = re.sub(r'^https?:\/\/.*[\r\n]*', '', p_file.content, flags=re.MULTILINE)
+            p_names = p_names.split("#EXTINF:1,")
+            p_names.pop(0)
+            
+            for s_item in p_names:
+                print("["+ f_tag.upper() + "] " + s_item.replace('\n', ' ').replace('\r', ''))
+                
+                
+                
+                
+            
             if(p_singles == "1"):
                 # SPLIT EACH URL INTO SEPERATE FILE
                 q_file  = open(p_path, 'r')
@@ -138,7 +148,8 @@ for f, f_item in enumerate(f_json):
                 q_size  = len(q_lines)
                 q_file.close()
 
-
+                print("\n\nSplitting stations, please wait")
+                
                 for i in range(1,q_size,3):
                     station_split       = q_lines[i].split("#EXTINF:-1,")
                     station_name        = str(station_split[1])
@@ -148,15 +159,15 @@ for f, f_item in enumerate(f_json):
 
 
                     station_content     = "#EXTM3U\n" + q_lines[i] + station_url
-
-                    print("["+f_tag+"] " + station_name)
+                    
+                    sys.stdout.write('.')
 
                     os.system("sudo touch " + station_path)
                     os.system("sudo chmod 777 " + station_path)
                     open(station_path, 'wb').write(station_content)
+                
                     
-                    
-            if(p_singles == "0"):
+            if(p_singles == "0" and os.path.isdir(pi_path + "/tags/singles")):
                 # DELETE ALL SPLIT STATION PLAYLISTS
                 os.system("sudo find " + pi_path + "/tags -name 'singles' -exec rm -rf {} \;")
         
@@ -165,26 +176,54 @@ for f, f_item in enumerate(f_json):
         
         
         
-# DO STATION NAME LOOKUP
+# DO NETWORK NAME LOOKUP - IGNORE STATION RANGE AND STATION SPLITTER
+# EXAMPLE - station:bbc,tag:dashradio
 for n_item in r_stations:
-    n_url   = "{0}/json/stations/byname/{1}".format(f_server, n_item)
-    n_json  = json.loads(urllib.urlopen(n_url).read())
-    n_url   = "{0}/m3u/stations/byname/{1}".format(f_server, n_item)
-
+    n_split = n_item.split(":")
     
+    if is_ascii(n_split[1]):
+        
+        # DO THE API STUFF ...
+        if "tag" in n_split[0]:
+            # DO KEYWORD LOOKUP ON TAGS
+            n_url   = "{0}/json/stations/bytag/{1}".format(f_server, n_split[1])
+            n_json  = json.loads(urllib.urlopen(n_url).read())
+            n_url   = "{0}/m3u/stations/bytag/{1}".format(f_server, n_split[1])
+
+        else:
+            # DO KEYWORD LOOKUP ON STATIONS
+            n_url   = "{0}/json/stations/byname/{1}".format(f_server, n_split[1])
+            n_json  = json.loads(urllib.urlopen(n_url).read())
+            n_url   = "{0}/m3u/stations/byname/{1}".format(f_server, n_split[1])
+
+
+
+
+        # DO THE FILE STUFF ...
+        if "url" in str(n_json):
+            n_file      = requests.get(n_url)     
+            f_path      = pi_path   + "/networks/"
+            p_path      = f_path    + n_split[1].lower().replace("&", "and").replace(" ", "-").replace("'", "-") +".m3u"
+
+            print("\n\n\nNetwork: {0} ... \n".format(n_split[1].upper()))
+            
+            os.system("sudo touch " + p_path)
+            os.system("sudo chmod 777 " + p_path)
+            open(p_path, 'wb').write(n_file.content)
+            os.system("sudo sed -i 's/EXTINF:1/EXTINF:-1/g' " + p_path)
+            
+            
+            
+            # SCOOP OUT STATION NAMES FOR CONSOLE PRINT
+            n_names = re.sub(r'^https?:\/\/.*[\r\n]*', '', n_file.content, flags=re.MULTILINE)
+            n_names = n_names.split("#EXTINF:1,")
+            n_names.pop(0)
+            
+            for s_item in n_names:
+                print("["+ n_split[1].upper() + "] " + s_item.replace('\n', ' ').replace('\r', ''))
+        
+        
     
-    if "url" in str(n_json):
-        n_file      = requests.get(n_url)     
-        f_path      = pi_path   + "/networks/"
-        p_path      = f_path    + n_item.lower().replace("&", "and").replace(" ", "-").replace("'", "-") +".m3u"
-
-        print("Station: {0}".format(n_item)) 
-
-        os.system("sudo touch " + p_path)
-        os.system("sudo chmod 777 " + p_path)
-        open(p_path, 'wb').write(n_file.content)
-
-        os.system("sudo sed -i 's/EXTINF:1/EXTINF:-1/g' " + p_path)
         
         
         
@@ -195,4 +234,4 @@ for n_item in r_stations:
         
         
         
-#os.system("mpc update")
+os.system("mpc update")
