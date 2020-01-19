@@ -172,7 +172,6 @@
             
             
             
-            
             <div class="control-group">
 				<label class="control-label" for="radio_stations">Radio Networks</label>
 				<div class="controls">
@@ -184,8 +183,31 @@
                     </span>
 				</div>
 			</div>
-
+            
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
 			
+            <legend>Moode and User Added Stations</legend>
+            
+            <div class="control-group">
+                <label class="control-label">Hide PLS Stations</label>
+                <div class="controls">
+                    <div class="toggle">
+                        <label class="toggle-radio" for="toggle_station_hide1">YES</label>
+                        $_select[toggle_station_hide1]
+                        <label class="toggle-radio" for="toggle_station_hide0">NO</label>
+                        $_select[toggle_station_hide0]
+                    </div>
+                    <div style="display: inline-block; vertical-align: top; margin-top: 5px;">
+                        <button class="btn btn-primary btn-small btn-submit" type="submit" name="update_station_hide" value="novalue">Set</button>
+                    </div>
+                    <span id="info-stationhide" class="help-block-configs" style="margin-top:-.35em;">
+                        Set Moode default stations hidden or visible<br>
+                    </span>
+                </div>
+            </div>
+            
 		</fieldset>
 	</form>
     

@@ -112,6 +112,37 @@ if (isset($_POST['update_station_split'])) {
 
 
 
+// Toggle default Moode stations
+if (isset($_POST['update_station_hide'])) {
+	if (isset($_POST['station_hide'])) {
+		$_SESSION['notify']['title'] = $_POST['station_split'] == '1' ? 'Moode stations hidden' : 'Moode stations restored';
+		$_SESSION['notify']['duration'] = 3;
+        $_station_hide   = $_POST['station_hide'];
+        $_SESSION['station_hide'] = $_station_hide;
+        
+        
+        
+        $_select['toggle_station_hide1'] = "<input type=\"radio\" name=\"station_hide\" id=\"toggle_station_hide0\" value=\"1\" " . (($_POST['station_hide'] == '1') ? "checked=\"checked\"" : "") . ">\n";
+	               
+        $_select['toggle_station_hide0'] = "<input type=\"radio\" name=\"station_hide\" id=\"toggle_station_hide1\" value=\"0\" " . (($_POST['station_hide'] == '0') ? "checked=\"checked\"" : "") . ">\n";
+        
+        if ($_POST['station_hide'] == '1') {
+            shell_exec("sudo sudo mv /var/lib/mpd/music/RADIO/*.pls /var/www/radio/sources/moode");
+            shell_exec("mpc update"); 
+        } else {
+            shell_exec("sudo sudo mv /var/www/radio/sources/moode/*.pls /var/lib/mpd/music/RADIO");
+            shell_exec("mpc update"); 
+        }
+        
+	}
+} else {
+    $_select['toggle_station_hide1'] = "<input type=\"radio\" name=\"station_hide\" id=\"toggle_station_hide0\" value=\"1\" " . (($_SESSION['station_hide'] == '1') ? "checked=\"checked\"" : "") . ">\n";
+	               
+    $_select['toggle_station_hide0'] = "<input type=\"radio\" name=\"station_hide\" id=\"toggle_station_hide1\" value=\"0\" " . (($_SESSION['station_hide'] == '0') ? "checked=\"checked\"" : "") . ">\n";
+}
+
+
+
 
 
 if (isset($_POST['save']) && $_POST['save'] == '1') {

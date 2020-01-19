@@ -54,7 +54,7 @@ switch ($type) {
         $runcmd = "sudo python " . $apiPath . "/sources/rb/rb-tags-preview.py " . $play;
         echo("Previewing radio tag: " . $play);
         shell_exec($runcmd);
-        header("Location: /"); 
+        //header("Location: /"); 
         break;
     case "station":
         
