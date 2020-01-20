@@ -41,7 +41,9 @@ $type       = $_GET["type"];
 
 $apiPath    = "/var/www/radio";
 $playPath   = "/var/lib/mpd/playlists";
-$radioPath  = "/var/lib/mpd/music/RADIO";   
+$radioPath  = "/var/lib/mpd/music/RADIO";
+$radioFile  = "Radio_Play";
+$radioList  = "/var/lib/mpd/playlists/Radio_Play.m3u";
 
 
 
@@ -50,6 +52,28 @@ $radioPath  = "/var/lib/mpd/music/RADIO";
 
 ?> <div class="cmd-msg"><?php
 switch ($type) {
+    case "cast":
+        
+        // EXAMPLE http://192.168.2.4/radio?type=cast&src=http://ice55.securenetsystems.net/DASH7
+        $m3u_content  = "#EXTM3U\n";
+        $m3u_content .= "#EXTINF:-1,Cast To Moode Audio\n";
+        $m3u_content .= $src;
+        
+        shell_exec("sudo rm -rf " + $radioList);
+        shell_exec("sudo touch " + $radioList);
+        shell_exec("sudo chmod 777 " + $radioList);
+        file_put_contents($radioList, $m3u_content); 
+
+        $runcmd = "mpc clear; mpc load Radio_Play"; shell_exec($runcmd);
+        $runcmd = "mpc play";
+        echo(shell_exec($runcmd));
+        
+        sleep(2);
+        header("Location: /");
+        
+        
+        break;
+    
     case "tag":
         $runcmd = "sudo python " . $apiPath . "/sources/rb/rb-tags-preview.py " . $play;
         echo("Previewing radio tag: " . $play);
