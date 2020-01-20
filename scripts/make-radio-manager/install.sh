@@ -15,6 +15,12 @@ sudo cp -f ./radio/sources/rb/*.m3u /var/lib/mpd/playlists
 sudo cp -f ./www/rdo-config.php /var/www
 sudo cp -f ./www/templates/rdo-config.html /var/www/templates
 
+# Create upload image environment
+sudo mkdir -p /tmp/radio-logos/
+sudo chmod 777 /tmp/radio-logos/
+
+# Copy pre-installed radio tag logos to moode radio thumbs
+
 # Permissions
 sudo chmod 777 /var/lib/mpd/playlists/Radio_Play.m3u
 sudo chmod 777 /var/www/radio/index.php
