@@ -59,9 +59,8 @@ switch ($type) {
         $m3u_content .= "#EXTINF:-1,Cast To Moode Audio\n";
         $m3u_content .= $src;
         
-        shell_exec("sudo rm -rf " + $radioList);
-        shell_exec("sudo touch " + $radioList);
-        shell_exec("sudo chmod 777 " + $radioList);
+        shell_exec("sudo touch /var/lib/mpd/playlists/Radio_Play.m3u");
+        shell_exec("sudo chmod 777 /var/lib/mpd/playlists/Radio_Play.m3u");
         file_put_contents($radioList, $m3u_content); 
 
         $runcmd = "mpc clear; mpc load Radio_Play"; shell_exec($runcmd);
