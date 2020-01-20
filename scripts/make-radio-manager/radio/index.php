@@ -32,6 +32,7 @@
 
 $cmd        = $_GET["cmd"];
 $src        = $_GET["src"];
+$ch         = $_GET["ch"];
 $play       = $_GET["play"];
 $type       = $_GET["type"];
 
@@ -84,6 +85,41 @@ switch ($type) {
         break;
     case "country":
         
+        break;
+    
+    case "moode":
+        // LOOK UP MOODE STATION IN DB BY ID
+        if ($ch) {
+            $m3u_content    = "#EXTM3U\n";
+            $stationfound   = 0;
+            $db             = new SQLite3('/var/local/www/db/moode-sqlite3.db');
+            $results        = $db->query('SELECT station,name FROM cfg_radio WHERE id =' . $ch);
+            
+            while ($row = $results->fetchArray()) {
+                
+                // Build the file
+                $m3u_content .= "#EXTINF:-1," . $row['name'] . "\n";
+                $m3u_content .= $row['station'];
+                $stationfound = 1;
+            }
+        }
+        
+        // PLAY IT AGAIN SAM ...
+        shell_exec("sudo touch /var/lib/mpd/playlists/Radio_Play.m3u");
+        shell_exec("sudo chmod 777 /var/lib/mpd/playlists/Radio_Play.m3u");
+        file_put_contents($radioList, $m3u_content); 
+
+        $runcmd = "mpc clear; mpc load Radio_Play"; shell_exec($runcmd);
+        $runcmd = "mpc play";
+        
+        
+        // SEND BROWSER TO PLAYER OR NOT IF IoT THEN ECHO COMMAND
+        if($stationfound == 1){
+            echo(shell_exec($runcmd));
+            //header("Location: /");    
+        } else {
+            echo("Error: Station ID Not Found");
+        }
         break;
         
     case "mpc":
