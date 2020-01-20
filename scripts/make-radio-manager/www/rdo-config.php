@@ -28,6 +28,8 @@ playerSession('open', '' ,'');
 
 
 
+        
+
 $_select['radio_tags'] = empty($_SESSION['radio_tags']) ? '80s,ambient,chillout' : $_SESSION['radio_tags'];
 $_select['radio_stations'] = empty($_SESSION['radio_stations']) ? 'net:bbc,net:npr,tag:dashradio' : $_SESSION['radio_stations'];
 $_select['radio_range'] = empty($_SESSION['radio_range']) ? '25-600' : $_SESSION['radio_range'];
@@ -79,68 +81,6 @@ foreach ($t_data as $key => $value) {
    
 }
 
-
-
-
-
-// Apply toggle changes
-if (isset($_POST['update_station_split'])) {
-	if (isset($_POST['station_split'])) {
-		$_SESSION['notify']['title'] = $_POST['station_split'] == '1' ? 'Station spillter on' : 'Station splitter off';
-		$_SESSION['notify']['duration'] = 3;
-        $_station_split   = $_POST['station_split'];
-        $_SESSION['station_split'] = $_station_split;
-        
-        $data['radiobrowser'][0]['tags']        = $_SESSION['radio_tags'];
-        $data['radiobrowser'][0]['stations']    = $_SESSION['radio_stations'];
-        $data['radiobrowser'][0]['range']       = $_SESSION['radio_range'];
-        $data['radiobrowser'][0]['singles']     = $_POST['station_split'];
-        $newJsonString = json_encode($data);
-        file_put_contents('/var/www/radio/sources/config.json', $newJsonString);
-        
-        $_select['toggle_station_split1'] = "<input type=\"radio\" name=\"station_split\" id=\"toggle_station_split0\" value=\"1\" " . (($_POST['station_split'] == '1') ? "checked=\"checked\"" : "") . ">\n";
-	               
-        $_select['toggle_station_split0'] = "<input type=\"radio\" name=\"station_split\" id=\"toggle_station_split1\" value=\"0\" " . (($_POST['station_split'] == '0') ? "checked=\"checked\"" : "") . ">\n";
-        
-        #shell_exec("sudo python /var/www/radio/sources/rb/rb-populate.py");
-        #shell_exec("mpc update");
-	}
-} else {
-    $_select['toggle_station_split1'] = "<input type=\"radio\" name=\"station_split\" id=\"toggle_station_split0\" value=\"1\" " . (($_SESSION['station_split'] == '1') ? "checked=\"checked\"" : "") . ">\n";
-	               
-    $_select['toggle_station_split0'] = "<input type=\"radio\" name=\"station_split\" id=\"toggle_station_split1\" value=\"0\" " . (($_SESSION['station_split'] == '0') ? "checked=\"checked\"" : "") . ">\n";
-}
-
-
-
-// Toggle default Moode stations
-if (isset($_POST['update_station_hide'])) {
-	if (isset($_POST['station_hide'])) {
-		$_SESSION['notify']['title'] = $_POST['station_split'] == '1' ? 'Moode stations hidden' : 'Moode stations restored';
-		$_SESSION['notify']['duration'] = 3;
-        $_station_hide   = $_POST['station_hide'];
-        $_SESSION['station_hide'] = $_station_hide;
-        
-        
-        
-        $_select['toggle_station_hide1'] = "<input type=\"radio\" name=\"station_hide\" id=\"toggle_station_hide0\" value=\"1\" " . (($_POST['station_hide'] == '1') ? "checked=\"checked\"" : "") . ">\n";
-	               
-        $_select['toggle_station_hide0'] = "<input type=\"radio\" name=\"station_hide\" id=\"toggle_station_hide1\" value=\"0\" " . (($_POST['station_hide'] == '0') ? "checked=\"checked\"" : "") . ">\n";
-        
-        if ($_POST['station_hide'] == '1') {
-            shell_exec("sudo sudo mv /var/lib/mpd/music/RADIO/*.pls /var/www/radio/sources/moode");
-            shell_exec("mpc update"); 
-        } else {
-            shell_exec("sudo sudo mv /var/www/radio/sources/moode/*.pls /var/lib/mpd/music/RADIO");
-            shell_exec("mpc update"); 
-        }
-        
-	}
-} else {
-    $_select['toggle_station_hide1'] = "<input type=\"radio\" name=\"station_hide\" id=\"toggle_station_hide0\" value=\"1\" " . (($_SESSION['station_hide'] == '1') ? "checked=\"checked\"" : "") . ">\n";
-	               
-    $_select['toggle_station_hide0'] = "<input type=\"radio\" name=\"station_hide\" id=\"toggle_station_hide1\" value=\"0\" " . (($_SESSION['station_hide'] == '0') ? "checked=\"checked\"" : "") . ">\n";
-}
 
 
 
@@ -219,9 +159,6 @@ if (isset($_POST['save']) && $_POST['save'] == '1') {
 
 
 
-
-
-
 // SECOND SAVE BUTTON - CHANGING RADIO NETWORK LOGOS
 if (isset($_POST['savelogos']) && $_POST['savelogos'] == '1') {
     $i              = 0;
@@ -252,10 +189,108 @@ if (isset($_POST['savelogos']) && $_POST['savelogos'] == '1') {
 	$_SESSION['notify']['title'] = 'Logos Saved';
     
 }
-// END LOGO SHINDIG
 
 
 
+// UPDATE STATION SPLITTER
+if (isset($_POST['update_station_split'])) {
+	if (isset($_POST['station_split'])) {
+		$_SESSION['notify']['title'] = $_POST['station_split'] == '1' ? 'Station spillter on' : 'Station splitter off';
+		$_SESSION['notify']['duration'] = 3;
+        $_station_split   = $_POST['station_split'];
+        $_SESSION['station_split'] = $_station_split;
+        
+        $data['radiobrowser'][0]['tags']        = $_SESSION['radio_tags'];
+        $data['radiobrowser'][0]['stations']    = $_SESSION['radio_stations'];
+        $data['radiobrowser'][0]['range']       = $_SESSION['radio_range'];
+        $data['radiobrowser'][0]['singles']     = $_POST['station_split'];
+        $newJsonString = json_encode($data);
+        file_put_contents('/var/www/radio/sources/config.json', $newJsonString);
+        
+        $_select['toggle_station_split1'] = "<input type=\"radio\" name=\"station_split\" id=\"toggle_station_split0\" value=\"1\" " . (($_POST['station_split'] == '1') ? "checked=\"checked\"" : "") . ">\n";
+        $_select['toggle_station_split0'] = "<input type=\"radio\" name=\"station_split\" id=\"toggle_station_split1\" value=\"0\" " . (($_POST['station_split'] == '0') ? "checked=\"checked\"" : "") . ">\n";
+
+	}
+} else {
+    $_select['toggle_station_split1'] = "<input type=\"radio\" name=\"station_split\" id=\"toggle_station_split0\" value=\"1\" " . (($_SESSION['station_split'] == '1') ? "checked=\"checked\"" : "") . ">\n";             
+    $_select['toggle_station_split0'] = "<input type=\"radio\" name=\"station_split\" id=\"toggle_station_split1\" value=\"0\" " . (($_SESSION['station_split'] == '0') ? "checked=\"checked\"" : "") . ">\n";
+}
+
+
+
+
+
+
+
+
+
+
+
+// TOGGLE MOODE DEFAULT STATIONS
+if (isset($_POST['update_station_hide'])) {
+	if (isset($_POST['station_hide'])) {
+		$_SESSION['notify']['title'] = $_POST['station_split'] == '1' ? 'Moode stations hidden' : 'Moode stations restored';
+		$_SESSION['notify']['duration'] = 3;
+        $_station_hide   = $_POST['station_hide'];
+        $_SESSION['station_hide'] = $_station_hide;
+        
+        $_select['toggle_station_hide1'] = "<input type=\"radio\" name=\"station_hide\" id=\"toggle_station_hide0\" value=\"1\" " . (($_POST['station_hide'] == '1') ? "checked=\"checked\"" : "") . ">\n";           
+        $_select['toggle_station_hide0'] = "<input type=\"radio\" name=\"station_hide\" id=\"toggle_station_hide1\" value=\"0\" " . (($_POST['station_hide'] == '0') ? "checked=\"checked\"" : "") . ">\n";
+        
+        
+        
+        // LOOK UP MOODE STATIONS IN DB ONLY ACTION THESE, LEAVE USER STATIONS ALONE
+        $db = new SQLite3('/var/local/www/db/moode-sqlite3.db');
+        $results = $db->query('SELECT * FROM cfg_radio WHERE type = "s"');
+        
+        
+        if ($_POST['station_hide'] == '1') {
+            while ($row = $results->fetchArray()) {
+                
+                if($row['logo'] == "local"){
+                    
+                    // with quotes
+                    shell_exec("sudo sudo mv /var/lib/mpd/music/RADIO/'".$row['name'].".pls' /var/www/radio/sources/moode");
+
+                    // with double quotes
+                    shell_exec("sudo sudo mv /var/lib/mpd/music/RADIO/\"".$row['name'].".pls\" /var/www/radio/sources/moode");
+
+                    // without
+                    shell_exec("sudo sudo mv /var/lib/mpd/music/RADIO/".$row['name'].".pls /var/www/radio/sources/moode");
+                } else {
+                    // BBC 320kb STATIONS ...
+                    $name           = $row['logo'];
+                    $name           = str_replace("images/radio-logos/", "", $name);
+                    $name           = str_replace(".jpg", "", $name);
+                    
+                    // with quotes
+                    shell_exec("sudo sudo mv /var/lib/mpd/music/RADIO/'".$name.".pls' /var/www/radio/sources/moode");
+
+                    // with double quotes
+                    shell_exec("sudo sudo mv /var/lib/mpd/music/RADIO/\"".$name.".pls\" /var/www/radio/sources/moode");
+
+                    // without
+                    shell_exec("sudo sudo mv /var/lib/mpd/music/RADIO/".$name.".pls /var/www/radio/sources/moode");    
+                }
+                
+                
+                
+            }
+        } else {
+            while ($row = $results->fetchArray()) {
+                // Restoring much faster ...
+                shell_exec("sudo sudo mv /var/www/radio/sources/moode/*.pls /var/lib/mpd/music/RADIO");
+                
+                
+            }
+        }
+        shell_exec("mpc update");
+        
+	}
+} else {
+    $_select['toggle_station_hide1'] = "<input type=\"radio\" name=\"station_hide\" id=\"toggle_station_hide0\" value=\"1\" " . (($_SESSION['station_hide'] == '1') ? "checked=\"checked\"" : "") . ">\n";          
+    $_select['toggle_station_hide0'] = "<input type=\"radio\" name=\"station_hide\" id=\"toggle_station_hide1\" value=\"0\" " . (($_SESSION['station_hide'] == '0') ? "checked=\"checked\"" : "") . ">\n";
+}
 
 
 
