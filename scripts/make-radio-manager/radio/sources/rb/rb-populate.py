@@ -87,13 +87,16 @@ with open(cfg_file) as json_file:
 r_range     = p_range.split("-")        
 r_tags      = p_tags.split(",")
 r_stations  = p_stations.split(",")
-f_path      = pi_path   + "/tags/*.m3u"
-s_path      = pi_path   + "/networks/*.m3u"
+f_path      = pi_path   + "/tags/"
+s_path      = pi_path   + "/networks/"
 
 
 # REMOVE STATIONS AND TAGS TO REGEN
 os.system("sudo rm -rf "    + f_path)
 os.system("sudo rm -rf "    + s_path)
+
+os.system("sudo mkdir -p "  + f_path)
+os.system("sudo mkdir -p "  + s_path)
 
 # DO TAGS
 for f, f_item in enumerate(f_json): 
@@ -108,12 +111,22 @@ for f, f_item in enumerate(f_json):
         if f_cnt in f_range and is_ascii(f_tag):
             print("\nTag: {0} ({1}) ...\n".format(f_tag, str(f_cnt))) 
 
-
-            f_folder    = f_tag.lower().replace("&", "and").replace(" ", "-").replace("'", "-")
-            f_path      = pi_path   + "/tags/"+ f_folder
-            p_path      = f_path    + "/source_community.m3u"
-
-            os.system("sudo mkdir -p "  + f_path + "/singles")
+            f_tag_clean = f_tag.lower().replace("&", "and").replace(" ", "-").replace("'", "-")
+            f_folder    = f_tag_clean
+            
+            if p_singles == "0":
+                f_path      = pi_path   + "/tags/"
+                p_path      = f_path    + f_tag_clean+".m3u"
+            
+            if p_singles == "1":
+                f_path      = pi_path   + "/tags/"+ f_folder
+                p_path      = f_path    + "/"+f_tag_clean+".m3u"
+                os.system("sudo mkdir -p "  + f_path + "/singles")
+                
+            
+            
+            
+            
             os.system("sudo chmod 777 " + f_path)
             os.system("sudo rm -rf "    + p_path)
 

@@ -64,6 +64,42 @@
         color       : var(--accentxts);
     }
     
+    
+    .network-logos {
+        display     : block;
+        margin      : 0px;
+        padding     : 0px 0px 0px 40px;
+        list-style-type: none;
+        height      : 225px;
+        max-width   : 410px;
+        overflow-x  : hidden;
+        overflow-y  : scroll;
+    }
+    
+    .network-logos li {
+        display     : inline-block;
+        margin      : 15px;
+    }
+    
+    .network-logos li img {
+        display     : block;
+        width       : 90px;
+        height      : 90px;
+        margin      : 15px;
+        border      : 1px solid rgba(128,128,128,0.5);
+        border-radius : 3px;
+    }
+    
+    .network-logos input[type="file"] {
+        display     : none;
+    }
+    
+    .network-logos .btn {
+        color       : var(--accentxts);
+    }
+    
+    
+    
     @media only screen and (max-width: 500px) {
         .ui-rdo-tags {
             overflow-y  : scroll; 
@@ -92,7 +128,7 @@
 	<h1 class="lib-config">Radio Options</h1>
     
     
-    <form class="form-horizontal" action="" method="post">
+    <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
     	<legend class="legend-configs">
 			<button class="btn btn-medium btn-primary btn-submit" type="submit" name="save" value="1">Save</button> <button class="btn btn-medium btn-primary btn-submit" type="submit" name="refresh" value="1">Refresh Tags</button>
             
@@ -175,7 +211,7 @@
             <div class="control-group">
 				<label class="control-label" for="radio_stations">Radio Networks</label>
 				<div class="controls">
-					<input class="input-large" type="text" pattern="^\S*$" id="radio_stations" name="config[radio_stations]" value="$_stations">
+					<input class="input-large" type="text" pattern="^\S*$" id="radio_stations" name="config[radio_stations]" value="$_stations"> 
 					<a aria-label="Help" class="info-toggle" data-cmd="info_radio_stations" href="#notarget"><i class="fas fa-info-circle"></i></a>
 					<span id="info_radio_stations" class="help-block-configs help-block-margin hide">
 						Specify a comma separated list of network names to search for in the source.<br>
@@ -183,6 +219,9 @@
                     </span>
 				</div>
 			</div>
+
+            
+            $_networklogos
             
             <p>&nbsp;</p>
             <p>&nbsp;</p>

@@ -28,9 +28,10 @@ playerSession('open', '' ,'');
 
 
 
-$_select['radio_tags'] = empty($_SESSION['radio_tags']) ? '80s,90s,ambient,jazz,nature' : $_SESSION['radio_tags'];
-$_select['radio_stations'] = empty($_SESSION['radio_stations']) ? 'somafm,bbc,calm' : $_SESSION['radio_stations'];
+$_select['radio_tags'] = empty($_SESSION['radio_tags']) ? '80s,ambient,chillout' : $_SESSION['radio_tags'];
+$_select['radio_stations'] = empty($_SESSION['radio_stations']) ? 'net:bbc,net:npr,tag:dashradio' : $_SESSION['radio_stations'];
 $_select['radio_range'] = empty($_SESSION['radio_range']) ? '25-600' : $_SESSION['radio_range'];
+
 
 
 
@@ -143,9 +144,9 @@ if (isset($_POST['update_station_hide'])) {
 
 
 
-
-
+// SAVE BUTTON - THE MAIN ACTION
 if (isset($_POST['save']) && $_POST['save'] == '1') {
+    
     
     $_usrmsg = "";
     foreach ($_POST['config'] as $key => $value) {
@@ -153,7 +154,7 @@ if (isset($_POST['save']) && $_POST['save'] == '1') {
 		$_SESSION[$key] = $value;
 	    $_usrmsg = $_usrmsg . $key . "-" . $value . ",";
     }
-    $_usrmsg = "<strong>Success: Playlists regenerated in RADIO/_Stations</strong><br>";
+    $_usrmsg = "<strong>Success: Playlists regenerated in RADIO/_Stations</strong>";
 	$_SESSION['notify']['title'] = 'Changes Saved';
     
     $data['radiobrowser'][0]['tags']        = $_SESSION['radio_tags'];
@@ -165,7 +166,9 @@ if (isset($_POST['save']) && $_POST['save'] == '1') {
     $_range     = $_SESSION['radio_range'];
     $_singles   = $_SESSION['station_split'];
     
+
     
+    // SAVE THE JSON, TRIGGER PYTHON, UPDATE MPD
     $newJsonString = json_encode($data);
     file_put_contents('/var/www/radio/sources/config.json', $newJsonString);
     
@@ -173,6 +176,9 @@ if (isset($_POST['save']) && $_POST['save'] == '1') {
     $cmd            = "sudo python /var/www/radio/sources/rb/rb-populate.py";
     $_output        = $_usrmsg . "<br><br><br>" . shell_exec($cmd);
     $_consolevis    = "block";
+    
+    
+    
     
     shell_exec("mpc update");
     
@@ -185,7 +191,82 @@ if (isset($_POST['save']) && $_POST['save'] == '1') {
 } else {
     //$_usrmsg = "<strong>Information: Select Tags</strong><br>Tap a tag name to preview the stations in Moode ...";
     $_consolevis    = "none";
+    
+    $i = 0;
+    
+    // PUSH READABLE NETWORK NAMES FROM USER INPUT TO CREATE CURRENT NETWORK LOGOS 
+    $networks   = explode(",",$_stations);
+    foreach ($networks as $value) {
+        $network = explode(":",$value);
+        $networks[$i] = $network[1];
+        $i++;
+    }
+    
+    $_networklogos = '<ul class="network-logos">';
+    // MAKE NETWORK LOGO HTML
+    $i = 0;
+    $logopath = "/images/radio-logos/thumbs/";
+    
+    foreach ($networks as $value) {
+        $logosrc = $logopath . $value .".jpg";
+        
+        // Lay down the logo browser ...
+        $_networklogos .= '<li><p style="text-align:center;"><small>'.$value.'</small><img id="fauxbtn'.$i.'" class="network-logo" src="'.$logosrc.'" onclick="document.getElementById(\'logoupload'.$i.'\').click();" style="cursor:pointer;"><input type="file" name="logoupload'.$i.'" id="logoupload'.$i.'"></p></li>';
+        $i++;
+    }
+    $_networklogos .= '</ul><p style="margin-left:50px;"><button class="btn btn-medium btn-primary btn-submit" type="submit" name="savelogos" value="1" >Save Logos</button></p>';
 }
+
+
+
+
+
+
+// SECOND SAVE BUTTON - CHANGING RADIO NETWORK LOGOS
+if (isset($_POST['savelogos']) && $_POST['savelogos'] == '1') {
+    $i              = 0;
+    $logopath       = "/images/radio-logos/thumbs/";
+    $targetpath     = "/var/www" . $logopath;
+    $networks       = explode(",",$_stations);
+    
+    // LOOP USERS LOGO CHOICES
+    foreach ($networks as $value) {
+        if($_FILES['logoupload'.$i]['size'] > 0){
+            $network        = explode(":",$value);
+            $tempfile       = "/tmp/radio-logos/".$network[1];
+
+            // KEEP HOLD OF THE TEMP FILE
+            copy($_FILES['logoupload'.$i]['tmp_name'], $tempfile);
+
+            // MOVE THE TEMP FILE INTO LOGO THUMBS
+            $runcmd = "sudo mv -f " . $tempfile . " " . $targetpath . $network[1] . ".jpg";
+            shell_exec($runcmd); 
+            
+        }
+        
+        $i++;
+
+    }
+    
+    $_usrmsg = "<strong>Success: Network logos regenerated in RADIO/_Stations/networks</strong>";
+	$_SESSION['notify']['title'] = 'Logos Saved';
+    
+}
+// END LOGO SHINDIG
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 session_write_close();
 
 
