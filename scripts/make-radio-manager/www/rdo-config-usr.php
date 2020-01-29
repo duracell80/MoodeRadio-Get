@@ -54,7 +54,7 @@ if (isset($_POST['save']) && $_POST['save'] == '1') {
     
     
     
-    //shell_exec("mpc update");
+    shell_exec("mpc update");
     
 } else {
     //$_usrmsg = "<strong>Information: Select Tags</strong><br>Tap a tag name to preview the stations in Moode ...";
