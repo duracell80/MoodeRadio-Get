@@ -97,16 +97,21 @@ if (isset($_POST['save']) && $_POST['save'] == '1') {
     $_usrmsg = "<strong>Success: Playlists regenerated in RADIO/_Stations</strong>";
 	$_SESSION['notify']['title'] = 'Changes Saved';
     
+    $_singles = $_SESSION['station_split'];
+    
+    if (empty($_singles) || is_null($_singles) || !isset($_singles) || $_singles == "null" ) {
+        $_singles = "0";
+    }
+    
     $data['radiobrowser'][0]['tags']        = $_SESSION['radio_tags'];
     $data['radiobrowser'][0]['stations']    = $_SESSION['radio_stations'];
     $data['radiobrowser'][0]['range']       = $_SESSION['radio_range'];
-    $data['radiobrowser'][0]['singles']     = $_SESSION['station_split'];
+    $data['radiobrowser'][0]['singles']     = $_singles;
     $_taglist   = $_SESSION['radio_tags'];
     $_stations  = $_SESSION['radio_stations'];
     $_range     = $_SESSION['radio_range'];
-    $_singles   = $_SESSION['station_split'];
     
-
+    
     
     // SAVE THE JSON, TRIGGER PYTHON, UPDATE MPD
     $newJsonString = json_encode($data);
@@ -198,13 +203,22 @@ if (isset($_POST['update_station_split'])) {
 		$_SESSION['notify']['title'] = $_POST['station_split'] == '1' ? 'Station spillter on' : 'Station splitter off';
 		$_SESSION['notify']['duration'] = 3;
         $_station_split   = $_POST['station_split'];
+        if (empty($_station_split) || is_null($_station_split) || !isset($_station_split) || $_station_split == "null") {
+            $_station_split = "0";
+        }
+        
+        
+        
         $_SESSION['station_split'] = $_station_split;
         
         $data['radiobrowser'][0]['tags']        = $_SESSION['radio_tags'];
         $data['radiobrowser'][0]['stations']    = $_SESSION['radio_stations'];
         $data['radiobrowser'][0]['range']       = $_SESSION['radio_range'];
-        $data['radiobrowser'][0]['singles']     = $_POST['station_split'];
+        $data['radiobrowser'][0]['singles']     = $_station_split;
         $newJsonString = json_encode($data);
+        
+        
+        
         file_put_contents('/var/www/radio/sources/config.json', $newJsonString);
         
         $_select['toggle_station_split1'] = "<input type=\"radio\" name=\"station_split\" id=\"toggle_station_split0\" value=\"1\" " . (($_POST['station_split'] == '1') ? "checked=\"checked\"" : "") . ">\n";
