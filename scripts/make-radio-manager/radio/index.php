@@ -52,7 +52,12 @@ $radioList  = "/var/lib/mpd/playlists/Radio_Play.m3u";
 
 
 ?> <div class="cmd-msg"><?php
-switch ($type) {
+    
+        
+        
+    
+    
+    switch ($type) {
     case "cast":
         
         // EXAMPLE http://192.168.2.4/radio?type=cast&src=http://ice55.securenetsystems.net/DASH7
@@ -88,39 +93,7 @@ switch ($type) {
         break;
     
     case "moode":
-        // LOOK UP MOODE STATION IN DB BY ID
-        if ($ch) {
-            $m3u_content    = "#EXTM3U\n";
-            $stationfound   = 0;
-            $db             = new SQLite3('/var/local/www/db/moode-sqlite3.db');
-            $results        = $db->query('SELECT station,name FROM cfg_radio WHERE id =' . $ch);
-            
-            while ($row = $results->fetchArray()) {
-                
-                // Build the file
-                $m3u_content .= "#EXTINF:-1," . $row['name'] . "\n";
-                $m3u_content .= $row['station'];
-                $stationfound = 1;
-            }
-        }
         
-        // PLAY IT AGAIN SAM ...
-        shell_exec("sudo touch /var/lib/mpd/playlists/Radio_Play.m3u");
-        shell_exec("sudo chmod 777 /var/lib/mpd/playlists/Radio_Play.m3u");
-        file_put_contents($radioList, $m3u_content); 
-
-        $runcmd = "mpc clear; mpc load Radio_Play"; shell_exec($runcmd);
-        $runcmd = "mpc play";
-        
-        
-        // SEND BROWSER TO PLAYER OR NOT IF IoT THEN ECHO COMMAND
-        if($stationfound == 1){
-            echo(shell_exec($runcmd));
-            //header("Location: /");    
-        } else {
-            echo("Error: Station ID Not Found");
-        }
-        break;
         
     case "mpc":
         if(isset($cmd) && !empty($cmd)){
@@ -237,6 +210,174 @@ switch ($type) {
         break;
         
     default:
+        // LOOK UP MOODE STATION IN DB BY ID
+        if ($ch) {
+            $m3u_content    = "#EXTM3U\n";
+            $stationfound   = 0;
+            $db             = new SQLite3('/var/local/www/db/moode-sqlite3.db');
+            $results        = $db->query('SELECT station,name FROM cfg_radio WHERE id =' . $ch);
+
+            while ($row = $results->fetchArray()) {
+
+                // Build the file
+                $m3u_content .= "#EXTINF:-1," . $row['name'] . "\n";
+                $m3u_content .= $row['station'];
+                $stationfound = 1;
+            }
+
+            // PLAY IT AGAIN SAM ...
+            shell_exec("sudo touch /var/lib/mpd/playlists/Radio_Play.m3u");
+            shell_exec("sudo chmod 777 /var/lib/mpd/playlists/Radio_Play.m3u");
+            file_put_contents($radioList, $m3u_content); 
+
+            $runcmd = "mpc clear; mpc load Radio_Play"; shell_exec($runcmd);
+            $runcmd = "mpc play";
+
+
+            // SEND BROWSER TO PLAYER OR NOT IF IoT THEN ECHO COMMAND
+            if($stationfound == 1){
+                echo(shell_exec($runcmd));
+                header("Location: /");    
+            } else {
+                echo("Error: Station ID Not Found");
+            }
+
+        } else {
+            
+    
+            ?>
+            <style>
+                .mbox {
+                    width : 50%; margin : 0 auto; border: 1px solid #fff;
+                }
+                
+                .ui-lineup {
+                    
+                    list-style-type : none;
+                    height          : 175px;
+                    padding         : 15px;
+                    width           : 95%;
+                    overflow-x      : hidden;
+                    overflow-y      : auto;
+                    
+                }
+                
+
+                .ui-lineup li {
+                    display         : inline-block;
+                    margin          : 15px;
+                }
+
+                .ui-lineup li a {
+                    display         : inline-block;
+                    color           : #fff;
+                    border          : 1px solid #fff;
+                    padding         : 8px;
+                    text-decoration : none;
+                }
+                .ui-lineup li a:hover {
+                    text-decoration : none;
+                }
+
+                .ui-lineup .lup-id {
+                    color           : #fff;
+                    display         : inline-block;
+                    margin-right    : 15px;
+                    font-weight     : bold;
+
+                }
+                .ui-lineup .lup-hostname {
+                    display         : none;
+                }
+                
+                
+                
+                @media only screen and (max-width: 600px) {
+                    .mbox {
+                        width   : 100%; 
+                        margin  : 0 auto;
+                    }
+                }
+                
+            </style>
+            <div class="mbox">
+                <div style="padding: 30px;">
+                <h3>Cast to Moode</h3>
+                <p>Send a Radio URL directly to moode from this page.</p>
+                <form action="./" method="get">
+                    <fieldset style="border-width:0px;">
+                        <label style="display:inline-block; width : 10%; float:left;">URL: </label>
+                        <input type="text" name="src" style="display:inline-block; width : 70%; float:left;">
+                        <input type="submit" name="radioplay" id="radioplay" value="Play" style="display:inline-block; float:right; width:15%;">
+                        <br style="clear:both;">
+                        <input type="hidden" name="type" value="cast">
+                    </fieldset>
+                </form>
+                </div>
+            </div>
+            <p>&nbsp;</p>
+            
+            <div class="mbox">
+            <div style="padding: 15px;">
+            <h3>Station Line Up</h3>
+            <p>Drag and drop these to your desktop or browser bookmarks bar. Click or tap any one station to play that station on Moode now.</p>
+            <?php
+            
+            
+            // PLAY URL BOX and Station Lineups
+    
+            $db        = new SQLite3('/var/local/www/db/moode-sqlite3.db');
+            $host      = gethostname();
+
+
+            // BUILD MOODE STATION LINEUP
+            $result    = $db->query('SELECT * FROM cfg_radio WHERE type = "s"');
+            $lups      = '<ul class="ui-lineup">';
+
+            while ($lup = $result->fetchArray()) {
+                if($lup['id'] < 499){
+                    $lups .= '<li>';
+                    $lups .= '<a href="http://'.$host.'/radio?ch='.$lup['id'].'" target="_blank"><span class="lup-id">' . $lup['id'] . '</span>' . '&nbsp;<span class="lup-name">' . $lup['name'] . '<span>&nbsp;<span class="lup-hostname">on '.$host.'</span></a>';
+                    $lups .= '</li>';
+                }
+            }
+
+            $lups .= '</ul>';
+            
+            echo $lups;
+            ?></div></div>
+            <p>&nbsp;</p>
+            
+            <div class="mbox">
+            <div style="padding: 15px;">
+            <h3>User Station Line Up</h3>
+            <p>Drag and drop these to your desktop or browser bookmarks bar. Click or tap any one station to play that station on Moode now.</p>
+            <?php
+            
+            
+            // PLAY URL BOX and Station Lineups
+            // BUILD USER STATION LINEUP
+            $result    = $db->query('SELECT * FROM cfg_radio WHERE type = "u"');
+            $lups      = '<ul class="ui-lineup">';
+
+            while ($lup = $result->fetchArray()) {
+                if($lup['id'] > 499){
+                    $lups .= '<li>';
+                    $lups .= '<a href="http://'.$host.'/radio?ch='.$lup['id'].'" target="_blank"><span class="lup-id">' . $lup['id'] . '</span>' . '&nbsp;<span class="lup-name">' . $lup['name'] . '<span>&nbsp;<span class="lup-hostname">on '.$host.'</span></a>';
+                    $lups .= '</li>';
+                }
+            }
+
+            $lups .= '</ul>';
+            
+            echo $lups;
+            ?></div></div>
+            <p>&nbsp;</p>
+            <?php
+    
+            
+            
+        }
        break;
 }
 ?></div><?php

@@ -40,11 +40,6 @@ $initiateDBUpd = false;
 
 // LIB CONFIG POSTS
 
-// update radio playlists
-if (isset($_POST['updaterdo'])) {
-	submitJob('updmprdo', '', 'Radio update started...', '');
-}
-
 // update mpd database
 if (isset($_POST['updatempd'])) {
 	submitJob('updmpddb', '', 'Database update started...', '');

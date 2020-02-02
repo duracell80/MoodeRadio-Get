@@ -20,216 +20,246 @@
  * Contrib: Lee Jordan
  */
 
+
 require_once dirname(__FILE__) . '/inc/playerlib.php';
 
 playerSession('open', '' ,'');
-//$dbh = cfgdb_connect();
+$db         = new SQLite3('/var/local/www/db/moode-sqlite3.db');
+$host       = gethostname();
 
 
+// BUILD MOODE STATION LINEUP
+$result     = $db->query('SELECT * FROM cfg_radio WHERE type = "s"');
+$_lups      = '<ul class="ui-lineup">';
 
-
-        
-
-$_select['radio_tags'] = empty($_SESSION['radio_tags']) ? '80s,ambient,chillout' : $_SESSION['radio_tags'];
-$_select['radio_stations'] = empty($_SESSION['radio_stations']) ? 'net:bbc,net:npr,tag:dashradio' : $_SESSION['radio_stations'];
-$_select['radio_range'] = empty($_SESSION['radio_range']) ? '25-600' : $_SESSION['radio_range'];
-
-
-
-
-
-
-
-
-
-
-
-$_taglist   = $_select['radio_tags'];
-$_stations  = $_select['radio_stations'];
-$_range     = $_select['radio_range'];
-
-
-// Load and update JSON configuration file
-$jsonString = file_get_contents('/var/www/radio/sources/config.json');
-$data = json_decode($jsonString, true);
-
-
-
-
-
-
-
-// Load Community Radio Tags JSON
-$t_json     = file_get_contents('/var/www/radio/sources/rb/tags.json');
-$t_data     = json_decode($t_json, true);
-$t_range    = explode("-", $data['radiobrowser'][0]['range']);
-
-
-$_tags = "";
-foreach ($t_data as $key => $value) {
-    $t_name     = str_replace("'","",$t_data[$key]["name"]);
-    $t_count    = $t_data[$key]["stationcount"];
-    
-    $t_hash     = substr_count($t_name[0],'#');
-    if ((ctype_print($t_name) && in_array($t_count, range($t_range[0], $t_range[1]))) && ($t_hash == 0)) {    
-        if (preg_match('/[^a-z0-9]/i', $t_name)) {
-            
-        } else {
-            $_tags = $_tags . '<li><a href="#" class="btn btn-default tag-add tag-icon" data-name="'.$t_name.'"><i class="fas fa-plus-circle"></i></a> <a href="javascript:window.open(\'./radio/?type=tag&play='.$t_name.'\', \'iframe_a\');" class="btn btn-default preview-stations">' . $t_name . ' (' . $t_count . ')</a></li>';
-        }
+while ($lup = $result->fetchArray()) {
+    if($lup['id'] < 499){
+        $_lups .= '<li>';
+        $_lups .= '<a href="http://'.$host.'/radio?ch='.$lup['id'].'" target="_blank"><span class="lup-id">' . $lup['id'] . '</span>' . '&nbsp;<span class="lup-name">' . $lup['name'] . '<span>&nbsp;<span class="lup-hostname">on '.$host.'</span></a>';
+        $_lups .= '</li>';
     }
+}
+
+$_lups .= '</ul>';
+
+
+
+
+$i = 0;
+
+// LOOK UP USER ADDED STATIONS IN DB TO BUILD LIST OF LOGOS
+$results    = $db->query('SELECT * FROM cfg_radio WHERE type = "u"');
+
+
+// PUSH READABLE NETWORK NAMES FROM USER INPUT TO CREATE CURRENT NETWORK LOGOS 
+$_networklogos = '<ul class="network-logos">';
+$i = 0;
+$logopath = "/images/radio-logos/thumbs/";
+$_lupu      = '<ul class="ui-lineup">';
+while ($row = $results->fetchArray()) {
+    $logosrc    = $logopath . $row['name'] .".jpg";
+    $lastid     = $row['id'];
+    
+    // Lay down the logo browser ...
+    $_networklogos .= '<li><p style="text-align:center;"><small>'.$row['name'].'</small><img id="fauxbtn'.$i.'" class="network-logo" src="'.$logosrc.'" onclick="document.getElementById(\'logoupload'.$i.'\').click();" style="cursor:pointer;"><input type="file" name="logoupload'.$i.'" id="logoupload'.$i.'"><input type="hidden" name="logoname'.$i.'" id="logoname'.$i.'" value="'.$row['name'].'"></p></li>';
+    
+    // Lay down the user station lineup ...
+    if($row['id'] > 499){
+        $_lupu .= '<li>';
+        $_lupu .= '<a href="http://'.$host.'/radio?ch='.$row['id'].'" target="_blank"><span class="lup-id">' . $row['id'] . '</span>' . '&nbsp;<span class="lup-name">' . $row['name'] . '<span>&nbsp;<span class="lup-hostname">on '.$host.'</span></a>';
+        $_lupu .= '</li>';
+    }
+    $i++;
    
 }
+$_networklogos .= '</ul><input type="hidden" name="logonum" id="logonum" value="'.$i.'"><p style="margin-left:50px;"><button class="btn btn-medium btn-primary btn-submit" type="submit" name="savelogos" value="1" >Save Logos</button></p>';
+$_lupu .= '</ul>';
 
 
 
-
-// SAVE BUTTON - THE MAIN ACTION
+// SAVE BUTTON - SET USER BULK STATIONS
 if (isset($_POST['save']) && $_POST['save'] == '1') {
     
-    
-    $_usrmsg = "";
+    $_out = "";
+    $c = 0;
     foreach ($_POST['config'] as $key => $value) {
-		//cfgdb_update('cfg_system', $dbh, $key, $value);
 		$_SESSION[$key] = $value;
-	    $_usrmsg = $_usrmsg . $key . "-" . $value . ",";
-    }
-    $_usrmsg = "<strong>Success: Playlists regenerated in RADIO/_Stations</strong>";
-	$_SESSION['notify']['title'] = 'Changes Saved';
-    
-    $_singles = $_SESSION['station_split'];
-    
-    if (empty($_singles) || is_null($_singles) || !isset($_singles) || $_singles == "null" ) {
-        $_singles = "0";
+        $c++;
     }
     
-    $data['radiobrowser'][0]['tags']        = $_SESSION['radio_tags'];
-    $data['radiobrowser'][0]['stations']    = $_SESSION['radio_stations'];
-    $data['radiobrowser'][0]['range']       = $_SESSION['radio_range'];
-    $data['radiobrowser'][0]['singles']     = $_singles;
-    $_taglist   = $_SESSION['radio_tags'];
-    $_stations  = $_SESSION['radio_stations'];
-    $_range     = $_SESSION['radio_range'];
     
+    $filedest       = "/var/lib/mpd/music/RADIO";
+    for ($x = 0; $x <= $c; $x++) {
+        $s_name     = $_SESSION["userstation_".$x."_name"];
+        $s_url      = $_SESSION["userstation_".$x."_url"];
+        $s_content  = "[playlist]\nFile1=" . $s_url . "\nTitle1=" . $s_name . "\nLength1=-1\nNumberOfEntries=1\nVersion=2";
+
+        
+        // CHECK FOR DUPES
+        $result     = $db->query('SELECT * FROM cfg_radio WHERE name="'.$s_name.'"');
+        $s_match    = 0;
+        while ($ir  = $result->fetchArray()) {
+            if($s_name == $ir['name']){
+                $s_match = 1;
+            }
+        }
+        
+        if($s_url != "" && $s_match == 0){
+            $results    = $db->query('INSERT INTO cfg_radio (station,name,type,logo) VALUES ("'.$s_url.'", "'.$s_name.'", "u", "local")');
+        } else {
+            $results    = $db->query('UPDATE cfg_radio SET station="'.$s_url.'" WHERE name="'.$s_name.'" AND type="u"');
+        }
+        unset ($_SESSION["userstation_".$x."_name"]);
+        unset ($_SESSION["userstation_".$x."_url"]);
+        
+        if($s_match < 2) {
+            $s_file     = fopen($filedest . "/" . $s_name . ".pls", "w") or die("Unable to open file!");
+            fwrite($s_file, $s_content);
+            fclose($s_file);
+        }
+    }
     
-    
-    // SAVE THE JSON, TRIGGER PYTHON, UPDATE MPD
-    $newJsonString = json_encode($data);
-    file_put_contents('/var/www/radio/sources/config.json', $newJsonString);
-    
-    
-    $cmd            = "sudo python /var/www/radio/sources/rb/rb-populate.py";
-    $_output        = $_usrmsg . "<br><br><br>" . shell_exec($cmd);
-    $_consolevis    = "block";
-    
-    
-    
-    
+    if($s_file) {
+        $_usrmsg = "<strong>Success: Playlists regenerated in RADIO/_Stations</strong>";
+        $_SESSION['notify']['title'] = 'Changes Saved';
+    }
+        
     shell_exec("mpc update");
     
-    
-} else if(isset($_POST['refresh']) && $_POST['refresh'] == '1') {
-    $_SESSION['notify']['title'] = 'Tags Refreshed!';
-    $_usrmsg = "<strong>Information: Tags Refreshed</strong><br>";
-    shell_exec("sudo python /var/www/radio/sources/rb/rb-tags.py");
-    $_consolevis    = "none";
-} else {
-    //$_usrmsg = "<strong>Information: Select Tags</strong><br>Tap a tag name to preview the stations in Moode ...";
-    $_consolevis    = "none";
-    
-    $i = 0;
-    
-    // PUSH READABLE NETWORK NAMES FROM USER INPUT TO CREATE CURRENT NETWORK LOGOS 
-    $networks   = explode(",",$_stations);
-    foreach ($networks as $value) {
-        $network = explode(":",$value);
-        $networks[$i] = $network[1];
-        $i++;
-    }
-    
-    $_networklogos = '<ul class="network-logos">';
-    // MAKE NETWORK LOGO HTML
-    $i = 0;
-    $logopath = "/images/radio-logos/thumbs/";
-    
-    foreach ($networks as $value) {
-        $logosrc = $logopath . $value .".jpg";
-        
-        // Lay down the logo browser ...
-        $_networklogos .= '<li><p style="text-align:center;"><small>'.$value.'</small><img id="fauxbtn'.$i.'" class="network-logo" src="'.$logosrc.'" onclick="document.getElementById(\'logoupload'.$i.'\').click();" style="cursor:pointer;"><input type="file" name="logoupload'.$i.'" id="logoupload'.$i.'"></p></li>';
-        $i++;
-    }
-    $_networklogos .= '</ul><p style="margin-left:50px;"><button class="btn btn-medium btn-primary btn-submit" type="submit" name="savelogos" value="1" >Save Logos</button></p>';
 }
+
+
 
 
 
 // SECOND SAVE BUTTON - CHANGING RADIO NETWORK LOGOS
 if (isset($_POST['savelogos']) && $_POST['savelogos'] == '1') {
-    $i              = 0;
-    $logopath       = "/images/radio-logos/thumbs/";
-    $targetpath     = "/var/www" . $logopath;
-    $networks       = explode(",",$_stations);
+
+    $n              = $_POST['logonum'];
+    $webroot        = "/var/www/";
+    $logopath       = "images/radio-logos/";
+    $targetsmall    = $webroot . $logopath . "thumbs/";
+    $targetlarge    = $webroot . $logopath;
+    $targetwidth    = 200;
+    $targetheight   = 200;
+ 
+    
+    
+    
     
     // LOOP USERS LOGO CHOICES
-    foreach ($networks as $value) {
+    for ($i = 0; $i <= $n; $i++) {
         if($_FILES['logoupload'.$i]['size'] > 0){
-            $network        = explode(":",$value);
-            $tempfile       = "/tmp/radio-logos/".$network[1];
-
-            // KEEP HOLD OF THE TEMP FILE
-            copy($_FILES['logoupload'.$i]['tmp_name'], $tempfile);
-
-            // MOVE THE TEMP FILE INTO LOGO THUMBS
-            $runcmd = "sudo mv -f " . $tempfile . " " . $targetpath . $network[1] . ".jpg";
-            shell_exec($runcmd); 
             
+            // sort out some naming
+            $permname       = $_POST['logoname'.$i] . ".jpg";
+            $tempfile       = "/tmp/" . $permname ;
+            
+            // keep the tempfile active
+            copy($_FILES['logoupload'.$i]['tmp_name'], $tempfile);
+            
+            // copy the temp file as original size
+            $runcmdlarge = "sudo cp -f /tmp/'" . $permname . "' " . $targetlarge . "'" . $permname . "'";
+            shell_exec($runcmdlarge);
+            
+            
+            
+            // resize tempfile to thmbnail size
+            $source_properties = getimagesize($tempfile);
+            $image_resource_id = imagecreatefromjpeg($tempfile);  
+            
+            $target_layer=imagecreatetruecolor($targetwidth,$targetheight);
+            imagecopyresampled($target_layer,$image_resource_id,0,0,0,0,$targetwidth,$targetheight, $source_properties[0],$source_properties[1]);
+            imagejpeg($target_layer,"/tmp/" . $permname);
+            
+            // move the thumbnail
+            $runcmdsmall = "sudo mv -f /tmp/'" . $permname . "' " . $targetsmall . "'" . $permname . "'";
+            shell_exec($runcmdsmall);
         }
-        
-        $i++;
-
     }
     
-    $_usrmsg = "<strong>Success: Network logos regenerated in RADIO/_Stations/networks</strong>";
+        
+    
+    $_usrmsg = "<strong>Success: Network logos regenerated in RADIO</strong>";
 	$_SESSION['notify']['title'] = 'Logos Saved';
     
+    shell_exec("mpc update");
 }
 
 
 
-// UPDATE STATION SPLITTER
-if (isset($_POST['update_station_split'])) {
-	if (isset($_POST['station_split'])) {
-		$_SESSION['notify']['title'] = $_POST['station_split'] == '1' ? 'Station spillter on' : 'Station splitter off';
-		$_SESSION['notify']['duration'] = 3;
-        $_station_split   = $_POST['station_split'];
-        if (empty($_station_split) || is_null($_station_split) || !isset($_station_split) || $_station_split == "null") {
-            $_station_split = "0";
-        }
-        
-        
-        
-        $_SESSION['station_split'] = $_station_split;
-        
-        $data['radiobrowser'][0]['tags']        = $_SESSION['radio_tags'];
-        $data['radiobrowser'][0]['stations']    = $_SESSION['radio_stations'];
-        $data['radiobrowser'][0]['range']       = $_SESSION['radio_range'];
-        $data['radiobrowser'][0]['singles']     = $_station_split;
-        $newJsonString = json_encode($data);
-        
-        
-        
-        file_put_contents('/var/www/radio/sources/config.json', $newJsonString);
-        
-        $_select['toggle_station_split1'] = "<input type=\"radio\" name=\"station_split\" id=\"toggle_station_split0\" value=\"1\" " . (($_POST['station_split'] == '1') ? "checked=\"checked\"" : "") . ">\n";
-        $_select['toggle_station_split0'] = "<input type=\"radio\" name=\"station_split\" id=\"toggle_station_split1\" value=\"0\" " . (($_POST['station_split'] == '0') ? "checked=\"checked\"" : "") . ">\n";
 
+
+
+
+
+
+
+
+// TOGGLE MOODE DEFAULT STATIONS
+if (isset($_POST['update_station_hide'])) {
+	if (isset($_POST['station_hide'])) {
+		$_SESSION['notify']['title'] = $_POST['station_split'] == '1' ? 'Moode stations hidden' : 'Moode stations restored';
+		$_SESSION['notify']['duration'] = 3;
+        $_station_hide   = $_POST['station_hide'];
+        $_SESSION['station_hide'] = $_station_hide;
+        
+        $_select['toggle_station_hide1'] = "<input type=\"radio\" name=\"station_hide\" id=\"toggle_station_hide0\" value=\"1\" " . (($_POST['station_hide'] == '1') ? "checked=\"checked\"" : "") . ">\n";           
+        $_select['toggle_station_hide0'] = "<input type=\"radio\" name=\"station_hide\" id=\"toggle_station_hide1\" value=\"0\" " . (($_POST['station_hide'] == '0') ? "checked=\"checked\"" : "") . ">\n";
+        
+        
+        
+        // LOOK UP MOODE STATIONS IN DB ONLY ACTION THESE, LEAVE USER STATIONS ALONE
+        $results = $db->query('SELECT * FROM cfg_radio WHERE type = "s"');
+        
+        
+        if ($_POST['station_hide'] == '1') {
+            while ($row = $results->fetchArray()) {
+                
+                if($row['logo'] == "local"){
+                    
+                    // with quotes
+                    shell_exec("sudo sudo mv /var/lib/mpd/music/RADIO/'".$row['name'].".pls' /var/www/radio/sources/moode");
+
+                    // with double quotes
+                    shell_exec("sudo sudo mv /var/lib/mpd/music/RADIO/\"".$row['name'].".pls\" /var/www/radio/sources/moode");
+
+                    // without
+                    shell_exec("sudo sudo mv /var/lib/mpd/music/RADIO/".$row['name'].".pls /var/www/radio/sources/moode");
+                } else {
+                    // BBC 320kb STATIONS ...
+                    $name           = $row['logo'];
+                    $name           = str_replace("images/radio-logos/", "", $name);
+                    $name           = str_replace(".jpg", "", $name);
+                    
+                    // with quotes
+                    shell_exec("sudo sudo mv /var/lib/mpd/music/RADIO/'".$name.".pls' /var/www/radio/sources/moode");
+
+                    // with double quotes
+                    shell_exec("sudo sudo mv /var/lib/mpd/music/RADIO/\"".$name.".pls\" /var/www/radio/sources/moode");
+
+                    // without
+                    shell_exec("sudo sudo mv /var/lib/mpd/music/RADIO/".$name.".pls /var/www/radio/sources/moode");    
+                }
+                
+                
+                
+            }
+        } else {
+            while ($row = $results->fetchArray()) {
+                // Restoring much faster ...
+                shell_exec("sudo sudo mv /var/www/radio/sources/moode/*.pls /var/lib/mpd/music/RADIO");
+                
+                
+            }
+        }
+        shell_exec("mpc update");
+        
 	}
 } else {
-    $_select['toggle_station_split1'] = "<input type=\"radio\" name=\"station_split\" id=\"toggle_station_split0\" value=\"1\" " . (($_SESSION['station_split'] == '1') ? "checked=\"checked\"" : "") . ">\n";             
-    $_select['toggle_station_split0'] = "<input type=\"radio\" name=\"station_split\" id=\"toggle_station_split1\" value=\"0\" " . (($_SESSION['station_split'] == '0') ? "checked=\"checked\"" : "") . ">\n";
+    $_select['toggle_station_hide1'] = "<input type=\"radio\" name=\"station_hide\" id=\"toggle_station_hide0\" value=\"1\" " . (($_SESSION['station_hide'] == '1') ? "checked=\"checked\"" : "") . ">\n";          
+    $_select['toggle_station_hide0'] = "<input type=\"radio\" name=\"station_hide\" id=\"toggle_station_hide1\" value=\"0\" " . (($_SESSION['station_hide'] == '0') ? "checked=\"checked\"" : "") . ">\n";
 }
-
 
 
 
