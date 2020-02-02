@@ -251,6 +251,10 @@ $radioList  = "/var/lib/mpd/playlists/Radio_Play.m3u";
                     width : 50%; margin : 0 auto; border: 1px solid #fff;
                 }
                 
+                .cmd-msg {
+                    opacity             : 1 !important;
+                }
+                
                 .ui-lineup {
                     
                     list-style-type : none;
@@ -292,7 +296,7 @@ $radioList  = "/var/lib/mpd/playlists/Radio_Play.m3u";
                 
                 
                 
-                @media only screen and (max-width: 600px) {
+                @media only screen and (max-width: 800px) {
                     .mbox {
                         width   : 100%; 
                         margin  : 0 auto;
