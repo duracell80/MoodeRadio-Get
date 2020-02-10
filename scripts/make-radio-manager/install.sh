@@ -7,7 +7,8 @@ sudo mkdir -p /var/lib/mpd/music/RADIO/_Stations/networks
 
 # Copy scripts to localhost
 sudo mkdir -p /var/www/radio/sources/rb
-sudo mkdir -p /var/www/radio/sources/moode
+sudo mkdir -p /var/www/radio/sources/moode/scripts
+sudo mkdir -p /var/www/radio/sources/moode/user/radio-images/thumbs
 sudo cp -f ./radio/index.php /var/www/radio
 sudo cp -f ./radio/sources/config.json /var/www/radio/sources
 sudo cp -f ./radio/sources/repeater.js /var/www/radio/sources
@@ -26,6 +27,10 @@ sudo cp -f ./www/templates/rdo-config-usr.html /var/www/templates
 sudo chmod 777 /var/lib/mpd/playlists/Radio_Play.m3u
 sudo chmod 777 /var/www/radio/index.php
 sudo chmod 777 /var/www/radio/sources/moode
+sudo chmod 777 /var/www/radio/sources/moode/scripts
+sudo chmod 777 /var/www/radio/sources/moode/user
+sudo chmod 777 /var/www/radio/sources/moode/user/radio-logos
+sudo chmod 777 /var/www/radio/sources/moode/user/radio-logos/thumbs
 sudo chmod 777 /var/www/radio/sources/config.json
 sudo chmod 777 /var/www/radio/sources/rb/tags.json
 sudo chmod 755 /var/www/radio/sources/rb/*.py

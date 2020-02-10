@@ -72,7 +72,7 @@ while ($row = $results->fetchArray()) {
     $i++;
    
 }
-$_networklogos .= '</ul><input type="hidden" name="logonum" id="logonum" value="'.$i.'"><p style="margin-left:50px;"><button class="btn btn-medium btn-primary btn-submit" type="submit" name="savelogos" value="1" >Save Logos</button></p>';
+$_networklogos .= '</ul><input type="hidden" name="logonum" id="logonum" value="'.$i.'"><p style="margin-left:50px; margin-top:20px;"><button class="btn btn-medium btn-primary btn-submit" type="submit" name="savelogos" value="1" >Save Logos</button></p>';
 $_lupu .= '</ul>';
 
 
@@ -188,8 +188,19 @@ if (isset($_POST['savelogos']) && $_POST['savelogos'] == '1') {
 
 
 
+// IMPORT STATIONS
+if (isset($_POST['import_stations'])) {
+    shell_exec("sudo python /var/www/radio/sources/moode/scripts/user-import.py");
+    $_SESSION['notify']['title'] = 'User Stations Imported';
+}
 
-
+// IMPORT STATIONS
+if (isset($_POST['export_stations'])) {
+    shell_exec("sudo python /var/www/radio/sources/moode/scripts/user-export.py");
+    
+    $_usrstationhtml = '<p><a href="/radio/sources/moode/user/stations.zip"><i class="fas fa-file-alt"></i>&nbsp; Download Stations Export</a></p>';
+    $_SESSION['notify']['title'] = 'User Stations Exported';
+}
 
 
 

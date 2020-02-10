@@ -174,10 +174,37 @@
             
             <legend>User Added Stations</legend>
     
-            
+            <div class="control-group">
+                <label class="control-label">Station Exchange</label>
+                <div class="controls">
+        
+                    <div style="display: inline-block; vertical-align: top; margin-top: 5px;">
+                        <button class="btn btn-primary btn-small btn-submit" type="submit" name="import_stations" value="import">Import</button>
+                    </div>
+                    
+                    <div style="display: inline-block; vertical-align: top; margin-top: 5px;">
+                        <button class="btn btn-primary btn-small btn-submit" type="submit" name="export_stations" value="export">Export</button>
+                    </div>
+                    
+                    <p>&nbsp;</p>
+                    
+                    $_usrstationhtml
+                    
+                    <span id="info-stationhide" class="help-block-configs" style="margin-top:-.35em;">
+                        Import and export stations to and from a zip file<br>
+                        TIP: The zip file must be placed in the root of the SDCARD directory and named stations.zip
+                    </span>
+                    <p>&nbsp;</p>
+                    
+                    
+                    
+                    
+                </div>
+            </div>
             
             <div class="control-group ui-userupload">
-            <label class="control-label">Bulk Add Stations</label>
+            <label class="control-label">Bulk Add Stations</label>   
+                
             <div class="controls">
                 <div id="repeater">
                     
@@ -204,9 +231,9 @@
                         </div>
                         
                         <div class="pull-right repeater-adder-btn">
-                            <a href="#" class="btn btn-primary btn-small faux-add-btn" onclick="document.getElementById('repeater-add-btn').click();">
+                            <span class="btn btn-primary btn-small faux-add-btn" onclick="document.getElementById('repeater-add-btn').click();">
                                 +1
-                            </a>
+                            </span>
                         </div>
                         <div class="pull-right repeater-remove-btn">
                             <button class="btn btn-default btn-small remove-btn repeater-remove-btn">
@@ -234,8 +261,8 @@
             
             
             <legend>User Added Station Logos</legend>
-             <div class="control-group ui-plsupload">
-                 <p><small class="help-block-configs">Click each logo to select the relevant JPG file then hit the "Save Logos" button.<br>Image resolution recommended to be at least 700px by 700px.</small></p>
+            <div class="control-group ui-plsupload">
+                 <p><small class="help-block-configs">Click each logo to select the relevant JPG file then hit "Save Logos".<br>Images recommended to be at least 700px by 700px.</small></p>
                  
                  $_networklogos
             </div>
