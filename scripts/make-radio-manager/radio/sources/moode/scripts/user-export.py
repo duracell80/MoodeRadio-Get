@@ -11,6 +11,7 @@ cmd_path        = "/var/www/radio"
 img_path        = "/var/www/images/radio-logos"
 rdo_path        = "/var/lib/mpd/music/RADIO"
 web_path        = cmd_path + "/sources/moode/user"
+tmp_path        = cmd_path + "/sources/moode"
 web_local       = "/var/local/www"
 exp_path        = "/var/lib/mpd/music/SDCARD"
 db_file         = web_local + "/db/moode-sqlite3.db"
@@ -79,7 +80,7 @@ def export_stations(conn):
     zipdir(web_path, zipf)
     zipf.close()
     
-    os.system("sudo cp " + exp_path + "/stations.zip " + web_path + "/stations.zip")
+    os.system("sudo cp " + exp_path + "/stations.zip " + tmp_path + "/stations.zip")
     
     return
 

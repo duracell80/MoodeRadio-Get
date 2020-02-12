@@ -198,11 +198,16 @@ if (isset($_POST['import_stations'])) {
 if (isset($_POST['export_stations'])) {
     shell_exec("sudo python /var/www/radio/sources/moode/scripts/user-export.py");
     
-    $_usrstationhtml = '<p><a href="/radio/sources/moode/user/stations.zip"><i class="fas fa-file-alt"></i>&nbsp; Download Stations Export</a></p>';
     $_SESSION['notify']['title'] = 'User Stations Exported';
 }
 
+$exportname = '/var/www/radio/sources/moode/stations.zip';
 
+if (file_exists($exportname)) {
+    $_usrstationhtml = '<p><a href="/radio/sources/moode/stations.zip"><i class="fas fa-file-alt"></i>&nbsp; Download Your Export</a></p>';
+} else {
+    $_usrstationhtml = '<p><a href="/radio/sources/stations.zip"><i class="fas fa-file-alt"></i>&nbsp; Download Example Export</a></p>';
+}
 
 
 
@@ -210,7 +215,7 @@ if (isset($_POST['export_stations'])) {
 // TOGGLE MOODE DEFAULT STATIONS
 if (isset($_POST['update_station_hide'])) {
 	if (isset($_POST['station_hide'])) {
-		$_SESSION['notify']['title'] = $_POST['station_split'] == '1' ? 'Moode stations hidden' : 'Moode stations restored';
+		$_SESSION['notify']['title'] = $_POST['station_split'] == '1' ? 'Moode stations actioned' : 'Moode stations actioned';
 		$_SESSION['notify']['duration'] = 3;
         $_station_hide   = $_POST['station_hide'];
         $_SESSION['station_hide'] = $_station_hide;
