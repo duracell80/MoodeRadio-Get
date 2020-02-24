@@ -9,6 +9,8 @@ sudo mkdir -p /var/lib/mpd/music/RADIO/_Stations/networks
 sudo mkdir -p /var/www/radio/sources/rb
 sudo mkdir -p /var/www/radio/sources/moode/scripts
 sudo mkdir -p /var/www/radio/sources/moode/user/radio-images/thumbs
+
+sudo cp -p ./radio/sources/moode/scripts/*.py /var/www/radio/sources/moode/scripts
 sudo cp -f ./radio/index.php /var/www/radio
 sudo cp -f ./radio/sources/config.json /var/www/radio/sources
 sudo cp -f ./radio/sources/repeater.js /var/www/radio/sources
