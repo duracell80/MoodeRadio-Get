@@ -25,7 +25,13 @@ sudo cp -f ./radio/sources/stations.zip /var/www/radio/sources/
 sudo cp -f ./radio/sources/stations.zip /var/lib/mpd/music/SDCARD
 
 # Copy pre-installed radio tag logos to moode radio thumbs
-
+sudo cp -f ./www/images/radio-logos/bbc.jpg /var/www/images/radio-logos/
+sudo cp -f ./www/images/radio-logos/npr.jpg /var/www/images/radio-logos/
+sudo cp -f ./www/images/radio-logos/dashradio.jpg /var/www/images/radio-logos/
+# thumbs
+sudo cp -f ./www/images/radio-logos/thumbs/bbc.jpg /var/www/images/radio-logos/thumbs
+sudo cp -f ./www/images/radio-logos/thumbs/npr.jpg /var/www/images/radio-logos/thumbs
+sudo cp -f ./www/images/radio-logos/thumbs/dashradio.jpg /var/www/images/radio-logos/thumbs
 
 # Permissions
 sudo chmod 777 /var/lib/mpd/playlists/Radio_Play.m3u
