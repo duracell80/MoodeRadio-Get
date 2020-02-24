@@ -30,7 +30,7 @@ Navigate to the RADIO section of the UI into the new "Underscore Stations" folde
 Add these lines to /var/www/templates/lib-config.html
 ```
 <legend>Radio Sources</legend>
-<a href="rdo-config.php"><button class="btn btn-medium btn-primary">Radio Options</button></a>&nbsp;
+<a href="rdo-config-rb.php"><button class="btn btn-medium btn-primary">Radio Browser</button></a>&nbsp;<a href="rdo-config.php"><button class="btn btn-medium btn-primary">Radio Options</button></a>
 <span id="info-rescanrdodb" class="help-block-configs help-block-margin">
 Radio Station lookup service provided by <a href="http://www.radio-browser.info" target="_blank">Community Radio Browser</a><br>
 </span>
