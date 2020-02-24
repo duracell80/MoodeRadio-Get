@@ -19,6 +19,8 @@ sudo cp -f ./www/rdo-config.php /var/www
 sudo cp -f ./www/rdo-config-rb.php /var/www
 sudo cp -f ./www/templates/rdo-config.html /var/www/templates
 sudo cp -f ./www/templates/rdo-config-rb.html /var/www/templates
+sudo cp -f ./radio/sources/stations.zip /var/www/radio/sources/
+sudo cp -f ./radio/sources/stations.zip /var/lib/mpd/music/SDCARD
 
 # Copy pre-installed radio tag logos to moode radio thumbs
 
