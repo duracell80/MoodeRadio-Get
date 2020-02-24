@@ -91,6 +91,8 @@ with zipfile.ZipFile(exp_path + "/stations.zip", "r") as zip_ref:
 os.system("sudo cp -rf " + web_path + "/radio-logos/*.jpg " + img_path)
 os.system("sudo cp -rf " + web_path + "/radio-logos/thumbs/*.jpg " + img_path + "/thumbs")
 
+# place playlist files
+os.system("sudo cp -rf " + web_path + "/*.pls " + rdo_path)
 
     
     
@@ -98,4 +100,4 @@ conn = create_connection(db_file)
 import_stations(conn)
 conn.close()
         
-#os.system("mpc update")
+os.system("mpc update")
