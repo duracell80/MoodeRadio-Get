@@ -8,7 +8,8 @@ sudo mkdir -p /var/lib/mpd/music/RADIO/_Stations/networks
 # Copy scripts to localhost
 sudo mkdir -p /var/www/radio/sources/rb
 sudo mkdir -p /var/www/radio/sources/moode/scripts
-sudo mkdir -p /var/www/radio/sources/moode/user/radio-images/thumbs
+sudo mkdir -p /var/www/radio/sources/moode/user/radio-logos
+sudo mkdir -p /var/www/radio/sources/moode/user/radio-logos/thumbs
 
 sudo cp -p ./radio/sources/moode/scripts/*.py /var/www/radio/sources/moode/scripts
 sudo cp -f ./radio/index.php /var/www/radio
