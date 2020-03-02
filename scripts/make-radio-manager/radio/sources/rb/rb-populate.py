@@ -133,12 +133,18 @@ for f, f_item in enumerate(f_json):
             p_url   = "{0}/m3u/stations/bytag/{1}".format(f_server, f_tag)  
             p_file  = requests.get(p_url)
 
-
+            # REMOVE #RADIOBROWSERUUID: FROM M3U
+            p_urls = re.sub(r'^#RADIOBROWSERUUID:.*\n?', '', p_file.content, flags=re.MULTILINE)
 
             os.system("sudo touch " + p_path)
             os.system("sudo chmod 777 " + p_path)
-            open(p_path, 'wb').write(p_file.content)
-        
+            
+            
+            
+            # SAVE THAT FILE
+            open(p_path, 'wb').write(p_urls)
+            
+            # FIX THE DURATION BUG PRESENT IN RADIO BROWSER M3U
             os.system("sudo sed -i 's/EXTINF:1/EXTINF:-1/g' " + p_path)
             
             
@@ -148,8 +154,8 @@ for f, f_item in enumerate(f_json):
             p_names.pop(0)
             
             for s_item in p_names:
-                print("["+ f_tag.upper() + "] " + s_item.replace('\n', ' ').replace('\r', ''))
-                
+                s_name = re.sub(r'^#RADIOBROWSERUUID:.*\n?', '', s_item, flags=re.MULTILINE)
+                print("["+ f_tag.upper() + "] " + s_name.replace('\n', ' ').replace('\r', ''))
                 
                 
                 
@@ -214,7 +220,11 @@ for n_item in r_stations:
 
         # DO THE FILE STUFF ...
         if "url" in str(n_json):
-            n_file      = requests.get(n_url)     
+            n_file      = requests.get(n_url) 
+            
+            # REMOVE #RADIOBROWSERUUID: FROM M3U
+            n_urls = re.sub(r'^#RADIOBROWSERUUID:.*\n?', '', n_file.content, flags=re.MULTILINE)
+            
             f_path      = pi_path   + "/networks/"
             p_path      = f_path    + n_split[1].lower().replace("&", "and").replace(" ", "-").replace("'", "-") +".m3u"
 
@@ -222,13 +232,13 @@ for n_item in r_stations:
             
             os.system("sudo touch " + p_path)
             os.system("sudo chmod 777 " + p_path)
-            open(p_path, 'wb').write(n_file.content)
+            open(p_path, 'wb').write(n_urls)
             os.system("sudo sed -i 's/EXTINF:1/EXTINF:-1/g' " + p_path)
             
             
             
             # SCOOP OUT STATION NAMES FOR CONSOLE PRINT
-            n_names = re.sub(r'^https?:\/\/.*[\r\n]*', '', n_file.content, flags=re.MULTILINE)
+            n_names = re.sub(r'^https?:\/\/.*[\r\n]*', '', n_urls, flags=re.MULTILINE)
             n_names = n_names.split("#EXTINF:1,")
             n_names.pop(0)
             
