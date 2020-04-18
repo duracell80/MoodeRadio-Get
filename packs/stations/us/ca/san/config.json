@@ -1,0 +1,19 @@
+{
+    "radiopack": [ {
+        "author"                : "@seanbranam",
+        "version"               : "1.0.0",
+        "installed"             : "/home/pi",
+        "type"                  : "stations",
+        "pack-d1"               : "us",
+        "pack-d2"               : "ca",
+        "pack-d3"               : "san",
+        "city"                  : "San Diego",
+        "timezone"              : "-08:00",
+        "auxlist"               : "true",
+        "split"                 : "true",
+
+
+        "pack-description"      : "San Diego has been called America's Craft Beer Capital, with beautiful beaches, expensive real estate, great people and music. Some refer to it as Whale's Vagina. 
+    }
+    ]
+}
