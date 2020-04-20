@@ -1,10 +1,26 @@
-
-packs/.DS_Store
-packs/stations/.DS_Store
-packs/stations/us/.DS_Store
-packs/stations/us/ca/.DS_Store
-packs/stations/us/ca/san/.DS_Store
-packs/stations/us/tn/bna/.DS_Store
-packs/stations/us/tn/bna/singles/.DS_Store
-packs/stations/us/tn/.DS_Store
+# General
 .DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
