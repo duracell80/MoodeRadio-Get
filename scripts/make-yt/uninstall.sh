@@ -5,7 +5,7 @@
 #
 # The following commands break everything down and pack it away like a dedicated roadie
 
-#sudo pip uninstall youtube_dl
+sudo pip uninstall youtube_dl
 #sudo apt-get -y remove mps-youtube
 #sudo apt-get -y remove vlc-bin
 
