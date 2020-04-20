@@ -5,7 +5,7 @@
 #
 # The following commands break everything down and pack it away like a dedicated roadie
 
-#sudo pip -y uninstall youtube_dl
+sudo pip uninstall youtube_dl
 #sudo apt-get -y remove mps-youtube
 #sudo apt-get -y remove vlc-bin
 
@@ -24,6 +24,6 @@ sudo rm -rf /var/lib/mpd/music/RADIO/_YouTube/asmr/example.m3u
 sudo rm -rf /var/lib/mpd/music/RADIO/_YouTube/mahogany/example.m3u
 sudo rm -rf /var/lib/mpd/music/RADIO/_YouTube/example-downloading.m3u
 sudo rm -rf /var/lib/mpd/music/RADIO/_YouTube/example-streaming.m3u
-
+sudo rm -rf /var/lib/mpd/music/RADIO/_YouTube
 
 mpc update
