@@ -29,18 +29,16 @@
 
 */
 
-
+// Main Params
 $cmd        = $_GET["cmd"];
 $src        = $_GET["src"];
 $ch         = $_GET["ch"];
 $play       = $_GET["play"];
 $type       = $_GET["type"];
 
-if(isset($_GET["name"]) && !empty($_GET["name"])){
-    $name       = $_GET["name"];
-} else {
-    $name       = "generic";
-} 
+// Podcast Params
+if(isset($_GET["name"]) && !empty($_GET["name"])){ $name = $_GET["name"]; } else { $name = "generic";}
+if(isset($_GET["items"]) && !empty($_GET["items"])){ $items = $_GET["items"]; } else { $items = "5";}    
     
 
     
@@ -90,12 +88,9 @@ $radioList  = "/var/lib/mpd/playlists/Radio_Play.m3u";
             
     case "podcast":
         // EXAMPLE http://192.168.2.4/radio/?type=podcast&src=https://www.spreaker.com/show/3287246/episodes/feed&name=skynews
-        //echo(shell_exec("pip install podcastparser"));
-        //sleep(1);
+        $runcmd = "python " . $apiPath . "/sources/pod/pod2m3u.py " . $src . " " . $name . " " . $items;
+        echo(shell_exec($runcmd));
         
-        $cmd1 = "python " . $apiPath . "/sources/pod/pod2m3u.py " . $src . " " . $name;
-        echo(shell_exec($cmd1));
-            
         header("Location: /");
         
         
@@ -344,8 +339,15 @@ $radioList  = "/var/lib/mpd/playlists/Radio_Play.m3u";
                 <form action="./" method="get">
                     <fieldset style="border-width:0px;">
                         <label style="display:inline-block; width : 10%; float:left;">FEED: </label>
-                        <input type="text" name="src" style="display:inline-block; width : 50%; float:left;" placeholder="Podcast XML">
-                        <input type="text" name="name" style="display:inline-block; width : 20%; float:left;" placeholder="Podcast Name">
+                        <input type="text" name="src" style="display:inline-block; width : 40%; height: 21px; float:left;" placeholder="Podcast XML">
+                        <input type="text" name="name" style="display:inline-block; width : 20%; height: 21px; float:left;" placeholder="Podcast Name">
+                        <select name="items" style="display:inline-block; width : 10%; height: 21px; float:left;">
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="75">75</option>
+                        </select>
                         <input type="submit" name="podplay" id="podplay" value="Play" style="display:inline-block; float:right; width:15%;">
                         <br style="clear:both;">
                         <input type="hidden" name="type" value="podcast">
