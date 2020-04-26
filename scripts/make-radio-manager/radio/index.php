@@ -36,6 +36,15 @@ $ch         = $_GET["ch"];
 $play       = $_GET["play"];
 $type       = $_GET["type"];
 
+if(isset($_GET["name"]) && !empty($_GET["name"])){
+    $name       = $_GET["name"];
+} else {
+    $name       = "generic";
+} 
+    
+
+    
+    
 
 
 
@@ -78,6 +87,19 @@ $radioList  = "/var/lib/mpd/playlists/Radio_Play.m3u";
         
         
         break;
+            
+    case "podcast":
+        // EXAMPLE http://192.168.2.4/radio/?type=podcast&src=https://www.spreaker.com/show/3287246/episodes/feed&name=skynews
+        //echo(shell_exec("pip install podcastparser"));
+        //sleep(1);
+        
+        $cmd1 = "python " . $apiPath . "/sources/pod/pod2m3u.py " . $src . " " . $name;
+        echo(shell_exec($cmd1));
+            
+        header("Location: /");
+        
+        
+        break;        
     
     case "tag":
         $runcmd = "sudo python " . $apiPath . "/sources/rb/rb-tags-preview.py " . $play;
@@ -307,16 +329,28 @@ $radioList  = "/var/lib/mpd/playlists/Radio_Play.m3u";
             <div class="mbox">
                 <div style="padding: 30px;">
                 <h3>Cast to Moode</h3>
-                <p>Send a Radio URL directly to moode from this page.</p>
+                <p>Send a Radio URL directly to Moode from this page.</p>
                 <form action="./" method="get">
                     <fieldset style="border-width:0px;">
                         <label style="display:inline-block; width : 10%; float:left;">URL: </label>
-                        <input type="text" name="src" style="display:inline-block; width : 70%; float:left;">
+                        <input type="text" name="src" style="display:inline-block; width : 70%; float:left;" placeholder="File URL">
                         <input type="submit" name="radioplay" id="radioplay" value="Play" style="display:inline-block; float:right; width:15%;">
                         <br style="clear:both;">
                         <input type="hidden" name="type" value="cast">
                     </fieldset>
                 </form>
+                    
+                <p>Send a Podcast directly to Moode from this page ( pip install podcastparser ... in ssh first ).</p>
+                <form action="./" method="get">
+                    <fieldset style="border-width:0px;">
+                        <label style="display:inline-block; width : 10%; float:left;">FEED: </label>
+                        <input type="text" name="src" style="display:inline-block; width : 50%; float:left;" placeholder="Podcast XML">
+                        <input type="text" name="name" style="display:inline-block; width : 20%; float:left;" placeholder="Podcast Name">
+                        <input type="submit" name="podplay" id="podplay" value="Play" style="display:inline-block; float:right; width:15%;">
+                        <br style="clear:both;">
+                        <input type="hidden" name="type" value="podcast">
+                    </fieldset>
+                </form>    
                 </div>
             </div>
             <p>&nbsp;</p>
