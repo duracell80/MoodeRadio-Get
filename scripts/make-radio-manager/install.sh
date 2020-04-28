@@ -34,6 +34,13 @@ sudo cp -f ./www/images/radio-logos/thumbs/bbc.jpg /var/www/images/radio-logos/t
 sudo cp -f ./www/images/radio-logos/thumbs/npr.jpg /var/www/images/radio-logos/thumbs
 sudo cp -f ./www/images/radio-logos/thumbs/dashradio.jpg /var/www/images/radio-logos/thumbs
 
+# podcast API for RADIO
+sudo mkdir -p /var/www/radio/sources/pod
+sudo mkdir -p /var/lib/mpd/music/RADIO/_Podcasts
+sudo cp -p ./radio/sources/pod/*.py /var/www/radio/sources/pod
+sudo cp -p ./radio/sources/pod/*.mp3 /var/www/radio/sources/pod
+sudo cp -p ./radio/sources/pod/*.php /var/www/radio/sources/pod
+
 # Permissions
 sudo chmod 777 /var/lib/mpd/playlists/Radio_Play.m3u
 sudo chmod 777 /var/www/radio/index.php
