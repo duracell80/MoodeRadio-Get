@@ -25,3 +25,5 @@ sudo rm -rf /www/images/radio-logos/thumbs/dashradio.jpg
 sudo rm -rf /var/www/radio/sources/pod
 sudo rm -rf /var/lib/mpd/music/RADIO/_Podcasts
 sudo rm -rf /var/lib/mpd/playlists/podcast_*
+
+mpc update
