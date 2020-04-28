@@ -45,7 +45,7 @@ $apiPath    = "/var/www/radio/sources/pod";
                 header("HTTP/1.0 404 Not Found");
             }
         } else {
-            // EXAMPLE http://192.168.2.4/radio/sources/pod?type=podcast&src=https://www.spreaker.com/show/3287246/episodes/feed&items=5&name=skynews
+            // EXAMPLE http://moode/radio/sources/pod?type=podcast&src=https://www.spreaker.com/show/3287246/episodes/feed&items=5&name=skynews
             $runcmd = "python " . $apiPath . "/pod2m3u.py " . $src . " " . $name . " " . $items;
             echo(shell_exec($runcmd));
             header("Location: /");
