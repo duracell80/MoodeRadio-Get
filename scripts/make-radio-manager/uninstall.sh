@@ -5,7 +5,7 @@
 sudo rm -rf /var/lib/mpd/music/RADIO/_Stations
 sudo rm -rf /var/lib/mpd/playlists/Radio_Play.m3u
 
-# Destroy scripts from localhost
+# Destroy scripts from localhost ... no more awesomeness
 sudo rm -rf /var/www/radio
 sudo rm -rf /var/www/rdo-config.php
 sudo rm -rf /var/www/rdo-config-rb.php
@@ -13,7 +13,7 @@ sudo rm -rf /var/www/templates/rdo-config.html
 sudo rm -rf /var/www/templates/rdo-config-rb.html
 
 
-# Remove moode radio logos
+# Remove moode radio logos ... sad day
 sudo rm -rf /var/www/images/radio-logos/bbc.jpg
 sudo rm -rf /var/www/images/radio-logos/npr.jpg
 sudo rm -rf /var/www/images/radio-logos/dashradio.jpg
