@@ -11,11 +11,11 @@ $ sudo chmod 755 install.sh
 $ ./install.sh
 ```
 
-## To Uninstall
+## To Uninstall (Sad Day)
 ```
 $ cd /home/pi/MoodeRadio-Get/scripts/make-radio-manager/
-$ sudo chmod 755 install.sh
-$ ./install.sh
+$ sudo chmod 755 uninstall.sh
+$ ./uninstall.sh
 ```
 
 ## Accessing the UI
