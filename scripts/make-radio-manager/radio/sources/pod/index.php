@@ -42,13 +42,20 @@ $apiPath    = "/var/www/radio/sources/pod";
                 shell_exec($runcmd);
                 
             } else {
+                // MP3 Not Found
                 header("HTTP/1.0 404 Not Found");
             }
         } else {
-            // EXAMPLE http://moode/radio/sources/pod?type=podcast&src=https://www.spreaker.com/show/3287246/episodes/feed&items=5&name=skynews
+            // EXAMPLE http://192.168.2.4/radio/sources/pod?type=podcast&src=https://www.spreaker.com/show/3287246/episodes/feed&items=5&name=skynews
             $runcmd = "python " . $apiPath . "/pod2m3u.py " . $src . " " . $name . " " . $items;
-            echo(shell_exec($runcmd));
-            header("Location: /");
+            $runrst = shell_exec($runcmd);
+            if (stripos($runrst, "Podcast Parser Error") !== false) {
+                header("Location: /radio/sources/pod/error.php");
+                break;
+            } else {
+                header("Location: /");
+                break;
+            }
         }
         
         break;        

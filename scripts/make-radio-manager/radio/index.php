@@ -36,13 +36,7 @@ $ch         = $_GET["ch"];
 $play       = $_GET["play"];
 $type       = $_GET["type"];
 
-// Podcast Params
-if(isset($_GET["name"]) && !empty($_GET["name"])){ $name = $_GET["name"]; } else { $name = "generic";}
-if(isset($_GET["items"]) && !empty($_GET["items"])){ $items = $_GET["items"]; } else { $items = "5";}    
-    
-
-    
-    
+ 
 
 
 
@@ -85,16 +79,6 @@ $radioList  = "/var/lib/mpd/playlists/Radio_Play.m3u";
         
         
         break;
-            
-    case "podcast":
-        // EXAMPLE http://192.168.2.4/radio/?type=podcast&src=https://www.spreaker.com/show/3287246/episodes/feed&name=skynews
-        $runcmd = "python " . $apiPath . "/sources/pod/pod2m3u.py " . $src . " " . $name . " " . $items;
-        echo(shell_exec($runcmd));
-        
-        header("Location: /");
-        
-        
-        break;        
     
     case "tag":
         $runcmd = "sudo python " . $apiPath . "/sources/rb/rb-tags-preview.py " . $play;
@@ -336,7 +320,7 @@ $radioList  = "/var/lib/mpd/playlists/Radio_Play.m3u";
                 </form>
                     
                 <p>Send a Podcast directly to Moode from this page ( pip install podcastparser ... in ssh first ).</p>
-                <form action="./" method="get">
+                <form action="./sources/pod/index.php" method="get">
                     <fieldset style="border-width:0px;">
                         <label style="display:inline-block; width : 10%; float:left;">FEED: </label>
                         <input type="text" name="src" style="display:inline-block; width : 40%; height: 21px; float:left;" placeholder="Podcast XML">
