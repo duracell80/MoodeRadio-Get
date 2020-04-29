@@ -41,6 +41,9 @@ $apiPath    = "/var/www/radio/sources/pod";
                 $runcmd = "python " . $apiPath . "/pod2m3u.py " . $src . " " . $name . " " . $items;
                 shell_exec($runcmd);
                 
+                shell_exec("mpc update");
+                shell_exec("mpc stop; mpc clear; mpc load podcast_" . $name . "; mpc play");
+                
             } else {
                 // MP3 Not Found
                 header("HTTP/1.0 404 Not Found");
@@ -53,6 +56,9 @@ $apiPath    = "/var/www/radio/sources/pod";
                 header("Location: /radio/sources/pod/error.php");
                 break;
             } else {
+                shell_exec("mpc update");
+                shell_exec("mpc stop; mpc clear; mpc load podcast_" . $name . "; mpc play");
+                
                 header("Location: /");
                 break;
             }
