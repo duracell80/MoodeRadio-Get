@@ -1,5 +1,7 @@
-import sys, os, urllib, requests, json, podcastparser
+import sys, os, urllib, urllib2, requests, json, podcastparser
 from datetime import datetime
+
+
 
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -42,15 +44,20 @@ else:
         pod_items = sys.argv[3]
     except IndexError as e:
         pod_items = 5
+    
+    # SET a user agent string because some podcast sites throw a 403 forbidden, if no UA set
+    hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/534.30 (KHTML, like Gecko) Ubuntu/10.10 Chromium/12.0.742.112 Chrome/12.0.742.112 Safari/534.30',
+       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+       'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+       'Accept-Encoding': 'none',
+       'Accept-Language': 'en-US,en;q=0.8',
+       'Connection': 'keep-alive'}
 
-
-
-
-
+    feedrequest = urllib2.Request(feedurl, headers=hdr)
 
     # GET the dictonary object from Podcastparser    
     try:
-        data = podcastparser.parse(feedurl, urllib.urlopen(feedurl), int(pod_items))
+        data = podcastparser.parse(feedurl, urllib2.urlopen(feedrequest), int(pod_items))
     except podcastparser.FeedParseError:
         print("Podcast Parser Error: Please file a bug report at github.com/gpodder/podcastparser")
         sys.exit()
