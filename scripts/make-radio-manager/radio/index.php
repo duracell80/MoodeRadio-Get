@@ -256,6 +256,22 @@ $radioList  = "/var/lib/mpd/playlists/Radio_Play.m3u";
                     opacity             : 1 !important;
                 }
                 
+                .mbox .btn-huge,
+                .mbox .btn-huge:hover,
+                .mbox .btn-huge:active,
+                .mbox .btn-huge:visited {
+                    display     : inline-block;
+                    background  : #fff;
+                    color       : rgb(32,32,32);
+                    padding     : 30px;
+                    text-align  : center;
+                    font-size   : 125%;
+                    width       : 100px;
+                    height      : 40px;
+                    margin      : 15px;
+                    text-decoration : none !important;
+                }
+                
                 .ui-lineup {
                     
                     list-style-type : none;
@@ -319,7 +335,7 @@ $radioList  = "/var/lib/mpd/playlists/Radio_Play.m3u";
                     </fieldset>
                 </form>
                     
-                <p>Send a Podcast directly to Moode from this page ( pip install podcastparser ... in ssh first ).</p>
+                <p>Send a Podcast directly to Moode from this page ( install podcastparser below ... first ).</p>
                 <form action="./sources/pod/index.php" method="get">
                     <fieldset style="border-width:0px;">
                         <label style="display:inline-block; width : 10%; float:left;">FEED: </label>
@@ -339,6 +355,12 @@ $radioList  = "/var/lib/mpd/playlists/Radio_Play.m3u";
                 </form>    
                 </div>
             </div>
+            <p>&nbsp;</p>
+            
+            <div class="mbox">
+            <p style="text-align: center;"><a href="/rdo-config.php" class="btn btn-huge">Moode Radio Options</a> <a href="/rdo-config-rb.php" class="btn btn-huge">Community Radio Browser</a> <a href="/radio/sources/pod/?type=moode&cmd=pip-pod" class="btn btn-huge">Install Podcast Parser</a></p>
+            </div>
+            
             <p>&nbsp;</p>
             
             <div class="mbox">

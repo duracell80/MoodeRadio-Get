@@ -53,7 +53,7 @@ $apiPath    = "/var/www/radio/sources/pod";
             $runcmd = "python " . $apiPath . "/pod2m3u.py " . $src . " " . $name . " " . $items;
             $runrst = shell_exec($runcmd);
             if (stripos($runrst, "Podcast Parser Error") !== false) {
-                header("Location: /radio/sources/pod/error.php");
+                header("Location: /radio/sources/pod/error.php?src=".$src."");
                 break;
             } else {
                 shell_exec("mpc update");
@@ -68,7 +68,19 @@ $apiPath    = "/var/www/radio/sources/pod";
     
     
     case "moode":
-        
+        if(isset($cmd) && !empty($cmd)){
+            switch ($cmd) {
+
+                // INSTALL Podcast Parser from gpoder
+                case "pip-pod":
+                    $runcmd = "pip install podcastparser";
+                    echo(shell_exec($runcmd));
+                    break;
+
+                default:
+                    break;
+            }
+        }    
         
     case "mpc":
         if(isset($cmd) && !empty($cmd)){
