@@ -73,7 +73,7 @@ $apiPath    = "/var/www/radio/sources/pod";
 
                 // INSTALL Podcast Parser from gpoder
                 case "pip-pod":
-                    $runcmd = "pip install podcastparser";
+                    $runcmd = "sudo pip install podcastparser";
                     echo(shell_exec($runcmd));
                     break;
 
