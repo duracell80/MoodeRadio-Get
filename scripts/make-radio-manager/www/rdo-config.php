@@ -223,51 +223,15 @@ if (isset($_POST['update_station_hide'])) {
         $_select['toggle_station_hide1'] = "<input type=\"radio\" name=\"station_hide\" id=\"toggle_station_hide0\" value=\"1\" " . (($_POST['station_hide'] == '1') ? "checked=\"checked\"" : "") . ">\n";           
         $_select['toggle_station_hide0'] = "<input type=\"radio\" name=\"station_hide\" id=\"toggle_station_hide1\" value=\"0\" " . (($_POST['station_hide'] == '0') ? "checked=\"checked\"" : "") . ">\n";
         
-        
-        
-        // LOOK UP MOODE STATIONS IN DB ONLY ACTION THESE, LEAVE USER STATIONS ALONE
-        $results = $db->query('SELECT * FROM cfg_radio WHERE type = "s"');
-        
-        
+
         if ($_POST['station_hide'] == '1') {
-            while ($row = $results->fetchArray()) {
-                
-                if($row['logo'] == "local"){
-                    
-                    // with quotes
-                    shell_exec("sudo sudo mv /var/lib/mpd/music/RADIO/'".$row['name'].".pls' /var/www/radio/sources/moode");
-
-                    // with double quotes
-                    shell_exec("sudo sudo mv /var/lib/mpd/music/RADIO/\"".$row['name'].".pls\" /var/www/radio/sources/moode");
-
-                    // without
-                    shell_exec("sudo sudo mv /var/lib/mpd/music/RADIO/".$row['name'].".pls /var/www/radio/sources/moode");
-                } else {
-                    // BBC 320kb STATIONS ...
-                    $name           = $row['logo'];
-                    $name           = str_replace("images/radio-logos/", "", $name);
-                    $name           = str_replace(".jpg", "", $name);
-                    
-                    // with quotes
-                    shell_exec("sudo sudo mv /var/lib/mpd/music/RADIO/'".$name.".pls' /var/www/radio/sources/moode");
-
-                    // with double quotes
-                    shell_exec("sudo sudo mv /var/lib/mpd/music/RADIO/\"".$name.".pls\" /var/www/radio/sources/moode");
-
-                    // without
-                    shell_exec("sudo sudo mv /var/lib/mpd/music/RADIO/".$name.".pls /var/www/radio/sources/moode");    
-                }
-                
-                
-                
-            }
+            // Run Move station script (station files are moved, database remains untouched)
+            shell_exec("sudo chmod +x /var/www/radio/sources/moode/scripts/move-stations.sh");
+            shell_exec("sudo /var/www/radio/sources/moode/scripts/move-stations.sh");
         } else {
-            while ($row = $results->fetchArray()) {
-                // Restoring much faster ...
-                shell_exec("sudo sudo mv /var/www/radio/sources/moode/*.pls /var/lib/mpd/music/RADIO");
-                
-                
-            }
+            // Run Restore station script
+            shell_exec("sudo chmod +x /var/www/radio/sources/moode/scripts/restore-stations.sh");
+            shell_exec("sudo /var/www/radio/sources/moode/scripts/restore-stations.sh");
         }
         shell_exec("mpc update");
         
