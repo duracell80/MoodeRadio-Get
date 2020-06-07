@@ -67,7 +67,7 @@ Using the playlist ability of MPD along with a Python library the podcast featur
 ### Future Plans
 Bulk deletion of user stations via checkbox selection, it's a no brainer.
 
-FM Radio Server. There exists a streamer that turns a local FM station obtained via the SDR compatible DVB-T dongles into a feed playable over the local network. This means you could for example use Moode as a radio server to listen to local radio as an online radio stream either on the same device via a playlist file or another device using VLC or a browser. Try it out by running the install.sh from here https://github.com/duracell80/RTLUtils. 
+FM Radio Server. There exists a streamer that turns a local FM station obtained via the SDR compatible DVB-T dongles into a feed playable over the local network. This means you could for example use Moode as a radio server to listen to local radio as an online radio stream either on the same device via a playlist file or another device using VLC or a browser. Try it out by running the install-streamer.sh from here https://github.com/duracell80/RTLUtils. 
 
 
 
