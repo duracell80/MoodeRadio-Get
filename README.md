@@ -39,6 +39,7 @@ To use the bulk add feature, add your station names and url's first. Whereas the
 
 ### Station Shortcuts and Bookmarks
 The station lineups are simply reading from the Moode Radio DB by index and allow you to drag and drop "chicklets" to your web browsers bookmarks folder. In this way you can start playing a radio station using browser bookmarks without needing to call up the Moode UI and find your station. It's simply calling http://moode/radio?ch=1 for example. Additonally your bookmarks will NEVER get stale. If a URL is updated by Moode, the URL in the bookmark is totally independent of an actual radio stream. Which is pretty darn cool !!
+
 ![Screenshot](https://raw.githubusercontent.com/duracell80/MoodeRadio-Get/master/scripts/make-radio-manager/radio-moode-lineup.png)
 
 
