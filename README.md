@@ -20,11 +20,17 @@ $ ./install.sh
 ### API
 
 ```
+Play the first default station
+http://moode/radio?ch=1
+
 Play a radio URL direct
 http://moode/radio?type=cast&src=http://ice1.somafm.com/bootliquor-128-aac
 
 Play a radio genre from the community database of tags
 http://moode/radio?type=tag&play=ambient
+
+Play a podcast feed via an MPD playlist
+http://moode/radio/sources/pod?type=podcast&src=https://www.spreaker.com/show/3287246/episodes/feed&items=20&name=skynews
 
 ```
 
