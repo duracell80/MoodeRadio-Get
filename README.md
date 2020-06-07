@@ -1,116 +1,45 @@
-# MoodeRadio-Get
-Package Manager for Moode Audio Radio Stations
+# Bulk Radio Manager for Moode
 
-![Screenshot](https://github.com/duracell80/MoodeRadio-Get/blob/master/packs/images/001a.jpg?raw=true)
-
-## Get from GIT
+Scripts pull from the Community Radio Browser API to allow users to bulk import raw station playlists into their RADIO directory.
 
 ```
-$ cd /home/pi/
+$ cd ~/
 $ git clone https://github.com/duracell80/MoodeRadio-Get.git
-$ cd MoodeRadio-Get/
-```
+$ cd MoodeRadio-Get/scripts/make-radio-manager/
 
-```
-$ sudo chmod 775 install.sh
+$ sudo chmod 755 install.sh
 $ ./install.sh
-
-$ cd ./scripts/make-stations/
 ```
 
-## Look at the installed packs.
-Go to the Radio section in the Moode Web UI, you should see a new folder called Stations. This is where radio packs are installed to, explore around in there before trying to make your own radio pack. When you're ready to make a pack, pull up SSH again in the make-stations directory.
-
-## Find the config.json file and edit the details.
-
-For cities ...
-
+## To Uninstall (Sad Day)
 ```
-type	= stations
-pack-d1 = country
-pack-d2 = state
-pack-d3 = airport code
-auxlist = true
-
-To store in _Stations/us/tn/bna
+$ cd /home/pi/MoodeRadio-Get/scripts/make-radio-manager/
+$ sudo chmod 755 uninstall.sh
+$ ./uninstall.sh
 ```
 
-For genres ...
+## Accessing the UI
+Go to http://moode/radio to access the community browser and radio options. There are two huge buttons there to access the supercool radio management in Moode UI.
 
+## Navigating the Community Radio Browser UI
+Browse through a list of tags clicking the plus icon next to each selection you wish to make. Clicking or tapping a tag name will start playing the stations in that tag as a preview of what's in that tag. The station range field controls how many stations to return. Adding to the station network field searches the API for stations with those keywords in their names, like somafm. When done hit save. The tag file is cached so from time to time refresh that json file from the UI leave the page and come back.
+
+![Screenshot](https://raw.githubusercontent.com/duracell80/MoodeRadio-Get/master/scripts/make-radio-manager/001.png)
+
+
+
+Navigate to the RADIO section of the UI into the new "Underscore Stations" folder where you'll see tags and networks.
+
+![Screenshot](https://raw.githubusercontent.com/duracell80/MoodeRadio-Get/master/scripts/make-radio-manager/002.png)
+
+## Optionally
+
+Add these lines to /var/www/templates/lib-config.html
 ```
-type	= stations
-pack-d1 = genres
-pack-d2 = electronic
-pack-d3 = chill
-auxlist = false
-
-To store in _Stations/genres/electronic/chill
+<legend>Radio Sources</legend>
+<a href="rdo-config-rb.php"><button class="btn btn-medium btn-primary">Radio Browser</button></a>&nbsp;<a href="rdo-config.php"><button class="btn btn-medium btn-primary">Radio Options</button></a>
+<span id="info-rescanrdodb" class="help-block-configs help-block-margin">
+Radio Station lookup service provided by <a href="http://www.radio-browser.info" target="_blank">Community Radio Browser</a><br>
+</span>
+<p></p>
 ```
-
-Do this before running the build script as doing so beforehand will make sure you have all the right  filenames in your build. In this example we're going to compile a package for /us/tn/bna. Don't worry about adding the URLs in the m3u file at this point, the script is going to place all these  files in an accessible location in the SDCARD directory. When done with the config do:
-
-```
-$ sudo python build.py
-$ cd /mnt/SDCARD/_Stations/stations/us/ca/sfo (for example)
-$ sudo chmod 755 *
-
-```
-
-
-# Add your station URLs and station logos
-Edit the m3u files to add your URLs in the file. Perhaps using a desktop PC accessing the fileshare on the SDCARD. Add your station logos following the filenaming convention stations-us-ca-sfo.jpg for example so the names match up. When done make sure you are on the SDCARD for example ... /mnt/SDCARD/_Stations/stations/us/ca/sfo
-
-![Screenshot](https://github.com/duracell80/MoodeRadio-Get/blob/master/packs/images/003a.jpg?raw=true)
-
-### To install all stations to Moode from a radio pack
-
-```
-$ cd /mnt/SDCARD/_Stations/stations/us/ca/sfo (for example)
-$ sudo python import.py
-```
-
-This will run through the pack you just made inserting all the needed entries into the database, copying the station logos to the right place, adding your playlist to the mpd/playlists directory and adding the given structure in the RADIO section in Moode UI. If you selected the split option in the config.json the script will also spit out seperate playlist files so you can add only one station if needed. If the auxlist option was set to true you'll get a special "scanner playlist" meant for non radio sources like ATC scanners.
-
-Navigate in Moode UI to Radio (the mic icon) then _Stations.
-
-Navigate in Moode UI to Playlists (the icon next to the radio icon)
-
-![Screenshot](https://github.com/duracell80/MoodeRadio-Get/blob/master/packs/images/002.jpg?raw=true)
-
-
-
-### To delete all stations in a pack
-From the same location this script will pull your stations out of Moode and Moode Database but keep them on the SDCARD
-
-```
-$ cd /mnt/SDCARD/_Stations/stations/uk/eng/lhr (for example)
-$ sudo python delete.py 
-```
-
-# To share a pack
-The export script in a pack will compress the pack for easier sharing with other users / backing up.
-
-```
-$ cd /mnt/SDCARD/_Stations/stations/us/tn/bna (for example)
-$ sudo python export.py
-```
-
-### Extra config options
-The 'installed' configuration option is where you have the MoodeRadio-Get directory from git. Typically this is in /home/pi. 'split' in the config file will split the master playlist file into seperate station files. The auxlist will allow for a secondary playlist which in the case of city based packs is useful for scanner audio sources such as the airport and authority radio scanners.
-
-
-
-
-
-
-# YT Play API
-
-![Screenshot](https://github.com/duracell80/MoodeRadio-Get/blob/master/packs/images/000.jpg?raw=true)
-
-In this repo currently there is also a custom built api for streaming YouTube videos in audio format directly from Moode playlists. See the readme in the make-yt directory. Install the api to localhost from that subdir by
-```
-$ sudo chmod 755 ./install.sh
-$ sudo ./install.sh
-```
-[YouTube Streaming on Moode](https://github.com/duracell80/MoodeRadio-Get/blob/master/scripts/make-yt/README.md "YouTube Streaming on Moode")
-
