@@ -1,6 +1,6 @@
 # Radio Manager for Moode
 
-Scripts allow the bulk management of user radio stations. The radio browser functionality pulls from the Community Radio Browser API to allow users to bulk import raw station playlists into their RADIO directory.
+Scripts allow the bulk management of user radio stations. The radio browser functionality pulls from the Community Radio Browser API to allow users to bulk import raw station playlists into their RADIO directory. Provides a powerful radio focused API for IoT useage at http://moode/radio
 
 Todo:
 - Bulk deletion of user stations
@@ -13,13 +13,6 @@ $ cd MoodeRadio-Get/scripts/make-radio-manager/
 
 $ sudo chmod 755 install.sh
 $ ./install.sh
-```
-
-## To Uninstall (Sad Day)
-```
-$ cd /home/pi/MoodeRadio-Get/scripts/make-radio-manager/
-$ sudo chmod 755 uninstall.sh
-$ ./uninstall.sh
 ```
 
 ## Accessing the UI
@@ -46,4 +39,13 @@ Add these lines to /var/www/templates/lib-config.html
 Radio Station lookup service provided by <a href="http://www.radio-browser.info" target="_blank">Community Radio Browser</a><br>
 </span>
 <p></p>
+```
+
+
+
+## To Uninstall
+```
+$ cd /home/pi/MoodeRadio-Get/scripts/make-radio-manager/
+$ sudo chmod 755 uninstall.sh
+$ ./uninstall.sh
 ```
