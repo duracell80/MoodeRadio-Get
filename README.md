@@ -21,7 +21,7 @@ $ ./install.sh
 
 ```
 Play a radio URL direct
-http://moode/radio?type=cast&src=http://ice55.securenetsystems.net/DASH7
+http://moode/radio?type=cast&src=http://ice1.somafm.com/bootliquor-128-aac
 
 Play a radio genre from the community database of tags
 http://moode/radio?type=tag&play=ambient
