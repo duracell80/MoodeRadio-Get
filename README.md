@@ -20,8 +20,25 @@ $ ./install.sh
 ## Accessing the UI
 Go to http://moode/radio to access the community browser and radio options. There are two huge buttons there to access the supercool radio management in Moode UI.
 
+## Navigating the Radio Options UI
+There are some really nice things in the radio options screen (http://moode/rdo-config.php) such as bulk adding of user defined stations, exporting user stations to the SDCARD and importing user stations from the SDCARD. Ask in the Moode forum how to access Moode's network file share folders. There is the ability to hide the inbuilt default stations.
+
+### Import / Export
+The biggest advantage is a simple way to export and import stations via a zip file when upgrading your Moode installation. The file must be called stations.zip and located in your SDCARD folder. Ask in the Moode forums how to access your Moode folders via network file shares. Drag / Drop is planned as a future enhancement to ease this process further and avoid the need to know about Samba shares.
+
+### Bulk Addition and Logo Management
+To use the bulk add feature, add your station names and url's first. Whereas the original add form only lets you add one station at a time the bulk add form here allows for the addition of multiple URL's by use of the +1 link to increase the number of form fields available. If you don't have radio logos ready at the time of addition you can of course add them later, this is an enhancement over the existing Moode station management in that you could only add logos once and only at the time of addition.
+
+### Station Shortcuts and Bookmarks
+The station lineups are simply reading from the Moode Radio DB by index and allow you to drag and drop "chicklets" to your web browsers bookmarks folder. In this way you can start playing a radio station using browser bookmarks without needing to call up the Moode UI and find your station. It's simply calling http://moode/radio?ch=1 for example.
+
+
 ## Navigating the Community Radio Browser UI
-Browse through a list of tags clicking the plus icon next to each selection you wish to make. Clicking or tapping a tag name will start playing the stations in that tag as a preview of what's in that tag. The station range field controls how many stations to return. Adding to the station network field searches the API for stations with those keywords in their names, like somafm. When done hit save. The tag file is cached so from time to time refresh that json file from the UI leave the page and come back.
+Browse through a list of tags clicking the plus icon next to each selection you wish to make. Clicking or tapping a tag name will start playing the stations in that tag as a preview of what's in that tag. The station range field controls how many stations to return (this cuts down on useless and less useful tags). Adding to the station network field searches the API for stations with those keywords in their names, like somafm. When done hit save. The tag file is cached so from time to time refresh that json file from the UI leave the page and come back.
+
+Station URL's are maintained by the community, some URL's may not work and this is not a malfunction of the scripts. Add new stations to the community browser and participate in maintaing the database of stations here:
+http://www.radio-browser.info/gui/#!/add
+
 
 ![Screenshot](https://raw.githubusercontent.com/duracell80/MoodeRadio-Get/master/scripts/make-radio-manager/001.png)
 
