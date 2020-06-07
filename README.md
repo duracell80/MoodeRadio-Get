@@ -32,6 +32,14 @@ To use the bulk add feature, add your station names and url's first. Whereas the
 ### Station Shortcuts and Bookmarks
 The station lineups are simply reading from the Moode Radio DB by index and allow you to drag and drop "chicklets" to your web browsers bookmarks folder. In this way you can start playing a radio station using browser bookmarks without needing to call up the Moode UI and find your station. It's simply calling http://moode/radio?ch=1 for example.
 
+### Basic Podcast Player
+Using the playlist ability of MPD along with a Python library the podcast feature can turn an XML feed into an M3U file. Go to http://moode/radio and install the podcastparser library. Reboot just to make sure then return to http://moode/radio with your XML Feed. Enter the feed into the box, add a name for your podcast and how many episodes you wish to stream. The podcasts are not downloaded so you may run this with a 4GB sdcard. "Playing" the last item in the playlist will trigger the refreshing of the feed to grab the latest episodes if any are there.
+
+### Future Plans
+Bulk deletion of user stations via checkbox selection, it's a no brainer.
+
+FM Radio Server. There exists a streamer that turns a local FM station obtained via the SDR compatible DVB-T dongles into a feed playable over the local network. This means you could for example use Moode as a radio server to listen to local radio as an online radio stream either on the same device cia a playlist file or another device using VLC or a browser. Try it out by running the install.sh from here https://github.com/duracell80/RTLUtils. Why not just listen to your FM station via their online feed? When your internet goes down or your out of range of a network your FM radio keeps working, if you have a good signal you can hear a much clearer broadcast. Online radio is also costly to the local station, particualy for community and college stations. You can support your local stations by choosing to listen to their over the air broadcasts rather than their online broadcasts.
+
 
 ## Navigating the Community Radio Browser UI
 Browse through a list of tags clicking the plus icon next to each selection you wish to make. Clicking or tapping a tag name will start playing the stations in that tag as a preview of what's in that tag. The station range field controls how many stations to return (this cuts down on useless and less useful tags). Adding to the station network field searches the API for stations with those keywords in their names, like somafm. When done hit save. The tag file is cached so from time to time refresh that json file from the UI leave the page and come back.
