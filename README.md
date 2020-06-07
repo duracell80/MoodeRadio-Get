@@ -17,6 +17,17 @@ $ sudo chmod 755 install.sh
 $ ./install.sh
 ```
 
+### API
+
+```
+Play a radio URL direct
+http://moode/radio?type=cast&src=http://ice55.securenetsystems.net/DASH7
+
+Play a radio genre from the community database of tags
+http://moode/radio?type=tag&play=ambient
+
+```
+
 ## Accessing the UI
 Go to http://moode/radio to access the community browser and radio options. There are two huge buttons there to access the supercool radio management in Moode UI.
 
@@ -45,6 +56,7 @@ The station lineups are simply reading from the Moode Radio DB by index and allo
 
 ### Basic Podcast Player
 Using the playlist ability of MPD along with a Python library the podcast feature can turn an XML feed into an M3U file. Go to http://moode/radio and install the podcastparser library. Reboot just to make sure then return to http://moode/radio with your XML Feed. Enter the feed into the box, add a name for your podcast and how many episodes you wish to stream. The podcasts are not downloaded so you may run this with a 4GB sdcard. "Playing" the last item in the playlist will trigger the refreshing of the feed to grab the latest episodes if any are there.
+
 
 ### Future Plans
 Bulk deletion of user stations via checkbox selection, it's a no brainer.
