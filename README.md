@@ -20,17 +20,27 @@ $ ./install.sh
 ## Accessing the UI
 Go to http://moode/radio to access the community browser and radio options. There are two huge buttons there to access the supercool radio management in Moode UI.
 
+![Screenshot](https://raw.githubusercontent.com/duracell80/MoodeRadio-Get/master/scripts/make-radio-manager/radio-feature-index.png)
+
 ## Navigating the Radio Options UI
 There are some really nice things in the radio options screen (http://moode/rdo-config.php) such as bulk adding of user defined stations, exporting user stations to the SDCARD and importing user stations from the SDCARD. Ask in the Moode forum how to access Moode's network file share folders. There is the ability to hide the inbuilt default stations.
+
 
 ### Import / Export
 The biggest advantage is a simple way to export and import stations via a zip file when upgrading your Moode installation. The file must be called stations.zip and located in your SDCARD folder. Ask in the Moode forums how to access your Moode folders via network file shares. Drag / Drop is planned as a future enhancement to ease this process further and avoid the need to know about Samba shares.
 
+![Screenshot](https://raw.githubusercontent.com/duracell80/MoodeRadio-Get/master/scripts/make-radio-manager/radio-user-stations.png)
+
 ### Bulk Addition and Logo Management
 To use the bulk add feature, add your station names and url's first. Whereas the original add form only lets you add one station at a time the bulk add form here allows for the addition of multiple URL's by use of the +1 link to increase the number of form fields available. If you don't have radio logos ready at the time of addition you can of course add them later, this is an enhancement over the existing Moode station management in that you could only add logos once and only at the time of addition.
 
+![Screenshot](https://raw.githubusercontent.com/duracell80/MoodeRadio-Get/master/scripts/make-radio-manager/radio-user-stations-logos.png)
+
+
 ### Station Shortcuts and Bookmarks
 The station lineups are simply reading from the Moode Radio DB by index and allow you to drag and drop "chicklets" to your web browsers bookmarks folder. In this way you can start playing a radio station using browser bookmarks without needing to call up the Moode UI and find your station. It's simply calling http://moode/radio?ch=1 for example. Additonally your bookmarks will NEVER get stale. If a URL is updated by Moode, the URL in the bookmark is totally independent of an actual radio stream. Which is pretty darn cool !!
+![Screenshot](https://raw.githubusercontent.com/duracell80/MoodeRadio-Get/master/scripts/make-radio-manager/radio-moode-lineup.png)
+
 
 ### Basic Podcast Player
 Using the playlist ability of MPD along with a Python library the podcast feature can turn an XML feed into an M3U file. Go to http://moode/radio and install the podcastparser library. Reboot just to make sure then return to http://moode/radio with your XML Feed. Enter the feed into the box, add a name for your podcast and how many episodes you wish to stream. The podcasts are not downloaded so you may run this with a 4GB sdcard. "Playing" the last item in the playlist will trigger the refreshing of the feed to grab the latest episodes if any are there.
@@ -40,7 +50,6 @@ Bulk deletion of user stations via checkbox selection, it's a no brainer.
 
 FM Radio Server. There exists a streamer that turns a local FM station obtained via the SDR compatible DVB-T dongles into a feed playable over the local network. This means you could for example use Moode as a radio server to listen to local radio as an online radio stream either on the same device via a playlist file or another device using VLC or a browser. Try it out by running the install.sh from here https://github.com/duracell80/RTLUtils. 
 
-Why not just listen to your FM station via their online feed? Two things here that are really important ... Your local radio station may not have the rights to broadcast sports events on their online stream. Bandwidth costs them money. When your internet goes down or your out of range of a network your FM radio keeps working, if you have a good signal you can hear a much clearer broadcast. You can support your local stations by choosing to listen to their over the air broadcasts rather than their online broadcasts. Plus it's really cool, why we don't yet have Radio over IP in our homes when we have things like HDHomerun for our TV's is a little odd. Silcon Dust could easily add an FM over IP feature to their product.
 
 
 ## Navigating the Community Radio Browser UI
