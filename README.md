@@ -1,9 +1,11 @@
 # Radio Manager for Moode 6.4 and 6.5
 
-Scripts allow the bulk management of user radio stations. The radio browser functionality pulls from the Community Radio Browser API to allow users to bulk import raw station playlists into their RADIO directory. Provides a powerful radio focused API for IoT useage at http://moode/radio
+Scripts allow the bulk management of user radio stations. The radio browser functionality pulls from the Community Radio Browser API to allow users to bulk import raw station playlists into their RADIO directory. Provides a powerful radio focused API for IoT at http://moode/radio
 
 Todo:
 - Bulk deletion of user stations
+- Enhanced Meta data support
+- Drag and drop station import/export for enhanced and easier UX
 - Add the posibility to make Moode a local FM over IP server with rtl_fm_streamer
 
 ```
