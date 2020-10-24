@@ -54,7 +54,7 @@ $results    = $db->query('SELECT * FROM cfg_radio WHERE type = "u"');
 // PUSH READABLE NETWORK NAMES FROM USER INPUT TO CREATE CURRENT NETWORK LOGOS 
 $_networklogos = '<ul class="network-logos">';
 $i = 0;
-$logopath = "/images/radio-logos/thumbs/";
+$logopath = "/imagesw/radio-logos/thumbs/";
 $_lupu      = '<ul class="ui-lineup">';
 while ($row = $results->fetchArray()) {
     $logosrc    = $logopath . $row['name'] .".jpg";
@@ -137,9 +137,10 @@ if (isset($_POST['savelogos']) && $_POST['savelogos'] == '1') {
 
     $n              = $_POST['logonum'];
     $webroot        = "/var/www/";
-    $logopath       = "images/radio-logos/";
-    $targetsmall    = $webroot . $logopath . "thumbs/";
-    $targetlarge    = $webroot . $logopath;
+    $weblocal       = "/var/local/www/";
+    $logopath       = "imagesw/radio-logos/";
+    $targetsmall    = $weblocal . $logopath . "thumbs/";
+    $targetlarge    = $weblocal . $logopath;
     $targetwidth    = 200;
     $targetheight   = 200;
  

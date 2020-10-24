@@ -48,10 +48,10 @@ def main():
     os.system("sudo rm -rf /var/lib/mpd/music/RADIO/_Stations/"+packD1+"/"+packD2+"/"+packD3)
     
     print("[Uninstall - "+packFILE.upper()+" : Logos]")
-    os.system("sudo rm -f /var/www/images/radio-logos/thumbs/"+packFILE+".jpg")
+    os.system("sudo rm -f /var/local/www/imagesw/radio-logos/thumbs/"+packFILE+".jpg")
     
     if packSCANNER == "true":
-        os.system("sudo cp ./logos/ /var/www/images/radio-logos/thumbs/scanner-"+packD1+"-"+packD2+"-"+packD3+".jpg")
+        os.system("sudo cp ./logos/ /var/local/www/imagesw/radio-logos/thumbs/scanner-"+packD1+"-"+packD2+"-"+packD3+".jpg")
     
     
     
