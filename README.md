@@ -64,6 +64,10 @@ The station lineups are simply reading from the Moode Radio DB by index and allo
 
 
 ### Basic Podcast Player
+```
+sudo pip install podcastparser
+```
+
 Using the playlist ability of MPD along with a Python library the podcast feature can turn an XML feed into an M3U file. Go to http://moode/radio and install the podcastparser library. Reboot just to make sure then return to http://moode/radio with your XML Feed. Enter the feed into the box, add a name for your podcast and how many episodes you wish to stream. The podcasts are not downloaded so you may run this with a 4GB sdcard. "Playing" the last item in the playlist will trigger the refreshing of the feed to grab the latest episodes if any are there.
 
 
