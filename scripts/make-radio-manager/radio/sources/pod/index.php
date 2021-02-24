@@ -14,6 +14,11 @@ $cmd        = $_GET["cmd"];
 $src        = $_GET["src"];
 $type       = $_GET["type"];
 
+// Sanitize
+$cmd    = escapeshellarg($cmd);
+$src    = escapeshellarg($src);
+$type   = escapeshellarg($type);
+
 // Podcast Params
 if(isset($_GET["name"]) && !empty($_GET["name"])){ $name = $_GET["name"]; } else { $name = "generic";}
 if(isset($_GET["items"]) && !empty($_GET["items"])){ $items = $_GET["items"]; } else { $items = "5";}
