@@ -54,7 +54,7 @@ $results    = $db->query('SELECT * FROM cfg_radio WHERE type = "u"');
 // PUSH READABLE NETWORK NAMES FROM USER INPUT TO CREATE CURRENT NETWORK LOGOS 
 $_networklogos = '<ul class="network-logos">';
 $i = 0;
-$logopath = "/images/radio-logos/thumbs/";
+$logopath = "/imagesw/radio-logos/thumbs/";
 $_lupu      = '<ul class="ui-lineup">';
 while ($row = $results->fetchArray()) {
     $logosrc    = $logopath . $row['name'] .".jpg";
@@ -137,9 +137,10 @@ if (isset($_POST['savelogos']) && $_POST['savelogos'] == '1') {
 
     $n              = $_POST['logonum'];
     $webroot        = "/var/www/";
-    $logopath       = "images/radio-logos/";
-    $targetsmall    = $webroot . $logopath . "thumbs/";
-    $targetlarge    = $webroot . $logopath;
+    $weblocal       = "/var/local/www/";
+    $logopath       = "imagesw/radio-logos/";
+    $targetsmall    = $weblocal . $logopath . "thumbs/";
+    $targetlarge    = $weblocal . $logopath;
     $targetwidth    = 200;
     $targetheight   = 200;
  
@@ -223,51 +224,15 @@ if (isset($_POST['update_station_hide'])) {
         $_select['toggle_station_hide1'] = "<input type=\"radio\" name=\"station_hide\" id=\"toggle_station_hide0\" value=\"1\" " . (($_POST['station_hide'] == '1') ? "checked=\"checked\"" : "") . ">\n";           
         $_select['toggle_station_hide0'] = "<input type=\"radio\" name=\"station_hide\" id=\"toggle_station_hide1\" value=\"0\" " . (($_POST['station_hide'] == '0') ? "checked=\"checked\"" : "") . ">\n";
         
-        
-        
-        // LOOK UP MOODE STATIONS IN DB ONLY ACTION THESE, LEAVE USER STATIONS ALONE
-        $results = $db->query('SELECT * FROM cfg_radio WHERE type = "s"');
-        
-        
+
         if ($_POST['station_hide'] == '1') {
-            while ($row = $results->fetchArray()) {
-                
-                if($row['logo'] == "local"){
-                    
-                    // with quotes
-                    shell_exec("sudo sudo mv /var/lib/mpd/music/RADIO/'".$row['name'].".pls' /var/www/radio/sources/moode");
-
-                    // with double quotes
-                    shell_exec("sudo sudo mv /var/lib/mpd/music/RADIO/\"".$row['name'].".pls\" /var/www/radio/sources/moode");
-
-                    // without
-                    shell_exec("sudo sudo mv /var/lib/mpd/music/RADIO/".$row['name'].".pls /var/www/radio/sources/moode");
-                } else {
-                    // BBC 320kb STATIONS ...
-                    $name           = $row['logo'];
-                    $name           = str_replace("images/radio-logos/", "", $name);
-                    $name           = str_replace(".jpg", "", $name);
-                    
-                    // with quotes
-                    shell_exec("sudo sudo mv /var/lib/mpd/music/RADIO/'".$name.".pls' /var/www/radio/sources/moode");
-
-                    // with double quotes
-                    shell_exec("sudo sudo mv /var/lib/mpd/music/RADIO/\"".$name.".pls\" /var/www/radio/sources/moode");
-
-                    // without
-                    shell_exec("sudo sudo mv /var/lib/mpd/music/RADIO/".$name.".pls /var/www/radio/sources/moode");    
-                }
-                
-                
-                
-            }
+            // Run Move station script (station files are moved, database remains untouched)
+            shell_exec("sudo chmod +x /var/www/radio/sources/moode/scripts/move-stations.sh");
+            shell_exec("sudo /var/www/radio/sources/moode/scripts/move-stations.sh");
         } else {
-            while ($row = $results->fetchArray()) {
-                // Restoring much faster ...
-                shell_exec("sudo sudo mv /var/www/radio/sources/moode/*.pls /var/lib/mpd/music/RADIO");
-                
-                
-            }
+            // Run Restore station script
+            shell_exec("sudo chmod +x /var/www/radio/sources/moode/scripts/restore-stations.sh");
+            shell_exec("sudo /var/www/radio/sources/moode/scripts/restore-stations.sh");
         }
         shell_exec("mpc update");
         
@@ -289,6 +254,6 @@ $tpl = "rdo-config.html";
 $section = basename(__FILE__, '.php');
 storeBackLink($section, $tpl);
 
-include('/var/local/www/header.php');
+include('header.php');
 eval("echoTemplate(\"" . getTemplate("templates/$tpl") . "\");");
-include('footer.php');
+include('footer.min.php');

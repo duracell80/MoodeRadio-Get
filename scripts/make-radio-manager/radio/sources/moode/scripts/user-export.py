@@ -8,7 +8,7 @@ from sqlite3 import Error
 
 
 cmd_path        = "/var/www/radio"
-img_path        = "/var/www/images/radio-logos"
+img_path        = "/var/local/www/imagesw/radio-logos"
 rdo_path        = "/var/lib/mpd/music/RADIO"
 web_path        = cmd_path + "/sources/moode/user"
 tmp_path        = cmd_path + "/sources/moode"
@@ -63,8 +63,8 @@ def export_stations(conn):
         
         
         os.system("sudo cp " + s_pls + " " + web_path)
-        os.system("sudo cp " + s_jpl + " " + web_path + "/radio-logos")
-        os.system("sudo cp " + s_jps + " " + web_path + "/radio-logos/thumbs")
+        os.system("sudo cp " + s_jpl + " " + img_path)
+        os.system("sudo cp " + s_jps + " " + img_path + "/radio-logos/thumbs")
     
     s_json   = s_json + "]}"
     

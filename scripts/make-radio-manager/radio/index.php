@@ -29,22 +29,14 @@
 
 */
 
-
+// Main Params
 $cmd        = $_GET["cmd"];
 $src        = $_GET["src"];
 $ch         = $_GET["ch"];
 $play       = $_GET["play"];
 $type       = $_GET["type"];
 
-if(isset($_GET["name"]) && !empty($_GET["name"])){
-    $name       = $_GET["name"];
-} else {
-    $name       = "generic";
-} 
-    
-
-    
-    
+ 
 
 
 
@@ -87,19 +79,6 @@ $radioList  = "/var/lib/mpd/playlists/Radio_Play.m3u";
         
         
         break;
-            
-    case "podcast":
-        // EXAMPLE http://192.168.2.4/radio/?type=podcast&src=https://www.spreaker.com/show/3287246/episodes/feed&name=skynews
-        //echo(shell_exec("pip install podcastparser"));
-        //sleep(1);
-        
-        $cmd1 = "python " . $apiPath . "/sources/pod/pod2m3u.py " . $src . " " . $name;
-        echo(shell_exec($cmd1));
-            
-        header("Location: /");
-        
-        
-        break;        
     
     case "tag":
         $runcmd = "sudo python " . $apiPath . "/sources/rb/rb-tags-preview.py " . $play;
@@ -277,6 +256,22 @@ $radioList  = "/var/lib/mpd/playlists/Radio_Play.m3u";
                     opacity             : 1 !important;
                 }
                 
+                .mbox .btn-huge,
+                .mbox .btn-huge:hover,
+                .mbox .btn-huge:active,
+                .mbox .btn-huge:visited {
+                    display     : inline-block;
+                    background  : #fff;
+                    color       : rgb(32,32,32);
+                    padding     : 30px;
+                    text-align  : center;
+                    font-size   : 125%;
+                    width       : 100px;
+                    height      : 40px;
+                    margin      : 15px;
+                    text-decoration : none !important;
+                }
+                
                 .ui-lineup {
                     
                     list-style-type : none;
@@ -340,12 +335,19 @@ $radioList  = "/var/lib/mpd/playlists/Radio_Play.m3u";
                     </fieldset>
                 </form>
                     
-                <p>Send a Podcast directly to Moode from this page ( pip install podcastparser ... in ssh first ).</p>
-                <form action="./" method="get">
+                <p>Send a Podcast directly to Moode from this page ( install podcastparser below ... first ).</p>
+                <form action="./sources/pod/index.php" method="get">
                     <fieldset style="border-width:0px;">
                         <label style="display:inline-block; width : 10%; float:left;">FEED: </label>
-                        <input type="text" name="src" style="display:inline-block; width : 50%; float:left;" placeholder="Podcast XML">
-                        <input type="text" name="name" style="display:inline-block; width : 20%; float:left;" placeholder="Podcast Name">
+                        <input type="text" name="src" style="display:inline-block; width : 40%; height: 21px; float:left;" placeholder="Podcast XML">
+                        <input type="text" name="name" style="display:inline-block; width : 20%; height: 21px; float:left;" placeholder="Podcast Name">
+                        <select name="items" style="display:inline-block; width : 10%; height: 21px; float:left;">
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="75">75</option>
+                        </select>
                         <input type="submit" name="podplay" id="podplay" value="Play" style="display:inline-block; float:right; width:15%;">
                         <br style="clear:both;">
                         <input type="hidden" name="type" value="podcast">
@@ -353,6 +355,12 @@ $radioList  = "/var/lib/mpd/playlists/Radio_Play.m3u";
                 </form>    
                 </div>
             </div>
+            <p>&nbsp;</p>
+            
+            <div class="mbox">
+            <p style="text-align: center;"><a href="/rdo-config.php" class="btn btn-huge">Moode Radio Options</a> <a href="/rdo-config-rb.php" class="btn btn-huge">Community Radio Browser</a> <a href="/radio/sources/pod/?type=moode&cmd=pip-pod" class="btn btn-huge">Install Podcast Parser</a></p>
+            </div>
+            
             <p>&nbsp;</p>
             
             <div class="mbox">

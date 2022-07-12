@@ -8,7 +8,7 @@ from sqlite3 import Error
 
 
 cmd_path        = "/var/www/radio"
-img_path        = "/var/www/images/radio-logos"
+img_path        = "/var/local/www/imagesw/radio-logos"
 rdo_path        = "/var/lib/mpd/music/RADIO"
 web_path        = cmd_path + "/sources/moode/user"
 web_local       = "/var/local/www"

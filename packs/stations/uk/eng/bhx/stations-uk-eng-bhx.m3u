@@ -1,28 +1,28 @@
 #EXTM3U
 
 #EXTINF:-1, BBC Radio 1
-http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio1_mf_p
+http://stream.live.vc.bbcmedia.co.uk/bbc_radio_one
 
 #EXTINF:-1, BBC Radio 1Xtra
-http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio1xtra_mf_p
+http://stream.live.vc.bbcmedia.co.uk/bbc_1xtra
 
 #EXTINF:-1, BBC Radio 2
-http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio2_mf_p
+http://stream.live.vc.bbcmedia.co.uk/bbc_radio_two
 
 #EXTINF:-1, BBC Radio 3
-http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio3_mf_p
+http://stream.live.vc.bbcmedia.co.uk/bbc_radio_three
 
 #EXTINF:-1, BBC Radio 4
-http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio4fm_mf_p
+http://stream.live.vc.bbcmedia.co.uk/bbc_radio_fourfm
 
 #EXTINF:-1, BBC Radio 4Extra
-http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio4extra_mf_p
+http://stream.live.vc.bbcmedia.co.uk/bbc_radio_four_extra
 
 #EXTINF:-1, BBC Radio 5Live
-http://bbcmedia.ic.llnwd.net/stream/bbcmedia_radio5live_mf_p
+http://stream.live.vc.bbcmedia.co.uk/bbc_radio_five_live_online_nonuk
 
 #EXTINF:-1, BBC Radio 5Extra
-http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/uk/sbr_high/ak/bbc_radio_five_live_sports_extra.m3u8
+http://stream.live.vc.bbcmedia.co.uk/bbc_radio_five_live_sports_extra
 
 #EXTINF:-1, Talk Sport
 http://radio.talksport.com/stream
@@ -31,25 +31,25 @@ http://radio.talksport.com/stream
 https://radio.talksport.com/stream2
 
 #EXTINF:-1, BBC Radio 6Music
-http://bbcmedia.ic.llnwd.net/stream/bbcmedia_6music_mf_p
+http://stream.live.vc.bbcmedia.co.uk/bbc_6music
 
 #EXTINF:-1, BBC Coventry
-http://bbcmedia.ic.llnwd.net/stream/bbcmedia_lrwmcandw_mf_p
+http://stream.live.vc.bbcmedia.co.uk/bbc_radio_coventry_warwickshire
 
 #EXTINF:-1, BBC WM
-http://bbcmedia.ic.llnwd.net/stream/bbcmedia_lrwm_mf_p
+http://stream.live.vc.bbcmedia.co.uk/bbc_wm
 
 #EXTINF:-1, BBC Shropshire
-http://bbcmedia.ic.llnwd.net/stream/bbcmedia_lrshrops_mf_p
+http://stream.live.vc.bbcmedia.co.uk/bbc_radio_shropshire
 
 #EXTINF:-1, BBC Worcester
-http://bbcmedia.ic.llnwd.net/stream/bbcmedia_lrhandw_mf_p
+http://stream.live.vc.bbcmedia.co.uk/bbc_radio_hereford_worcester
 
 #EXTINF:-1, BBC World UK
-http://bbcwssc.ic.llnwd.net/stream/bbcwssc_mp1_ws-eieuk
+http://stream.live.vc.bbcmedia.co.uk/bbc_world_service
 
 #EXTINF:-1, BBC Asian Network
-http://bbcmedia.ic.llnwd.net/stream/bbcmedia_asianet_mf_p
+http://stream.live.vc.bbcmedia.co.uk/bbc_asian_network
 
 #EXTINF:-1, Big City Radio
 http://198.27.66.225:8282/;stream.mp3
